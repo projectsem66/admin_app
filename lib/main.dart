@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:admin_app/drawer_page/drawe_subpage/category.dart';
 import 'package:admin_app/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,14 +18,20 @@ void main() async{
   : await Firebase.initializeApp();
   runApp(const MyApp());}
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const Home()
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: category_page(),
     );
   }
 }
