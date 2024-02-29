@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:admin_app/subcetegory.dart';
 import 'package:admin_app/util/color.dart';
 import 'package:admin_app/util/dimension.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -17,9 +18,10 @@ class simple extends StatefulWidget {
   State<simple> createState() => _simpleState();
 }
 
+TextEditingController _cname = TextEditingController();
+String categoryName ="";
 class _simpleState extends State<simple> {
   File? pickedImage;
-  TextEditingController _cname = TextEditingController();
 
   addcategory(String cName) async {
     if (cName == null && pickedImage == null) {
@@ -56,6 +58,13 @@ class _simpleState extends State<simple> {
         .set({"cname": _cname.text.toString(), "cimage": url}).then((value) {
       log("User Uploaded");
     });
+    // await _collectionReference
+    //     .doc(_cname.toString())
+    //     .set({"cname": _cname.text.toString(), "cimage": url}).then(
+    //   (value) {
+    //     print("data Added");
+    //   },
+    // );
   }
 
   showAlertBox() {
@@ -89,6 +98,9 @@ class _simpleState extends State<simple> {
       },
     );
   }
+
+  final CollectionReference _collectionReference =
+      FirebaseFirestore.instance.collection("category");
 
   @override
   Widget build(BuildContext context) {
@@ -189,7 +201,8 @@ class _simpleState extends State<simple> {
             GestureDetector(
               onTap: () {
                 addcategory(_cname.text.toString());
-                // Get.to(sub_category());
+                categoryName=_cname.text.toString();
+                Get.to(sub_category());
               },
               child: Container(
                 height: 60,
