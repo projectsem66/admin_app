@@ -15,8 +15,8 @@ class SubCategoryList extends StatefulWidget {
 }
 
 class _SubCategoryListState extends State<SubCategoryList> {
-  final CollectionReference refSC =
-  FirebaseFirestore.instance.collection('category')
+  final CollectionReference refSC = FirebaseFirestore.instance
+      .collection('category')
       .doc(categoryName!)
       .collection("subcategories");
   String ss = categoryName;
@@ -76,13 +76,11 @@ class _SubCategoryListState extends State<SubCategoryList> {
                           childAspectRatio: 0.8),
                       itemBuilder: (context, index) {
                         final DocumentSnapshot documentSnapshot =
-                        streamSnapshot.data!.docs[index];
+                            streamSnapshot.data!.docs[index];
                         return Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Bounce(
-                            onTap: () {
-
-                            },
+                            onTap: () {},
                             duration: Duration(milliseconds: 200),
                             child: Container(
                               decoration: BoxDecoration(
