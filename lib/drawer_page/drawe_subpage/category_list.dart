@@ -78,9 +78,11 @@ class _categorylistState extends State<categorylist> {
                         return Padding(
                           padding:  EdgeInsets.all(8.0),
                           child: Bounce(
-                            onTap: () {
-                              categoryName =  documentSnapshot['cname'].toString();
-                              Get.to(SubCategoryList());
+                            onTap: () async{
+                               categoryName =  documentSnapshot['cname'].toString();
+                              Get.to(SubCategoryList(
+                                categoryTitle: documentSnapshot['cname'],
+                              ));
                             },
                             duration: Duration(milliseconds: 200),
                             child: Container(

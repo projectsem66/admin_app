@@ -8,18 +8,24 @@ import '../../simple.dart';
 import '../../util/color.dart';
 
 class SubCategoryList extends StatefulWidget {
-  const SubCategoryList({super.key});
+  final String categoryTitle;
+  const SubCategoryList({super.key, required this.categoryTitle});
 
   @override
   State<SubCategoryList> createState() => _SubCategoryListState();
 }
 
 class _SubCategoryListState extends State<SubCategoryList> {
-  final CollectionReference refSC = FirebaseFirestore.instance
-      .collection('category')
-      .doc(categoryName!)
-      .collection("subcategories");
-  String ss = categoryName;
+
+
+
+
+  Stream<QuerySnapshot<Object?>> getSubCategory(){
+   return   FirebaseFirestore.instance
+        .collection('category')
+        .doc(widget.categoryTitle)
+        .collection("subcategories").snapshots();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +42,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
             size: dimension.icon30,
           ),
         ),
-        title: Text("Category",
+        title: Text(widget.categoryTitle,
             style: GoogleFonts.poppins(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
@@ -63,7 +69,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
             Container(
               height: screenheight() - 95,
               child: StreamBuilder(
-                stream: refSC.snapshots(),
+                stream: getSubCategory(),
                 builder:
                     (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
                   if (streamSnapshot.hasData) {
@@ -129,6 +135,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
                       },
                     );
                   }
+
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
