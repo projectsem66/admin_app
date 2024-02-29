@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:admin_app/drawer_page/drawe_subpage/category.dart';
+import 'package:admin_app/drawer_page/drawe_subpage/category_list.dart';
 import 'package:admin_app/home.dart';
 import 'package:admin_app/simple.dart';
 import 'package:admin_app/subcetegory.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: simple(),
+      home: categorylist(),
     );
   }
 }

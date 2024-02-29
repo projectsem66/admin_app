@@ -48,8 +48,10 @@ class _simpleState extends State<simple> {
   uploadData() async {
     UploadTask uploadtask = FirebaseStorage.instance
         .ref("Category img")
-        .child(_cname.text.toString())
-        .putFile(pickedImage!);
+        .child("${_cname.text}")
+        .putFile(pickedImage!,SettableMetadata(
+      contentType: 'image/jpeg'
+    ));
     TaskSnapshot taskSnapshot = await uploadtask;
     String url = await taskSnapshot.ref.getDownloadURL();
     FirebaseFirestore.instance
@@ -241,3 +243,169 @@ class _simpleState extends State<simple> {
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import 'dart:io';
+// import 'package:flutter/material.dart';
+// import 'package:image_picker/image_picker.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:firebase_storage/firebase_storage.dart';
+//
+//
+// class SimpleScreen extends StatefulWidget {
+// @override
+// _SimpleScreenState createState() => _SimpleScreenState();
+// }
+//
+// class _SimpleScreenState extends State<SimpleScreen> {
+//   File? pickedImage;
+//   TextEditingController _cnameController = TextEditingController();
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Image Upload Example'),
+//       ),
+//       body: Padding(
+//         padding: const EdgeInsets.all(16.0),
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             GestureDetector(
+//               onTap: () {
+//                 _pickImage();
+//               },
+//               child: pickedImage != null
+//                   ? Container(
+//                 height: 120,
+//                 width: 120,
+//                 decoration: BoxDecoration(
+//                   image: DecorationImage(
+//                     image: FileImage(pickedImage!),
+//                     fit: BoxFit.cover,
+//                   ),
+//                   shape: BoxShape.circle,
+//                 ),
+//               )
+//                   : Container(
+//                 height: 120,
+//                 width: 120,
+//                 decoration: BoxDecoration(
+//                   shape: BoxShape.circle,
+//                   color: Colors.grey,
+//                 ),
+//                 child: Icon(
+//                   Icons.add_a_photo,
+//                   size: 60,
+//                   color: Colors.white,
+//                 ),
+//               ),
+//             ),
+//             SizedBox(height: 20),
+//             TextFormField(
+//               controller: _cnameController,
+//               decoration: InputDecoration(
+//                 labelText: 'Category Name',
+//                 border: OutlineInputBorder(),
+//               ),
+//             ),
+//             SizedBox(height: 20),
+//             ElevatedButton(
+//               onPressed: () {
+//                 _uploadData();
+//               },
+//               child: Text('Upload'),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+//
+//   Future<void> _pickImage() async {
+//     final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+//     if (pickedFile != null) {
+//       setState(() {
+//         pickedImage = File(pickedFile.path);
+//       });
+//     }
+//   }
+//
+//   Future<void> _uploadData() async {
+//     if (pickedImage == null || _cnameController.text.isEmpty) {
+//       // Show an alert if the required fields are not entered
+//       showDialog(
+//         context: context,
+//         builder: (context) {
+//           return AlertDialog(
+//             title: Text("Enter Required Fields"),
+//             actions: [
+//               TextButton(
+//                 onPressed: () {
+//                   Navigator.pop(context);
+//                 },
+//                 child: Text("Ok"),
+//               ),
+//             ],
+//           );
+//         },
+//       );
+//       return;
+//     }
+//
+//     try {
+//       // Upload image to Firebase Storage
+//       String imageName = _cnameController.text;
+//       Reference storageReference = FirebaseStorage.instance.ref("category_images/$imageName");
+//       UploadTask uploadTask = storageReference.putFile(pickedImage!);
+//       TaskSnapshot taskSnapshot = await uploadTask;
+//       String imageUrl = await taskSnapshot.ref.getDownloadURL();
+//
+//       // Save category details to Firestore
+//       await FirebaseFirestore.instance.collection("categories").doc().set({
+//         "cname": _cnameController.text,
+//         "cimage": imageUrl,
+//       });
+//
+//       showDialog(
+//         context: context,
+//         builder: (context) {
+//           return AlertDialog(
+//             title: Text("Upload Successful"),
+//             content: Text("Category uploaded successfully!"),
+//             actions: [
+//               TextButton(
+//                 onPressed: () {
+//                   Navigator.pop(context);
+//                   setState(() {
+//                     pickedImage = null;
+//                     _cnameController.text = '';
+//                   });
+//                 },
+//                 child: Text("Ok"),
+//               ),
+//             ],
+//           );
+//         },
+//       );
+//     } catch (error) {
+//       print("Error uploading data: $error");
+//     }
+//   }
+// }

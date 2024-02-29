@@ -122,7 +122,7 @@ class _sub_categoryState extends State<sub_category> {
         backgroundColor: AppColors.Colorq,
         leading: IconButton(
           onPressed: () {
-            Get.to(simple());
+          //  Get.to(simple());
           },
           icon: Icon(
             Icons.keyboard_arrow_left,
