@@ -48,6 +48,7 @@ dependencies:
   auto_scroll_text: ^0.0.6
   flutter_rating_bar: ^4.0.1
   image_picker: ^1.0.7
+  firebase_analytics: ^10.8.0
 
 dev_dependencies:
   flutter_test:

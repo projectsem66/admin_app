@@ -1,15 +1,11 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:admin_app/subcetegory.dart';
 import 'package:admin_app/util/color.dart';
 import 'package:admin_app/util/dimension.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
@@ -48,15 +44,18 @@ class _simpleState extends State<simple> {
   }
 
   uploadData() async {
-    UploadTask uploadtask = FirebaseStorage.instance.ref("Category img").child(
-        _cname.text.toString()).putFile(pickedImage!);
+    UploadTask uploadtask = FirebaseStorage.instance
+        .ref("Category img")
+        .child(_cname.text.toString())
+        .putFile(pickedImage!);
     TaskSnapshot taskSnapshot = await uploadtask;
     String url = await taskSnapshot.ref.getDownloadURL();
-    FirebaseFirestore.instance.collection("category")
+    FirebaseFirestore.instance
+        .collection("category")
         .doc(_cname.text.toString())
         .set({"cname": _cname.text.toString(), "cimage": url}).then((value) {
-          log("User Uploaded");
-    } );
+      log("User Uploaded");
+    });
   }
 
   showAlertBox() {
@@ -124,25 +123,25 @@ class _simpleState extends State<simple> {
                 children: [
                   pickedImage != null
                       ? Container(
-                    height: 120,
-                    width: 120,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: FileImage(pickedImage!),
-                            fit: BoxFit.cover),
-                        shape: BoxShape.circle,
-                        color: AppColors.Colorq.withOpacity(0.05)),
-                  )
+                          height: 120,
+                          width: 120,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: FileImage(pickedImage!),
+                                  fit: BoxFit.cover),
+                              shape: BoxShape.circle,
+                              color: AppColors.Colorq.withOpacity(0.05)),
+                        )
                       : Container(
-                    height: 120,
-                    width: 120,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage("images/addCategoryy.png"),
-                            fit: BoxFit.cover),
-                        shape: BoxShape.circle,
-                        color: AppColors.Colorq.withOpacity(0.05)),
-                  ),
+                          height: 120,
+                          width: 120,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage("images/addCategoryy.png"),
+                                  fit: BoxFit.cover),
+                              shape: BoxShape.circle,
+                              color: AppColors.Colorq.withOpacity(0.05)),
+                        ),
                   Container(
                     margin: EdgeInsets.only(top: 65, left: 80),
                     height: 50,
@@ -202,7 +201,7 @@ class _simpleState extends State<simple> {
                   child: Text(
                     "Next",
                     style:
-                    GoogleFonts.poppins(color: Colors.white, fontSize: 22),
+                        GoogleFonts.poppins(color: Colors.white, fontSize: 22),
                   ),
                 ),
               ),
