@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:admin_app/simple.dart';
 import 'package:admin_app/util/color.dart';
 import 'package:admin_app/util/dimension.dart';
@@ -32,7 +31,6 @@ class _sub_categoryState extends State<sub_category> {
             actions: [
               TextButton(
                   onPressed: () {
-
                     Get.back();
                   },
                   child: Text("Ok")),
@@ -122,7 +120,7 @@ class _sub_categoryState extends State<sub_category> {
         backgroundColor: AppColors.Colorq,
         leading: IconButton(
           onPressed: () {
-          //  Get.to(simple());
+            //  Get.to(simple());
           },
           icon: Icon(
             Icons.keyboard_arrow_left,

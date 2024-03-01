@@ -5,20 +5,88 @@ import 'package:bounce/bounce.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class categorylist extends StatefulWidget {
-   categorylist({super.key});
+  categorylist({super.key});
 
   @override
   State<categorylist> createState() => _categorylistState();
 }
+
 String categoryName = "";
 
 class _categorylistState extends State<categorylist> {
+  final TextEditingController _namecontroller = TextEditingController();
+
   final CollectionReference refC =
       FirebaseFirestore.instance.collection('category');
 
+  Future<void> _update([DocumentSnapshot? documentSnapshot]) async {
+    if (documentSnapshot != null) {
+      _namecontroller.text = documentSnapshot['cname'];
+    }
+    await showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      builder: (BuildContext ctx) {
+        return Padding(
+          padding: EdgeInsets.only(
+              top: 20,
+              left: 20,
+              right: 20,
+              bottom: MediaQuery.of(ctx).viewInsets.bottom + 20),
+          child: Column(
+            children: [
+              const Center(
+                child: Text("Update your Items",
+                    style: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold)),
+              ),
+              TextField(
+                controller: _namecontroller,
+                decoration: InputDecoration(
+                    labelText: 'Name',
+                    hintText: "Umang m patel",
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15))),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  ElevatedButton(
+                      onPressed: () async {
+                        final String name = _namecontroller.text;
+
+                        await refC
+                            .doc(documentSnapshot!.id)
+                            .update({"cname": name});
+                        _namecontroller.text = '';
+
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text(
+                        "Update",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.black),
+                      )),
+
+                ],
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
+  Future<void> _delete(String productID) async {
+    await refC.doc(productID).delete();
+
+    //  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("you have successfully deleted a items")));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,24 +144,25 @@ class _categorylistState extends State<categorylist> {
                         final DocumentSnapshot documentSnapshot =
                             streamSnapshot.data!.docs[index];
                         return Padding(
-                          padding:  EdgeInsets.all(8.0),
-                          child: Bounce(
-                            onTap: () async{
-                               categoryName =  documentSnapshot['cname'].toString();
-                              Get.to(SubCategoryList(
-                                categoryTitle: documentSnapshot['cname'],
-                              ));
-                            },
-                            duration: Duration(milliseconds: 200),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.black,
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
+                          padding: EdgeInsets.all(8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Bounce(
+                                  onTap: () async {
+                                    categoryName =
+                                        documentSnapshot['cname'].toString();
+                                    Get.to(SubCategoryList(
+                                      categoryTitle: documentSnapshot['cname'],
+                                    ));
+                                  },
+                                  duration: Duration(milliseconds: 200),
+                                  child: Container(
                                     height: 140,
                                     width: double.maxFinite,
                                     decoration: BoxDecoration(
@@ -107,25 +176,67 @@ class _categorylistState extends State<categorylist> {
                                                     .toString()),
                                             fit: BoxFit.cover)),
                                   ),
-                                  Container(
-                                    height: 74,
-                                    width: double.maxFinite,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                          bottomRight: Radius.circular(15),
-                                          bottomLeft: Radius.circular(15)),
-                                      color: Colors.blue,
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                          documentSnapshot['cname'].toString(),
-                                          style:  TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold)),
+                                ),
+                                Container(
+                                  height: 74,
+                                  width: double.maxFinite,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                        bottomRight: Radius.circular(15),
+                                        bottomLeft: Radius.circular(15)),
+                                    color: Colors.blue,
+                                  ),
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsets.only(left: 15, right: 10),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                            documentSnapshot['cname']
+                                                .toString(),
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold)),
+                                        Column(
+                                          children: [
+                                            Bounce(
+                                              onTap: () =>
+                                                  _update(documentSnapshot),
+                                              child: Container(
+                                                height: 35,
+                                                width: 35,
+                                                decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    color: AppColors.Colorq),
+                                                child: Icon(
+                                                  Icons.edit,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ),
+                                            Bounce(
+                                              onTap: () => _delete(documentSnapshot.id),
+                                              child: Container(
+                                                height: 35,
+                                                width: 35,
+                                                decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    color: AppColors.Colorq),
+                                                child: Icon(
+                                                  Icons.delete,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         );

@@ -9,6 +9,7 @@ import '../../util/color.dart';
 
 class SubCategoryList extends StatefulWidget {
   final String categoryTitle;
+
   const SubCategoryList({super.key, required this.categoryTitle});
 
   @override
@@ -16,15 +17,12 @@ class SubCategoryList extends StatefulWidget {
 }
 
 class _SubCategoryListState extends State<SubCategoryList> {
-
-
-
-
-  Stream<QuerySnapshot<Object?>> getSubCategory(){
-   return   FirebaseFirestore.instance
+  Stream<QuerySnapshot<Object?>> getSubCategory() {
+    return FirebaseFirestore.instance
         .collection('category')
         .doc(widget.categoryTitle)
-        .collection("subcategories").snapshots();
+        .collection("subcategories")
+        .snapshots();
   }
 
   @override
@@ -103,7 +101,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
                                         borderRadius: BorderRadius.only(
                                             topRight: Radius.circular(15),
                                             topLeft: Radius.circular(15)),
-                                        color: Colors.red,
+                                        // color: Colors.red,
                                         image: DecorationImage(
                                             image: NetworkImage(
                                                 documentSnapshot['scimage']
