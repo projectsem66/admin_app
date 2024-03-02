@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../simple.dart';
 import '../../util/color.dart';
 
 class SubCategoryList extends StatefulWidget {
@@ -24,25 +23,42 @@ class _SubCategoryListState extends State<SubCategoryList> {
         .collection("subcategories")
         .snapshots();
   }
-  final CollectionReference refSC =
-  FirebaseFirestore.instance.collection('subcategories');
 
-
-  Future<void> _delete(String documentId) async {
+  Future<void> deleteSC(String documentId) async {
     try {
+      CollectionReference subcategoriesRef = FirebaseFirestore.instance
+          .collection('category')
+          .doc(widget.categoryTitle)
+          .collection("subcategories");
 
-      DocumentReference refSC = FirebaseFirestore.instance.collection('subcategories').doc(documentId);
+      DocumentReference docRefToDelete = subcategoriesRef.doc(documentId);
 
+      await docRefToDelete.delete();
 
-      await refSC.delete();
-
-
-      print('Document deleted successfully!');
+      print('ID $documentId deletee');
     } catch (e) {
-
-      print('Error deleting document: $e');
+      print('Error $e');
     }
   }
+  // final CollectionReference refSC =
+  // FirebaseFirestore.instance.collection('category')
+  //     .doc(widget.categoryTitle)
+  //     .collection("subcategories");
+
+  // Future<void> _delete(String documentId) async {
+  //   try {
+  //     DocumentReference refSC = FirebaseFirestore.instance
+  //         .collection('subcategories')
+  //         .doc(documentId);
+  //
+  //     await refSC.delete();
+  //
+  //     print('Document deleted successfully!');
+  //   } catch (e) {
+  //     print('Error deleting document: $e');
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -135,10 +151,13 @@ class _SubCategoryListState extends State<SubCategoryList> {
                                           bottomLeft: Radius.circular(15)),
                                       color: Colors.blue,
                                     ),
-                                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                            documentSnapshot['scname'].toString(),
+                                            documentSnapshot['scname']
+                                                .toString(),
                                             style: TextStyle(
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.bold)),
@@ -159,8 +178,8 @@ class _SubCategoryListState extends State<SubCategoryList> {
                                               ),
                                             ),
                                             Bounce(
-                                              onTap: ()async {
-                                               await _delete(documentSnapshot.id);
+                                              onTap: () async {
+                                                await deleteSC(documentSnapshot.id);
                                               },
                                               child: Container(
                                                 height: 35,
@@ -173,7 +192,6 @@ class _SubCategoryListState extends State<SubCategoryList> {
                                                   color: Colors.white,
                                                 ),
                                               ),
-
                                             ),
                                           ],
                                         )
