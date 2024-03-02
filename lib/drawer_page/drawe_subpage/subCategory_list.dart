@@ -24,7 +24,25 @@ class _SubCategoryListState extends State<SubCategoryList> {
         .collection("subcategories")
         .snapshots();
   }
+  final CollectionReference refSC =
+  FirebaseFirestore.instance.collection('subcategories');
 
+
+  Future<void> _delete(String documentId) async {
+    try {
+
+      DocumentReference refSC = FirebaseFirestore.instance.collection('subcategories').doc(documentId);
+
+
+      await refSC.delete();
+
+
+      print('Document deleted successfully!');
+    } catch (e) {
+
+      print('Error deleting document: $e');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -117,12 +135,49 @@ class _SubCategoryListState extends State<SubCategoryList> {
                                           bottomLeft: Radius.circular(15)),
                                       color: Colors.blue,
                                     ),
-                                    child: Center(
-                                      child: Text(
-                                          documentSnapshot['scname'].toString(),
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold)),
+                                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                            documentSnapshot['scname'].toString(),
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold)),
+                                        Column(
+                                          children: [
+                                            Bounce(
+                                              onTap: () {},
+                                              child: Container(
+                                                height: 35,
+                                                width: 35,
+                                                decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    color: AppColors.Colorq),
+                                                child: Icon(
+                                                  Icons.edit,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ),
+                                            Bounce(
+                                              onTap: ()async {
+                                               await _delete(documentSnapshot.id);
+                                              },
+                                              child: Container(
+                                                height: 35,
+                                                width: 35,
+                                                decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    color: AppColors.Colorq),
+                                                child: Icon(
+                                                  Icons.delete,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+
+                                            ),
+                                          ],
+                                        )
+                                      ],
                                     ),
                                   ),
                                 ],
