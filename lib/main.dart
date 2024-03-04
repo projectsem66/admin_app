@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: categorylist(),
+      home: simple(),
     );
   }
 }

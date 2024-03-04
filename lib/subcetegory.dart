@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:admin_app/drawer_page/drawe_subpage/category_list.dart';
 import 'package:admin_app/simple.dart';
 import 'package:admin_app/util/color.dart';
 import 'package:admin_app/util/dimension.dart';
@@ -52,7 +53,7 @@ class _sub_categoryState extends State<sub_category> {
     String url = await taskSnapshot.ref.getDownloadURL();
     FirebaseFirestore.instance
         .collection("category")
-        .doc(categoryName)
+        .doc(categoryNamee)
         .collection("subcategories")
         .doc(_scName.text.toString())
         .set({
@@ -136,7 +137,7 @@ class _sub_categoryState extends State<sub_category> {
       ),
       body: Column(
         children: [
-          Text("Category: ${categoryName}"),
+          Text("Category: ${categoryNamee}"),
           SizedBox(
             height: 15,
           ),
@@ -214,6 +215,7 @@ class _sub_categoryState extends State<sub_category> {
           GestureDetector(
             onTap: () {
               addSubCategory(_scName.text.toString());
+              Get.to(categorylist());
             },
             child: Container(
               height: 60,

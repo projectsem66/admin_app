@@ -19,7 +19,7 @@ class simple extends StatefulWidget {
 }
 
 TextEditingController _cname = TextEditingController();
-String categoryName ="";
+String categoryNamee ="";
 class _simpleState extends State<simple> {
   File? pickedImage;
 
@@ -203,7 +203,7 @@ class _simpleState extends State<simple> {
             GestureDetector(
               onTap: () {
                 addcategory(_cname.text.toString());
-                categoryName=_cname.text.toString();
+                categoryNamee=_cname.text.toString();
                 Get.to(sub_category());
               },
               child: Container(
