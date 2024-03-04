@@ -19,7 +19,8 @@ class simple extends StatefulWidget {
 }
 
 TextEditingController _cname = TextEditingController();
-String categoryNamee ="";
+String categoryNamee = "";
+
 class _simpleState extends State<simple> {
   File? pickedImage;
 
@@ -49,9 +50,7 @@ class _simpleState extends State<simple> {
     UploadTask uploadtask = FirebaseStorage.instance
         .ref("Category img")
         .child("${_cname.text}")
-        .putFile(pickedImage!,SettableMetadata(
-      contentType: 'image/jpeg'
-    ));
+        .putFile(pickedImage!, SettableMetadata(contentType: 'image/jpeg'));
     TaskSnapshot taskSnapshot = await uploadtask;
     String url = await taskSnapshot.ref.getDownloadURL();
     FirebaseFirestore.instance
@@ -203,7 +202,7 @@ class _simpleState extends State<simple> {
             GestureDetector(
               onTap: () {
                 addcategory(_cname.text.toString());
-                categoryNamee=_cname.text.toString();
+                categoryNamee = _cname.text.toString();
                 Get.to(sub_category());
               },
               child: Container(
@@ -243,20 +242,6 @@ class _simpleState extends State<simple> {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import 'dart:io';
 // import 'package:flutter/material.dart';

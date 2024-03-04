@@ -11,7 +11,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 import 'demoUpload.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
@@ -28,13 +28,9 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
-
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: simple(),
     );
   }
 }
-
-
