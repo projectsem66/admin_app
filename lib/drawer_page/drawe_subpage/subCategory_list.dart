@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../simple.dart';
 import '../../util/color.dart';
 import 'category_list.dart';
 
@@ -156,6 +157,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
             padding: EdgeInsets.only(right: dimension.height15),
             child: GestureDetector(
               onTap: () {
+                categoryNamee = widget.categoryTitle;
                 Get.to(sub_category());
               },
               child: Icon(

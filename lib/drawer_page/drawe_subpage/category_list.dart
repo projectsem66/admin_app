@@ -162,7 +162,8 @@ class _categorylistState extends State<categorylist> {
                                           documentSnapshot['cname'].toString();
 
                                       Get.to(SubCategoryList(
-                                        categoryTitle: documentSnapshot['cname'],
+                                        categoryTitle:
+                                            documentSnapshot['cname'],
                                       ));
                                     },
                                     duration: Duration(milliseconds: 200),
@@ -221,8 +222,8 @@ class _categorylistState extends State<categorylist> {
                                                 ),
                                               ),
                                               Bounce(
-                                                onTap: () =>
-                                                    _delete(documentSnapshot.id),
+                                                onTap: () => _delete(
+                                                    documentSnapshot.id),
                                                 child: Container(
                                                   height: 35,
                                                   width: 35,
