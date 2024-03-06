@@ -1,3 +1,4 @@
+import 'package:admin_app/Pages/home_page.dart';
 import 'package:admin_app/drawer_page/drawe_subpage/subCategory_list.dart';
 import 'package:admin_app/simple.dart';
 import 'package:admin_app/util/color.dart';
@@ -96,7 +97,7 @@ class _categorylistState extends State<categorylist> {
         backgroundColor: AppColors.Colorq,
         leading: IconButton(
           onPressed: () {
-            // Get.to(home_page());
+            Get.to(home_page());
           },
           icon: Icon(
             Icons.keyboard_arrow_left,

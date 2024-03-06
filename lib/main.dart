@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:admin_app/Pages/home_page.dart';
 import 'package:admin_app/drawer_page/drawe_subpage/category.dart';
 import 'package:admin_app/drawer_page/drawe_subpage/category_list.dart';
 import 'package:admin_app/home.dart';
@@ -27,6 +28,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+theme: ThemeData(iconTheme: IconThemeData(color: Colors.white)),
       debugShowCheckedModeBanner: false,
       home: simple(),
     );

@@ -231,7 +231,6 @@ class _SubCategoryListState extends State<SubCategoryList> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-
                                               documentSnapshot['scname']
                                                   .toString(),
                                               style: TextStyle(

@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:admin_app/Pages/home_page.dart';
 import 'package:admin_app/subcetegory.dart';
 import 'package:admin_app/util/color.dart';
 import 'package:admin_app/util/dimension.dart';
@@ -109,7 +110,7 @@ class _simpleState extends State<simple> {
         backgroundColor: AppColors.Colorq,
         leading: IconButton(
           onPressed: () {
-            //Get.to(drawer());
+            Get.to(home_page());
           },
           icon: Icon(
             Icons.keyboard_arrow_left,
