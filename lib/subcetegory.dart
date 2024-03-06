@@ -121,7 +121,7 @@ class _sub_categoryState extends State<sub_category> {
         backgroundColor: AppColors.Colorq,
         leading: IconButton(
           onPressed: () {
-             Get.to(simple());
+            Get.to(simple());
           },
           icon: Icon(
             Icons.keyboard_arrow_left,
@@ -135,103 +135,112 @@ class _sub_categoryState extends State<sub_category> {
                 fontWeight: FontWeight.bold,
                 fontSize: dimension.font20)),
       ),
-      body: Column(
-        children: [
-          Text("Category: ${categoryNamee}"),
-          SizedBox(
-            height: 15,
-          ),
-          GestureDetector(
-            onTap: () {
-              showAlertBox();
-            },
-            child: Stack(
+      body: Padding(
+        padding: const EdgeInsets.only(left: 12, right: 12, top: 15),
+        child: Column(mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Category Name: ${categoryNamee}"),
+            SizedBox(
+              height: 15,
+            ),
+            Row(crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                pickedSCimg != null
-                    ? Container(
-                        height: 120,
-                        width: 120,
+                GestureDetector(
+                  onTap: () {
+                    showAlertBox();
+                  },
+                  child: Stack(
+                    children: [
+                      pickedSCimg != null
+                          ? Container(
+                              height: 120,
+                              width: 120,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: FileImage(pickedSCimg!),
+                                      fit: BoxFit.cover),
+                                  shape: BoxShape.circle,
+                                  color: AppColors.Colorq.withOpacity(0.05)),
+                            )
+                          : Container(
+                              height: 120,
+                              width: 120,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage("images/addCategoryy.png"),
+                                      fit: BoxFit.cover),
+                                  shape: BoxShape.circle,
+                                  color: AppColors.Colorq.withOpacity(0.05)),
+                            ),
+                      Container(
+                        margin: EdgeInsets.only(top: 65, left: 80),
+                        height: 50,
+                        width: 50,
                         decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: FileImage(pickedSCimg!),
-                                fit: BoxFit.cover),
-                            shape: BoxShape.circle,
-                            color: AppColors.Colorq.withOpacity(0.05)),
-                      )
-                    : Container(
-                        height: 120,
-                        width: 120,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage("images/addCategoryy.png"),
-                                fit: BoxFit.cover),
-                            shape: BoxShape.circle,
-                            color: AppColors.Colorq.withOpacity(0.05)),
+                          shape: BoxShape.circle,
+                          //   color: AppColors.Colorq
+                        ),
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            size: 30,
+                            Icons.camera_enhance,
+                            color: AppColors.Colorq,
+                          ),
+                        ),
                       ),
-                Container(
-                  margin: EdgeInsets.only(top: 65, left: 80),
-                  height: 50,
-                  width: 50,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    //   color: AppColors.Colorq
-                  ),
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      size: 30,
-                      Icons.camera_enhance,
-                      color: AppColors.Colorq,
-                    ),
+                    ],
                   ),
                 ),
               ],
             ),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          TextFormField(
-            controller: _scName,
-            decoration: InputDecoration(
-                filled: true,
-                fillColor: AppColors.Colorq.withOpacity(0.05),
-                border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                hintText: "Salon for Men",
-                labelText: "Sub Category Name",
-                labelStyle: TextStyle(color: Colors.black87),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide(color: Colors.white),
-                ),
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.Colorq),
-                    borderRadius: BorderRadius.circular(15))),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          GestureDetector(
-            onTap: () {
-              addSubCategory(_scName.text.toString());
-              Get.to(categorylist());
-            },
-            child: Container(
-              height: 60,
-              width: double.maxFinite,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: AppColors.Colorq),
-              child: Center(
-                child: Text(
-                  "Next",
-                  style: GoogleFonts.poppins(color: Colors.white, fontSize: 22),
+            SizedBox(
+              height: 15,
+            ),
+            TextFormField(
+              controller: _scName,
+              decoration: InputDecoration(
+                  filled: true,
+                  fillColor: AppColors.Colorq.withOpacity(0.05),
+                  border:
+                      OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                  hintText: "Salon for Men",
+                  labelText: "Sub Category Name",
+                  labelStyle: TextStyle(color: Colors.black87),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: AppColors.Colorq),
+                      borderRadius: BorderRadius.circular(15))),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            GestureDetector(
+              onTap: () {
+                addSubCategory(_scName.text.toString());
+                Get.to(categorylist());
+              },
+              child: Container(
+                height: 60,
+                width: double.maxFinite,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: AppColors.Colorq),
+                child: Center(
+                  child: Text(
+                    "Next",
+                    style: GoogleFonts.poppins(color: Colors.white, fontSize: 22),
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
