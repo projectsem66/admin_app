@@ -1,14 +1,18 @@
-import 'package:admin_app/Pages/home_page.dart';
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:admin_app/drawer_page/drawe_subpage/subCategory_list.dart';
 import 'package:admin_app/simple.dart';
 import 'package:admin_app/util/color.dart';
 import 'package:admin_app/util/dimension.dart';
 import 'package:bounce/bounce.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 
 class categorylist extends StatefulWidget {
   categorylist({super.key});
@@ -20,14 +24,99 @@ class categorylist extends StatefulWidget {
 String categoryName = "";
 
 class _categorylistState extends State<categorylist> {
+  File? pickedImage;
+
+  addcategory(String cName) async {
+    if (cName == null && pickedImage == null) {
+      return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Enter Required Field"),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text("Ok")),
+            ],
+          );
+        },
+      );
+    } else {
+      uploadData();
+    }
+  }
+
+  uploadData() async {
+    UploadTask uploadtask = FirebaseStorage.instance
+        .ref("Category img")
+        .child("${_namecontroller.text}")
+        .putFile(pickedImage!, SettableMetadata(contentType: 'image/jpeg'));
+    TaskSnapshot taskSnapshot = await uploadtask;
+    String url = await taskSnapshot.ref.getDownloadURL();
+    FirebaseFirestore.instance
+        .collection("category")
+        .doc(snapid)
+        .set({"cname": _namecontroller.text.toString(), "cimage": url}).then(
+            (value) {
+          log("User Uploaded");
+        });
+    // await _collectionReference
+    //     .doc(_cname.toString())
+    //     .set({"cname": _cname.text.toString(), "cimage": url}).then(
+    //   (value) {
+    //     print("data Added");
+    //   },
+    // );
+  }
+
+  showAlertBox() {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Pick Image From"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                onTap: () {
+                  pickImage(ImageSource.camera);
+                  Get.back();
+                },
+                leading: Icon(Icons.camera_alt),
+                title: Text("Camera"),
+              ),
+              ListTile(
+                onTap: () {
+                  pickImage(ImageSource.gallery);
+                  Get.back();
+                },
+                leading: Icon(Icons.image),
+                title: Text("Gallery"),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+
+  String imgPath = "";
+  String snapid="";
+
   final TextEditingController _namecontroller = TextEditingController();
 
   final CollectionReference refC =
-      FirebaseFirestore.instance.collection('category');
+  FirebaseFirestore.instance.collection('category');
 
   Future<void> _update([DocumentSnapshot? documentSnapshot]) async {
     if (documentSnapshot != null) {
       _namecontroller.text = documentSnapshot['cname'];
+      snapid=documentSnapshot.id;
+      imgPath = documentSnapshot['cimage'];
     }
     await showModalBottomSheet(
       isScrollControlled: true,
@@ -46,6 +135,56 @@ class _categorylistState extends State<categorylist> {
                     style: TextStyle(
                         color: Colors.black, fontWeight: FontWeight.bold)),
               ),
+              GestureDetector(
+                onTap: () {
+                  showAlertBox();
+                },
+                child: Stack(
+                  children: [
+                    pickedImage != null
+                        ? Container(
+                      height: 120,
+                      width: 120,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: FileImage(pickedImage!),
+                              fit: BoxFit.cover),
+                          shape: BoxShape.circle,
+                          color: AppColors.Colorq.withOpacity(0.05)),
+                    )
+                        : Container(
+                      height: 120,
+                      width: 120,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(imgPath),
+                              fit: BoxFit.cover),
+                          shape: BoxShape.circle,
+                          color: AppColors.Colorq.withOpacity(0.05)),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 65, left: 80),
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        //   color: AppColors.Colorq
+                      ),
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          size: 30,
+                          Icons.camera_enhance,
+                          color: AppColors.Colorq,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
               TextField(
                 controller: _namecontroller,
                 decoration: InputDecoration(
@@ -62,13 +201,19 @@ class _categorylistState extends State<categorylist> {
                   ElevatedButton(
                       onPressed: () async {
                         final String name = _namecontroller.text;
-
+                        final String url = imgPath.toString();
+                        addcategory(_namecontroller.text);
                         await refC
                             .doc(documentSnapshot!.id)
                             .update({"cname": name});
-                        _namecontroller.text = '';
+                        //_namecontroller.text = '';
 
+                        //addcategory(_namecontroller.text.toString());
+                        // categoryNamee = _cname.text.toString();
                         Navigator.of(context).pop();
+                        // setState(() {
+                        //
+                        // });
                       },
                       child: const Text(
                         "Update",
@@ -97,7 +242,7 @@ class _categorylistState extends State<categorylist> {
         backgroundColor: AppColors.Colorq,
         leading: IconButton(
           onPressed: () {
-            Get.to(home_page());
+            // Get.to(home_page());
           },
           icon: Icon(
             Icons.keyboard_arrow_left,
@@ -146,7 +291,7 @@ class _categorylistState extends State<categorylist> {
                             childAspectRatio: 0.7),
                         itemBuilder: (context, index) {
                           final DocumentSnapshot documentSnapshot =
-                              streamSnapshot.data!.docs[index];
+                          streamSnapshot.data!.docs[index];
                           return Padding(
                             padding: EdgeInsets.all(8.0),
                             child: Container(
@@ -164,7 +309,7 @@ class _categorylistState extends State<categorylist> {
 
                                       Get.to(SubCategoryList(
                                         categoryTitle:
-                                            documentSnapshot['cname'],
+                                        documentSnapshot['cname'],
                                       ));
                                     },
                                     duration: Duration(milliseconds: 200),
@@ -194,10 +339,10 @@ class _categorylistState extends State<categorylist> {
                                     ),
                                     child: Padding(
                                       padding:
-                                          EdgeInsets.only(left: 15, right: 10),
+                                      EdgeInsets.only(left: 15, right: 10),
                                       child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
                                               documentSnapshot['cname']
@@ -261,5 +406,21 @@ class _categorylistState extends State<categorylist> {
         ),
       ),
     );
+  }
+
+  pickImage(ImageSource imageSource) async {
+    try {
+      final photo = await ImagePicker().pickImage(source: imageSource);
+      if (photo == null) {
+        return;
+      }
+      final tempImage = File(photo.path);
+      setState(() {
+        pickedImage = tempImage;
+      });
+    } catch (ex) {
+      log(ex.toString());
+      print(ex.toString());
+    }
   }
 }
