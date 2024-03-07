@@ -406,7 +406,7 @@ class _home_pageState extends State<home_page> {
                           ),
                           InkWell(
                             onTap: () {
-                              Get.to(providerList());
+                              Get.to(totalprovider());
                             },
                             child: Text(
                               "View all",

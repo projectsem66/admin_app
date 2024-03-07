@@ -59,20 +59,20 @@ class _providerlistState extends State<providerlist> {
                   cursorColor: AppColors.Colorq,
                   decoration: InputDecoration(
                       prefixIcon:
-                          Icon(Icons.search_rounded, color: Colors.black26),
+                      Icon(Icons.search_rounded, color: Colors.black26),
                       hintText: 'Search here....',
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
                           borderSide:
-                              const BorderSide(color: Color(0xffefeff7))),
+                          const BorderSide(color: Color(0xffefeff7))),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
                           borderSide:
-                              const BorderSide(color: Color(0xffefeff7))),
+                          const BorderSide(color: Color(0xffefeff7))),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
                           borderSide:
-                              const BorderSide(color: Color(0xffefeff7)))),
+                          const BorderSide(color: Color(0xffefeff7)))),
                 ),
               ),
               SizedBox(
@@ -94,7 +94,7 @@ class _providerlistState extends State<providerlist> {
                       width: dimension.height60 * 3,
                       decoration: BoxDecoration(
                           borderRadius:
-                              BorderRadius.circular(dimension.height12)),
+                          BorderRadius.circular(dimension.height12)),
                       child: Column(
                         children: [
                           Container(
@@ -110,7 +110,7 @@ class _providerlistState extends State<providerlist> {
                                       dimension.height12,
                                     ),
                                     topRight:
-                                        Radius.circular(dimension.height12))),
+                                    Radius.circular(dimension.height12))),
                             child: Padding(
                               padding: EdgeInsets.only(
                                   right: dimension.height15,
@@ -124,10 +124,10 @@ class _providerlistState extends State<providerlist> {
                                     decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                         color:
-                                            AppColors.Colorq.withOpacity(0.05)),
+                                        AppColors.Colorq),
                                     child: Icon(
-                                      Icons.power_settings_new_sharp,
-                                      color: AppColors.lightGreen,
+                                      Icons.delete,
+                                      color: AppColors.white1,
                                     ),
                                   ),
                                 ],
@@ -140,9 +140,9 @@ class _providerlistState extends State<providerlist> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.only(
                                   bottomLeft:
-                                      Radius.circular(dimension.height12),
+                                  Radius.circular(dimension.height12),
                                   bottomRight:
-                                      Radius.circular(dimension.height12)),
+                                  Radius.circular(dimension.height12)),
                               color: AppColors.Colorq.withOpacity(0.05),
                             ),
                             child: Column(

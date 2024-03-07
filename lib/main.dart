@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
 theme: ThemeData(iconTheme: IconThemeData(color: Colors.white)),
       debugShowCheckedModeBanner: false,
-      home: home_page(),
+      home: simple(),
     );
   }
 }

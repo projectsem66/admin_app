@@ -127,78 +127,116 @@ class _categorylistState extends State<categorylist> {
               left: 20,
               right: 20,
               bottom: MediaQuery.of(ctx).viewInsets.bottom + 20),
-          child: Column(
-            children: [
-              const Center(
-                child: Text("Update your Items",
-                    style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold)),
-              ),
-              GestureDetector(
-                onTap: () {
-                  showAlertBox();
-                },
-                child: Stack(
-                  children: [
-                    pickedImage != null
-                        ? Container(
-                            height: 120,
-                            width: 120,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: FileImage(pickedImage!),
-                                    fit: BoxFit.cover),
-                                shape: BoxShape.circle,
-                                color: AppColors.Colorq.withOpacity(0.05)),
-                          )
-                        : Container(
-                            height: 120,
-                            width: 120,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: NetworkImage(imgPath),
-                                    fit: BoxFit.cover),
-                                shape: BoxShape.circle,
-                                color: AppColors.Colorq.withOpacity(0.05)),
-                          ),
-                    Container(
-                      margin: EdgeInsets.only(top: 65, left: 80),
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        //   color: AppColors.Colorq
-                      ),
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          size: 30,
-                          Icons.camera_enhance,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 15.0),
+            child: Column(
+              children: [
+                Center(
+                  child: Text("Update your Items",
+                      style: TextStyle(
                           color: AppColors.Colorq,
+                          fontWeight: FontWeight.bold,
+                          fontSize: dimension.font20)),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    showAlertBox();
+                  },
+                  child: Stack(
+                    children: [
+                      pickedImage != null
+                          ? Container(
+                              height: 120,
+                              width: 120,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: FileImage(pickedImage!),
+                                      fit: BoxFit.cover),
+                                  shape: BoxShape.circle,
+                                  color: AppColors.Colorq.withOpacity(0.05)),
+                            )
+                          : Container(
+                              height: 120,
+                              width: 120,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: NetworkImage(imgPath),
+                                      fit: BoxFit.cover),
+                                  shape: BoxShape.circle,
+                                  color: AppColors.Colorq.withOpacity(0.05)),
+                            ),
+                      Container(
+                        margin: EdgeInsets.only(top: 65, left: 80),
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          //   color: AppColors.Colorq
+                        ),
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            size: 30,
+                            Icons.camera_enhance,
+                            color: AppColors.Colorq,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              TextField(
-                controller: _namecontroller,
-                decoration: InputDecoration(
-                    labelText: 'Name',
-                    hintText: "Umang m patel",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15))),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                children: [
-                  ElevatedButton(
-                      onPressed: () async {
+                SizedBox(
+                  height: 30,
+                ),
+                TextField(
+                  controller: _namecontroller,
+                  decoration: InputDecoration(
+                      labelText: 'Name',
+                      hintText: "Umang m patel",
+                      labelStyle: TextStyle(color: AppColors.Colorq),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(color: AppColors.Colorq)),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(color: AppColors.Colorq))),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // ElevatedButton(
+                    //     onPressed: () async {
+                    //       final String name = _namecontroller.text;
+                    //       final String url = imgPath.toString();
+                    //       addcategory(_namecontroller.text);
+                    //       await refC
+                    //           .doc(documentSnapshot!.id)
+                    //           .update({"cname": name});
+                    //       //_namecontroller.text = '';
+                    //
+                    //       //addcategory(_namecontroller.text.toString());
+                    //       // categoryNamee = _cname.text.toString();
+                    //       Navigator.of(context).pop();
+                    //       // setState(() {
+                    //       //
+                    //       // });
+                    //     },
+                    //     child: const Text(
+                    //       "Update",
+                    //       style: TextStyle(
+                    //           fontWeight: FontWeight.bold, color: Colors.black),
+                    //     )),
+                    InkWell(
+                      onTap: () async{
                         final String name = _namecontroller.text;
                         final String url = imgPath.toString();
                         addcategory(_namecontroller.text);
@@ -214,14 +252,25 @@ class _categorylistState extends State<categorylist> {
                         //
                         // });
                       },
-                      child: const Text(
-                        "Update",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.black),
-                      )),
-                ],
-              )
-            ],
+                      child: Container(
+                        height: 55,
+                        width: 120,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: AppColors.Colorq),
+                        child: Center(
+                          child: Text(
+                            "Update",
+                            style: GoogleFonts.poppins(
+                                fontWeight: FontWeight.bold, color: Colors.white,fontSize: dimension.font20),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
           ),
         );
       },
@@ -303,8 +352,7 @@ class _categorylistState extends State<categorylist> {
                                 children: [
                                   Bounce(
                                     onTap: () async {
-                                      categoryName =
-                                          documentSnapshot.id;
+                                      categoryName = documentSnapshot.id;
 
                                       Get.to(SubCategoryList(
                                         categoryTitle: documentSnapshot.id,

@@ -1,11 +1,16 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:admin_app/drawer_page/drawe_subpage/category.dart';
 import 'package:admin_app/subcetegory.dart';
 import 'package:admin_app/util/dimension.dart';
 import 'package:bounce/bounce.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../simple.dart';
 import '../../util/color.dart';
@@ -30,7 +35,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
   }
 
   final TextEditingController _namecontroller = TextEditingController();
-
+  File? pickedImage;
   Future<void> deleteSC(String documentId) async {
     try {
       CollectionReference subcategoriesRef = FirebaseFirestore.instance
@@ -48,14 +53,95 @@ class _SubCategoryListState extends State<SubCategoryList> {
     }
   }
 
+  addcategory(String cName) async {
+    if (cName == null && pickedImage == null) {
+      return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Enter Required Field"),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text("Ok")),
+            ],
+          );
+        },
+      );
+    } else {
+      uploadData();
+    }
+  }
+
+
+  uploadData() async {
+    UploadTask uploadtask = FirebaseStorage.instance
+        .ref("Category img")
+        .child("${_namecontroller.text}")
+        .putFile(pickedImage!, SettableMetadata(contentType: 'image/jpeg'));
+    TaskSnapshot taskSnapshot = await uploadtask;
+    String url = await taskSnapshot.ref.getDownloadURL();
+    FirebaseFirestore.instance
+        .collection("subcategories")
+        .doc(snapid)
+        .set({"scname": _namecontroller.text.toString(), "scimage": url}).then(
+            (value) {
+          log("User Uploaded");
+        });
+    // await _collectionReference
+    //     .doc(_cname.toString())
+    //     .set({"cname": _cname.text.toString(), "cimage": url}).then(
+    //   (value) {
+    //     print("data Added");
+    //   },
+    // );
+  }
+
   final CollectionReference refC = FirebaseFirestore.instance
       .collection("category")
       .doc(categoryName)
       .collection('subcategories');
 
+  showAlertBox() {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Pick Image From"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                onTap: () {
+                  pickImage(ImageSource.camera);
+                  Get.back();
+                },
+                leading: Icon(Icons.camera_alt),
+                title: Text("Camera"),
+              ),
+              ListTile(
+                onTap: () {
+                  pickImage(ImageSource.gallery);
+                  Get.back();
+                },
+                leading: Icon(Icons.image),
+                title: Text("Gallery"),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+  String imgPath = "";
+  String snapid = "";
   Future<void> _update([DocumentSnapshot? documentSnapshot]) async {
     if (documentSnapshot != null) {
       _namecontroller.text = documentSnapshot['scname'];
+      snapid = documentSnapshot.id;
+      imgPath = documentSnapshot['scimage'];
     }
 
     await showModalBottomSheet(
@@ -68,45 +154,140 @@ class _SubCategoryListState extends State<SubCategoryList> {
               left: 20,
               right: 20,
               bottom: MediaQuery.of(ctx).viewInsets.bottom + 20),
-          child: Column(
-            children: [
-              const Center(
-                child: Text("Update your Items",
-                    style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold)),
-              ),
-              TextField(
-                controller: _namecontroller,
-                decoration: InputDecoration(
-                    labelText: 'Name',
-                    hintText: "Umang m patel",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15))),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                children: [
-                  ElevatedButton(
-                      onPressed: () async {
+          child: Padding(
+            padding: const EdgeInsets.only(top: 15.0),
+            child: Column(
+              children: [
+                Center(
+                  child: Text("Update your Items",
+                      style: TextStyle(
+                          color: AppColors.Colorq,
+                          fontWeight: FontWeight.bold,
+                          fontSize: dimension.font20)),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    showAlertBox();
+                  },
+                  child: Stack(
+                    children: [
+                      pickedImage != null
+                          ? Container(
+                              height: 120,
+                              width: 120,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: FileImage(pickedImage!),
+                                      fit: BoxFit.cover),
+                                  shape: BoxShape.circle,
+                                  color: AppColors.Colorq.withOpacity(0.05)),
+                            )
+                          : Container(
+                              height: 120,
+                              width: 120,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: NetworkImage(imgPath),
+                                      fit: BoxFit.cover),
+                                  shape: BoxShape.circle,
+                                  color: AppColors.Colorq.withOpacity(0.05)),
+                            ),
+                      Container(
+                        margin: EdgeInsets.only(top: 65, left: 80),
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          //   color: AppColors.Colorq
+                        ),
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            size: 30,
+                            Icons.camera_enhance,
+                            color: AppColors.Colorq,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                TextField(
+                  controller: _namecontroller,
+                  decoration: InputDecoration(
+                      labelText: 'Name',
+                      hintText: "Umang m patel",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(color: AppColors.Colorq)),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(color: AppColors.Colorq))),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // ElevatedButton(
+                    //     onPressed: () async {
+                    //       final String name = _namecontroller.text;
+                    //
+                    //       await refC
+                    //           .doc(documentSnapshot!.id)
+                    //           .update({"scname": name});
+                    //       _namecontroller.text = '';
+                    //
+                    //       Get.back();
+                    //     },
+                    //     child: const Text(
+                    //       "Update",
+                    //       style: TextStyle(
+                    //           fontWeight: FontWeight.bold, color: Colors.black),
+                    //     )),
+                    InkWell(
+                      onTap: () async {
                         final String name = _namecontroller.text;
-
+                        final String url = imgPath.toString();
+                        addcategory(_namecontroller.text);
                         await refC
                             .doc(documentSnapshot!.id)
-                            .update({"scname": name});
+                            .update({"scname": name,"scimage":url});
                         _namecontroller.text = '';
 
                         Get.back();
                       },
-                      child: const Text(
-                        "Update",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.black),
-                      )),
-                ],
-              )
-            ],
+                      child: Container(
+                        height: 55,
+                        width: 120,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: AppColors.Colorq),
+                        child: Center(
+                          child: Text(
+                            "Update",
+                            style: GoogleFonts.poppins(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: dimension.font20),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
           ),
         );
       },
@@ -314,5 +495,20 @@ class _SubCategoryListState extends State<SubCategoryList> {
         ),
       ),
     );
+  }
+  pickImage(ImageSource imageSource) async {
+    try {
+      final photo = await ImagePicker().pickImage(source: imageSource);
+      if (photo == null) {
+        return;
+      }
+      final tempImage = File(photo.path);
+      setState(() {
+        pickedImage = tempImage;
+      });
+    } catch (ex) {
+      log(ex.toString());
+      print(ex.toString());
+    }
   }
 }

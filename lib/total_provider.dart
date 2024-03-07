@@ -1,5 +1,3 @@
-
-
 import 'package:admin_app/Pages/home_page.dart';
 import 'package:admin_app/util/color.dart';
 import 'package:admin_app/util/dimension.dart';
@@ -16,7 +14,6 @@ class totalprovider extends StatefulWidget {
 }
 
 class _totalproviderState extends State<totalprovider> {
-
   // showAlertBox() {
   //   return showDialog(
   //     context: context,
@@ -102,6 +99,7 @@ class _totalproviderState extends State<totalprovider> {
 
   final CollectionReference refpro =
       FirebaseFirestore.instance.collection('providerDetails');
+
   Future<void> _delete(String productID) async {
     await refpro.doc(productID).delete();
 
@@ -116,7 +114,7 @@ class _totalproviderState extends State<totalprovider> {
         if (streamSnapshot.hasData) {
           return Expanded(
             child: ListView.builder(
-              itemCount: streamSnapshot.data!.docs.length,
+              itemCount: 3,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 final DocumentSnapshot documentSnapshot =
@@ -164,13 +162,14 @@ class _totalproviderState extends State<totalprovider> {
                                               fontSize: dimension.font15),
                                         ),
                                         content: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             InkWell(
-                                              onTap: (){
-                                                _delete(
-                                                    documentSnapshot.id);
+                                              onTap: () {
+                                                _delete(documentSnapshot.id);
                                                 Get.back();
                                               },
                                               child: Container(
@@ -178,10 +177,14 @@ class _totalproviderState extends State<totalprovider> {
                                                 width: 95,
                                                 decoration: BoxDecoration(
                                                     color: AppColors.Colorq,
-                                                    borderRadius: BorderRadius.circular(15)),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15)),
                                                 child: Row(
-                                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
                                                   children: [
                                                     Icon(Icons.done),
                                                     SizedBox(
@@ -189,10 +192,16 @@ class _totalproviderState extends State<totalprovider> {
                                                     ),
                                                     Text(
                                                       "Yes",
-                                                      style: GoogleFonts.poppins(
-                                                          color: Colors.white,
-                                                          fontWeight: FontWeight.bold,
-                                                          fontSize: dimension.font20),
+                                                      style:
+                                                          GoogleFonts.poppins(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontSize:
+                                                                  dimension
+                                                                      .font20),
                                                     ),
                                                   ],
                                                 ),
@@ -203,7 +212,7 @@ class _totalproviderState extends State<totalprovider> {
                                             ),
                                             InkWell(
                                               onTap: () {
-                                               // Get.to(home_page());
+                                                // Get.to(home_page());
                                                 Get.back();
                                               },
                                               child: Container(
@@ -211,10 +220,14 @@ class _totalproviderState extends State<totalprovider> {
                                                 width: 95,
                                                 decoration: BoxDecoration(
                                                     color: AppColors.Colorq,
-                                                    borderRadius: BorderRadius.circular(15)),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15)),
                                                 child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
                                                   children: [
                                                     Icon(Icons.cancel),
                                                     SizedBox(
@@ -222,10 +235,16 @@ class _totalproviderState extends State<totalprovider> {
                                                     ),
                                                     Text(
                                                       "No",
-                                                      style: GoogleFonts.poppins(
-                                                          color: Colors.white,
-                                                          fontWeight: FontWeight.bold,
-                                                          fontSize: dimension.font20),
+                                                      style:
+                                                          GoogleFonts.poppins(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontSize:
+                                                                  dimension
+                                                                      .font20),
                                                     ),
                                                   ],
                                                 ),
@@ -242,11 +261,10 @@ class _totalproviderState extends State<totalprovider> {
                                   width: dimension.height40,
                                   decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color:
-                                          AppColors.Colorq.withOpacity(0.05)),
+                                      color: AppColors.Colorq),
                                   child: Icon(
-                                    Icons.power_settings_new_sharp,
-                                    color: AppColors.red,
+                                    Icons.delete,
+                                    color: AppColors.white1,
                                   ),
                                 ),
                               ),
