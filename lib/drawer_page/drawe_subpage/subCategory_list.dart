@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:admin_app/drawer_page/drawe_subpage/category.dart';
 import 'package:admin_app/subcetegory.dart';
 import 'package:admin_app/util/dimension.dart';
 import 'package:bounce/bounce.dart';
@@ -36,6 +35,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
 
   final TextEditingController _namecontroller = TextEditingController();
   File? pickedImage;
+
   Future<void> deleteSC(String documentId) async {
     try {
       CollectionReference subcategoriesRef = FirebaseFirestore.instance
@@ -75,7 +75,6 @@ class _SubCategoryListState extends State<SubCategoryList> {
     }
   }
 
-
   uploadData() async {
     UploadTask uploadtask = FirebaseStorage.instance
         .ref("Category img")
@@ -84,12 +83,14 @@ class _SubCategoryListState extends State<SubCategoryList> {
     TaskSnapshot taskSnapshot = await uploadtask;
     String url = await taskSnapshot.ref.getDownloadURL();
     FirebaseFirestore.instance
+        .collection('category')
+        .doc(widget.categoryTitle)
         .collection("subcategories")
         .doc(snapid)
         .set({"scname": _namecontroller.text.toString(), "scimage": url}).then(
             (value) {
-          log("User Uploaded");
-        });
+      log("User Uploaded");
+    });
     // await _collectionReference
     //     .doc(_cname.toString())
     //     .set({"cname": _cname.text.toString(), "cimage": url}).then(
@@ -99,7 +100,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
     // );
   }
 
-  final CollectionReference refC = FirebaseFirestore.instance
+  final CollectionReference refSC = FirebaseFirestore.instance
       .collection("category")
       .doc(categoryName)
       .collection('subcategories');
@@ -135,12 +136,14 @@ class _SubCategoryListState extends State<SubCategoryList> {
       },
     );
   }
+
   String imgPath = "";
   String snapid = "";
+
   Future<void> _update([DocumentSnapshot? documentSnapshot]) async {
     if (documentSnapshot != null) {
       _namecontroller.text = documentSnapshot['scname'];
-      snapid = documentSnapshot.id;
+
       imgPath = documentSnapshot['scimage'];
     }
 
@@ -255,16 +258,17 @@ class _SubCategoryListState extends State<SubCategoryList> {
                     //       style: TextStyle(
                     //           fontWeight: FontWeight.bold, color: Colors.black),
                     //     )),
-                    InkWell(
+                    Bounce(
+                      duration: Duration(milliseconds: 200),
                       onTap: () async {
+                        print("00000000000000000000000000000");
+                        print(snapid);
                         final String name = _namecontroller.text;
                         final String url = imgPath.toString();
                         addcategory(_namecontroller.text);
-                        await refC
-                            .doc(documentSnapshot!.id)
-                            .update({"scname": name,"scimage":url});
-                        _namecontroller.text = '';
-
+                        await refSC
+                            .doc(snapid)
+                            .update({"scname": name, "scimage": url});
                         Get.back();
                       },
                       child: Container(
@@ -433,8 +437,13 @@ class _SubCategoryListState extends State<SubCategoryList> {
                                                         .spaceBetween,
                                                 children: [
                                                   Bounce(
-                                                    onTap: () => _update(
-                                                        documentSnapshot),
+                                                    duration: Duration(
+                                                        milliseconds: 200),
+                                                    onTap: () {
+                                                      snapid =
+                                                          documentSnapshot.id;
+                                                      _update(documentSnapshot);
+                                                    },
                                                     child: Container(
                                                       height: 35,
                                                       width: 35,
@@ -496,6 +505,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
       ),
     );
   }
+
   pickImage(ImageSource imageSource) async {
     try {
       final photo = await ImagePicker().pickImage(source: imageSource);
