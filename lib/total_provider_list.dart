@@ -191,10 +191,10 @@ class _providerListState extends State<providerList> {
                                           decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                               color:
-                                              AppColors.Colorq.withOpacity(0.05)),
+                                              AppColors.Colorq),
                                           child: Icon(
-                                            Icons.power_settings_new_sharp,
-                                            color: AppColors.red,
+                                            Icons.delete,
+                                            color: AppColors.white1,
                                           ),
                                         ),
                                       ),
