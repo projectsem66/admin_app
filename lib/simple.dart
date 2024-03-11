@@ -24,27 +24,7 @@ String categoryNamee = "";
 class _simpleState extends State<simple> {
   File? pickedImage;
 
-  addcategory(String cName) async {
-    if (cName == null && pickedImage == null) {
-      return showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text("Enter Required Field"),
-            actions: [
-              TextButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  child: Text("Ok")),
-            ],
-          );
-        },
-      );
-    } else {
-      uploadData();
-    }
-  }
+
 
   uploadData() async {
     UploadTask uploadtask = FirebaseStorage.instance
@@ -201,9 +181,14 @@ class _simpleState extends State<simple> {
             ),
             GestureDetector(
               onTap: () {
-                addcategory(_cname.text.toString());
-                categoryNamee = _cname.text.toString();
-                Get.to(sub_category());
+                if (_cname.text.isEmpty && pickedImage == null) {
+                   Get.snackbar("Enter required field", "Both fields are required",
+                      colorText: Colors.white);
+                } else {
+                  uploadData();
+                  categoryNamee = _cname.text.toString();
+                  Get.to(sub_category());
+                }
               },
               child: Container(
                 height: dimension.height60,
