@@ -173,13 +173,14 @@ class _totalproviderState extends State<totalprovider> {
                                                 Get.back();
                                               },
                                               child: Container(
-                                                height: 40,
-                                                width: 95,
+                                                height: dimension.height40,
+                                                width: dimension.height95,
                                                 decoration: BoxDecoration(
                                                     color: AppColors.Colorq,
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            15)),
+                                                            dimension
+                                                                .radius15)),
                                                 child: Row(
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.center,
@@ -188,7 +189,7 @@ class _totalproviderState extends State<totalprovider> {
                                                   children: [
                                                     Icon(Icons.done),
                                                     SizedBox(
-                                                      width: 7,
+                                                      width: dimension.height7,
                                                     ),
                                                     Text(
                                                       "Yes",
@@ -208,7 +209,7 @@ class _totalproviderState extends State<totalprovider> {
                                               ),
                                             ),
                                             SizedBox(
-                                              width: 20,
+                                              width: dimension.height20,
                                             ),
                                             InkWell(
                                               onTap: () {
@@ -216,13 +217,14 @@ class _totalproviderState extends State<totalprovider> {
                                                 Get.back();
                                               },
                                               child: Container(
-                                                height: 40,
-                                                width: 95,
+                                                height: dimension.height40,
+                                                width: dimension.height95,
                                                 decoration: BoxDecoration(
                                                     color: AppColors.Colorq,
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            15)),
+                                                            dimension
+                                                                .radius15)),
                                                 child: Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.center,
@@ -231,7 +233,7 @@ class _totalproviderState extends State<totalprovider> {
                                                   children: [
                                                     Icon(Icons.cancel),
                                                     SizedBox(
-                                                      width: 7,
+                                                      width: dimension.height7,
                                                     ),
                                                     Text(
                                                       "No",

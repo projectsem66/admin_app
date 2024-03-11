@@ -153,12 +153,12 @@ class _SubCategoryListState extends State<SubCategoryList> {
       builder: (BuildContext ctx) {
         return Padding(
           padding: EdgeInsets.only(
-              top: 20,
-              left: 20,
-              right: 20,
+              top: dimension.height20,
+              left: dimension.height20,
+                right: dimension.height20,
               bottom: MediaQuery.of(ctx).viewInsets.bottom + 20),
           child: Padding(
-            padding: const EdgeInsets.only(top: 15.0),
+            padding:  EdgeInsets.only(top: dimension.height15),
             child: Column(
               children: [
                 Center(
@@ -169,7 +169,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
                           fontSize: dimension.font20)),
                 ),
                 SizedBox(
-                  height: 15,
+                  height: dimension.height15,
                 ),
                 GestureDetector(
                   onTap: () {
@@ -179,8 +179,8 @@ class _SubCategoryListState extends State<SubCategoryList> {
                     children: [
                       pickedImage != null
                           ? Container(
-                              height: 120,
-                              width: 120,
+                              height: dimension.height100+20,
+                              width: dimension.height100+20,
                               decoration: BoxDecoration(
                                   image: DecorationImage(
                                       image: FileImage(pickedImage!),
@@ -189,8 +189,8 @@ class _SubCategoryListState extends State<SubCategoryList> {
                                   color: AppColors.Colorq.withOpacity(0.05)),
                             )
                           : Container(
-                              height: 120,
-                              width: 120,
+                              height: dimension.height100+20,
+                              width: dimension.height100+20,
                               decoration: BoxDecoration(
                                   image: DecorationImage(
                                       image: NetworkImage(imgPath),
@@ -199,9 +199,9 @@ class _SubCategoryListState extends State<SubCategoryList> {
                                   color: AppColors.Colorq.withOpacity(0.05)),
                             ),
                       Container(
-                        margin: EdgeInsets.only(top: 65, left: 80),
-                        height: 50,
-                        width: 50,
+                        margin: EdgeInsets.only(top: dimension.height65, left: dimension.height80),
+                        height: dimension.height50,
+                        width: dimension.height50,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           //   color: AppColors.Colorq
@@ -209,7 +209,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
                         child: IconButton(
                           onPressed: () {},
                           icon: Icon(
-                            size: 30,
+                            size: dimension.icon30,
                             Icons.camera_enhance,
                             color: AppColors.Colorq,
                           ),
@@ -219,7 +219,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
                   ),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: dimension.height30,
                 ),
                 TextField(
                   controller: _namecontroller,
@@ -227,16 +227,16 @@ class _SubCategoryListState extends State<SubCategoryList> {
                       labelText: 'Name',
                       hintText: "Umang m patel",
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15)),
+                          borderRadius: BorderRadius.circular(dimension.radius15)),
                       focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
+                          borderRadius: BorderRadius.circular(dimension.radius15),
                           borderSide: BorderSide(color: AppColors.Colorq)),
                       enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
+                          borderRadius: BorderRadius.circular(dimension.radius15),
                           borderSide: BorderSide(color: AppColors.Colorq))),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: dimension.height20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -272,10 +272,10 @@ class _SubCategoryListState extends State<SubCategoryList> {
                         Get.back();
                       },
                       child: Container(
-                        height: 55,
-                        width: 120,
+                        height: dimension.height55,
+                        width: dimension.height100+20,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(dimension.radius15),
                             color: AppColors.Colorq),
                         child: Center(
                           child: Text(
@@ -354,7 +354,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.only(left: 12, right: 12, top: 15),
+        padding: EdgeInsets.only(left: dimension.height12, right: dimension.height12, top: dimension.height15),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -376,25 +376,25 @@ class _SubCategoryListState extends State<SubCategoryList> {
                           final DocumentSnapshot documentSnapshot =
                               streamSnapshot.data!.docs[index];
                           return Padding(
-                            padding: EdgeInsets.all(8.0),
+                            padding: EdgeInsets.all(dimension.height8),
                             child: Bounce(
                               onTap: () {},
                               duration: Duration(milliseconds: 200),
                               child: Container(
                                 decoration: BoxDecoration(
                                     //  color: Colors.black,
-                                    borderRadius: BorderRadius.circular(15)),
+                                    borderRadius: BorderRadius.circular(dimension.radius15)),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      height: 140,
+                                      height: dimension.height70*2,
                                       width: double.maxFinite,
                                       decoration: BoxDecoration(
                                           borderRadius: BorderRadius.only(
-                                              topRight: Radius.circular(15),
-                                              topLeft: Radius.circular(15)),
+                                              topRight: Radius.circular(dimension.radius15),
+                                              topLeft: Radius.circular(dimension.radius15)),
                                           // color: Colors.red,
                                           color: AppColors.Colorq.withOpacity(
                                               0.05),
@@ -405,16 +405,16 @@ class _SubCategoryListState extends State<SubCategoryList> {
                                               fit: BoxFit.cover)),
                                     ),
                                     Container(
-                                      height: 83,
+                                      height: dimension.height83,
                                       width: double.maxFinite,
                                       decoration: BoxDecoration(
                                           borderRadius: BorderRadius.only(
-                                              bottomRight: Radius.circular(15),
-                                              bottomLeft: Radius.circular(15)),
+                                              bottomRight: Radius.circular(dimension.radius15),
+                                              bottomLeft: Radius.circular(dimension.radius15)),
                                           color: AppColors.Colorq.withOpacity(
                                               0.05)),
                                       child: Padding(
-                                        padding: EdgeInsets.only(top: 10.0),
+                                        padding: EdgeInsets.only(top: dimension.height10),
                                         child: Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -427,10 +427,10 @@ class _SubCategoryListState extends State<SubCategoryList> {
                                                     fontWeight:
                                                         FontWeight.bold)),
                                             Padding(
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 10,
-                                                  left: 20,
-                                                  right: 20),
+                                              padding:  EdgeInsets.only(
+                                                  bottom: dimension.height10,
+                                                  left: dimension.height20,
+                                                  right: dimension.height20),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -445,8 +445,8 @@ class _SubCategoryListState extends State<SubCategoryList> {
                                                       _update(documentSnapshot);
                                                     },
                                                     child: Container(
-                                                      height: 35,
-                                                      width: 35,
+                                                      height: dimension.height35,
+                                                      width: dimension.height35,
                                                       decoration: BoxDecoration(
                                                           shape:
                                                               BoxShape.circle,
@@ -464,8 +464,8 @@ class _SubCategoryListState extends State<SubCategoryList> {
                                                           documentSnapshot.id);
                                                     },
                                                     child: Container(
-                                                      height: 35,
-                                                      width: 35,
+                                                      height: dimension.height35,
+                                                      width: dimension.height35,
                                                       decoration: BoxDecoration(
                                                           shape:
                                                               BoxShape.circle,

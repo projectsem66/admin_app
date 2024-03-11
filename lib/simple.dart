@@ -125,7 +125,7 @@ class _simpleState extends State<simple> {
                 fontSize: dimension.font20)),
       ),
       body: Padding(
-        padding: EdgeInsets.only(left: 12, right: 12, top: 15),
+        padding: EdgeInsets.only(left: dimension.height12, right: dimension.height12, top: dimension.height12),
         child: Column(
           children: [
             GestureDetector(
@@ -136,8 +136,8 @@ class _simpleState extends State<simple> {
                 children: [
                   pickedImage != null
                       ? Container(
-                          height: 120,
-                          width: 120,
+                          height: dimension.height60*2,
+                          width: dimension.height60*2,
                           decoration: BoxDecoration(
                               image: DecorationImage(
                                   image: FileImage(pickedImage!),
@@ -146,8 +146,8 @@ class _simpleState extends State<simple> {
                               color: AppColors.Colorq.withOpacity(0.05)),
                         )
                       : Container(
-                          height: 120,
-                          width: 120,
+                          height: dimension.height60*2,
+                          width: dimension.height60*2,
                           decoration: BoxDecoration(
                               image: DecorationImage(
                                   image: AssetImage("images/addCategoryy.png"),
@@ -156,9 +156,9 @@ class _simpleState extends State<simple> {
                               color: AppColors.Colorq.withOpacity(0.05)),
                         ),
                   Container(
-                    margin: EdgeInsets.only(top: 65, left: 80),
-                    height: 50,
-                    width: 50,
+                    margin: EdgeInsets.only(top: dimension.height65, left: dimension.height80),
+                    height: dimension.height50,
+                    width: dimension.height50,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       //   color: AppColors.Colorq
@@ -166,7 +166,7 @@ class _simpleState extends State<simple> {
                     child: IconButton(
                       onPressed: () {},
                       icon: Icon(
-                        size: 30,
+                        size: dimension.icon30,
                         Icons.camera_enhance,
                         color: AppColors.Colorq,
                       ),
@@ -176,7 +176,7 @@ class _simpleState extends State<simple> {
               ),
             ),
             SizedBox(
-              height: 15,
+              height: dimension.height15,
             ),
             TextFormField(
               controller: _cname,
@@ -184,20 +184,20 @@ class _simpleState extends State<simple> {
                   filled: true,
                   fillColor: AppColors.Colorq.withOpacity(0.05),
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15)),
+                      borderRadius: BorderRadius.circular(dimension.radius15)),
                   hintText: "Salon for Men",
                   labelText: "Category Name",
                   labelStyle: TextStyle(color: Colors.black87),
                   enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(dimension.radius15),
                     borderSide: BorderSide(color: Colors.white),
                   ),
                   focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: AppColors.Colorq),
-                      borderRadius: BorderRadius.circular(15))),
+                      borderRadius: BorderRadius.circular(dimension.radius15))),
             ),
             SizedBox(
-              height: 20,
+              height: dimension.height20,
             ),
             GestureDetector(
               onTap: () {
@@ -206,16 +206,16 @@ class _simpleState extends State<simple> {
                 Get.to(sub_category());
               },
               child: Container(
-                height: 60,
+                height: dimension.height60,
                 width: double.maxFinite,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(dimension.radius15),
                     color: AppColors.Colorq),
                 child: Center(
                   child: Text(
                     "Next",
                     style:
-                        GoogleFonts.poppins(color: Colors.white, fontSize: 22),
+                        GoogleFonts.poppins(color: Colors.white, fontSize: dimension.font22),
                   ),
                 ),
               ),

@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:admin_app/drawer_page/drawe_subpage/category_list.dart';
+import 'package:admin_app/section.dart';
 import 'package:admin_app/simple.dart';
 import 'package:admin_app/util/color.dart';
 import 'package:admin_app/util/dimension.dart';
@@ -136,15 +137,20 @@ class _sub_categoryState extends State<sub_category> {
                 fontSize: dimension.font20)),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 12, right: 12, top: 15),
-        child: Column(mainAxisAlignment: MainAxisAlignment.start,
+        padding: EdgeInsets.only(
+            left: dimension.height12,
+            right: dimension.height12,
+            top: dimension.height15),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("Category Name: ${categoryNamee}"),
             SizedBox(
-              height: 15,
+              height: dimension.height15,
             ),
-            Row(crossAxisAlignment: CrossAxisAlignment.center,
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
@@ -155,8 +161,8 @@ class _sub_categoryState extends State<sub_category> {
                     children: [
                       pickedSCimg != null
                           ? Container(
-                              height: 120,
-                              width: 120,
+                              height: dimension.height100 + 20,
+                              width: dimension.height100 + 20,
                               decoration: BoxDecoration(
                                   image: DecorationImage(
                                       image: FileImage(pickedSCimg!),
@@ -165,19 +171,21 @@ class _sub_categoryState extends State<sub_category> {
                                   color: AppColors.Colorq.withOpacity(0.05)),
                             )
                           : Container(
-                              height: 120,
-                              width: 120,
+                              height: dimension.height100 + 20,
+                              width: dimension.height100 + 20,
                               decoration: BoxDecoration(
                                   image: DecorationImage(
-                                      image: AssetImage("images/addCategoryy.png"),
+                                      image:
+                                          AssetImage("images/addCategoryy.png"),
                                       fit: BoxFit.cover),
                                   shape: BoxShape.circle,
                                   color: AppColors.Colorq.withOpacity(0.05)),
                             ),
                       Container(
-                        margin: EdgeInsets.only(top: 65, left: 80),
-                        height: 50,
-                        width: 50,
+                        margin: EdgeInsets.only(
+                            top: dimension.height65, left: dimension.height80),
+                        height: dimension.height50,
+                        width: dimension.height50,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           //   color: AppColors.Colorq
@@ -185,7 +193,7 @@ class _sub_categoryState extends State<sub_category> {
                         child: IconButton(
                           onPressed: () {},
                           icon: Icon(
-                            size: 30,
+                            size: dimension.icon30,
                             Icons.camera_enhance,
                             color: AppColors.Colorq,
                           ),
@@ -197,44 +205,45 @@ class _sub_categoryState extends State<sub_category> {
               ],
             ),
             SizedBox(
-              height: 15,
+              height: dimension.height15,
             ),
             TextFormField(
               controller: _scName,
               decoration: InputDecoration(
                   filled: true,
                   fillColor: AppColors.Colorq.withOpacity(0.05),
-                  border:
-                      OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(dimension.radius15)),
                   hintText: "Salon for Men",
                   labelText: "Sub Category Name",
                   labelStyle: TextStyle(color: Colors.black87),
                   enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(dimension.radius15),
                     borderSide: BorderSide(color: Colors.white),
                   ),
                   focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: AppColors.Colorq),
-                      borderRadius: BorderRadius.circular(15))),
+                      borderRadius: BorderRadius.circular(dimension.radius15))),
             ),
             SizedBox(
-              height: 20,
+              height: dimension.height20,
             ),
             GestureDetector(
               onTap: () {
                 addSubCategory(_scName.text.toString());
-                Get.to(categorylist());
+                Get.to(section());
               },
               child: Container(
-                height: 60,
+                height: dimension.height60,
                 width: double.maxFinite,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(dimension.radius15),
                     color: AppColors.Colorq),
                 child: Center(
                   child: Text(
                     "Next",
-                    style: GoogleFonts.poppins(color: Colors.white, fontSize: 22),
+                    style: GoogleFonts.poppins(
+                        color: Colors.white, fontSize: dimension.font22),
                   ),
                 ),
               ),

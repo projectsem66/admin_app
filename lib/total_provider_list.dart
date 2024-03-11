@@ -18,12 +18,14 @@ class providerList extends StatefulWidget {
 
 class _providerListState extends State<providerList> {
   final CollectionReference refpro =
-  FirebaseFirestore.instance.collection('providerDetails');
+      FirebaseFirestore.instance.collection('providerDetails');
+
   Future<void> _delete(String productID) async {
     await refpro.doc(productID).delete();
 
     //  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("you have successfully deleted a items")));
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +49,7 @@ class _providerListState extends State<providerList> {
                 fontSize: dimension.font20)),
       ),
       body: Padding(
-        padding: EdgeInsets.only(top: 15.0),
+        padding: EdgeInsets.only(top: dimension.height15),
         child: Column(
           children: [
             StreamBuilder(
@@ -108,46 +110,66 @@ class _providerListState extends State<providerList> {
                                                   "Are you sure you want to delete provider?",
                                                   style: GoogleFonts.poppins(
                                                       color: AppColors.Colorq,
-                                                      fontWeight: FontWeight.bold,
-                                                      fontSize: dimension.font15),
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize:
+                                                          dimension.font15),
                                                 ),
                                                 content: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     InkWell(
-                                                      onTap: (){
-                                                        _delete(
-                                                            documentSnapshot.id);
+                                                      onTap: () {
+                                                        _delete(documentSnapshot
+                                                            .id);
                                                         Get.back();
                                                       },
                                                       child: Container(
-                                                        height: 40,
-                                                        width: 95,
+                                                        height:
+                                                            dimension.height40,
+                                                        width:
+                                                            dimension.height95,
                                                         decoration: BoxDecoration(
-                                                            color: AppColors.Colorq,
-                                                            borderRadius: BorderRadius.circular(15)),
+                                                            color: AppColors
+                                                                .Colorq,
+                                                            borderRadius: BorderRadius
+                                                                .circular(dimension
+                                                                    .radius15)),
                                                         child: Row(
-                                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                                          mainAxisAlignment: MainAxisAlignment.center,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .center,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
                                                           children: [
                                                             Icon(Icons.done),
                                                             SizedBox(
-                                                              width: 7,
+                                                              width: dimension
+                                                                  .height7,
                                                             ),
                                                             Text(
                                                               "Yes",
                                                               style: GoogleFonts.poppins(
-                                                                  color: Colors.white,
-                                                                  fontWeight: FontWeight.bold,
-                                                                  fontSize: dimension.font20),
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize:
+                                                                      dimension
+                                                                          .font20),
                                                             ),
                                                           ],
                                                         ),
                                                       ),
                                                     ),
                                                     SizedBox(
-                                                      width: 20,
+                                                      width: dimension.height20,
                                                     ),
                                                     InkWell(
                                                       onTap: () {
@@ -155,25 +177,40 @@ class _providerListState extends State<providerList> {
                                                         Get.back();
                                                       },
                                                       child: Container(
-                                                        height: 40,
-                                                        width: 95,
+                                                        height:
+                                                            dimension.height40,
+                                                        width:
+                                                            dimension.height95,
                                                         decoration: BoxDecoration(
-                                                            color: AppColors.Colorq,
-                                                            borderRadius: BorderRadius.circular(15)),
+                                                            color: AppColors
+                                                                .Colorq,
+                                                            borderRadius: BorderRadius
+                                                                .circular(dimension
+                                                                    .radius15)),
                                                         child: Row(
-                                                          mainAxisAlignment: MainAxisAlignment.center,
-                                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .center,
                                                           children: [
                                                             Icon(Icons.cancel),
                                                             SizedBox(
-                                                              width: 7,
+                                                              width: dimension
+                                                                  .height7,
                                                             ),
                                                             Text(
                                                               "No",
                                                               style: GoogleFonts.poppins(
-                                                                  color: Colors.white,
-                                                                  fontWeight: FontWeight.bold,
-                                                                  fontSize: dimension.font20),
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize:
+                                                                      dimension
+                                                                          .font20),
                                                             ),
                                                           ],
                                                         ),
@@ -190,8 +227,7 @@ class _providerListState extends State<providerList> {
                                           width: dimension.height40,
                                           decoration: BoxDecoration(
                                               shape: BoxShape.circle,
-                                              color:
-                                              AppColors.Colorq),
+                                              color: AppColors.Colorq),
                                           child: Icon(
                                             Icons.delete,
                                             color: AppColors.white1,

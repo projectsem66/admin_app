@@ -168,7 +168,7 @@ class _couponsupdateState extends State<couponsupdate> {
       //   ),
       // ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding:  EdgeInsets.all(dimension.height16),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -180,17 +180,17 @@ class _couponsupdateState extends State<couponsupdate> {
                       filled: true,
                       fillColor: AppColors.Colorq.withOpacity(0.05),
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15)),
+                          borderRadius: BorderRadius.circular(dimension.radius15)),
                       hintText: "FTY5YJ6N",
                       labelText: "Coupon Code",
                       labelStyle: TextStyle(color: Colors.black87),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(dimension.radius15),
                         borderSide: BorderSide(color: Colors.white),
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: AppColors.Colorq),
-                          borderRadius: BorderRadius.circular(15))),
+                          borderRadius: BorderRadius.circular(dimension.radius15))),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Enter Coupon code";
@@ -201,7 +201,7 @@ class _couponsupdateState extends State<couponsupdate> {
                 ),
               ),
 
-              SizedBox(height: 10), // Spacer
+              SizedBox(height: dimension.height10), // Spacer
 
               // Row with TextField and DropdownButton
               Row(
@@ -214,17 +214,17 @@ class _couponsupdateState extends State<couponsupdate> {
                             filled: true,
                             fillColor: AppColors.Colorq.withOpacity(0.05),
                             border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15)),
+                                borderRadius: BorderRadius.circular(dimension.radius15)),
                             hintText: "3",
                             labelText: "Discount",
                             labelStyle: TextStyle(color: Colors.black87),
                             enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(dimension.radius15),
                               borderSide: BorderSide(color: Colors.white),
                             ),
                             focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: AppColors.Colorq),
-                                borderRadius: BorderRadius.circular(15))),
+                                borderRadius: BorderRadius.circular(dimension.radius15))),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "Enter Discount";
@@ -235,13 +235,13 @@ class _couponsupdateState extends State<couponsupdate> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10), // Spacer
+                  SizedBox(width: dimension.height10), // Spacer
                   Expanded(
                     child: Container(
-                      height: 60,
+                      height: dimension.height60,
                       decoration: BoxDecoration(
                           color: AppColors.Colorq.withOpacity(0.05),
-                          borderRadius: BorderRadius.circular(15)),
+                          borderRadius: BorderRadius.circular(dimension.radius15)),
                       child: Center(
                         child: DropdownButton<String>(
                           items: ['Fixed', 'Percentage'].map((String value) {
@@ -260,7 +260,7 @@ class _couponsupdateState extends State<couponsupdate> {
                   ),
                 ],
               ),
-              SizedBox(height: 10), // Spacer
+              SizedBox(height: dimension.height10), // Spacer
 
               // DatepickerWithIconAndLabel(
               //   labelText: 'Select Date',
@@ -271,23 +271,23 @@ class _couponsupdateState extends State<couponsupdate> {
               //   },
               // ),
               Container(
-                height: 60,
+                height: dimension.height60,
                 width: double.maxFinite,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(dimension.radius15),
                     color: AppColors.Colorq.withOpacity(0.05)),
               ),
               SizedBox(
-                height: 10,
+                height: dimension.height10,
               ),
               Container(
-                height: 350,
+                height: dimension.height100*3+50,
                 width: double.maxFinite,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(dimension.radius15),
                     color: AppColors.Colorq.withOpacity(0.05)),
                 child: Padding(
-                  padding: EdgeInsets.only(left: 10, top: 20),
+                  padding: EdgeInsets.only(left: dimension.height10, top: dimension.height20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -301,11 +301,11 @@ class _couponsupdateState extends State<couponsupdate> {
                       Row(
                         children: [
                           Container(
-                            height: 300,
-                            width: 220,
+                            height: dimension.height100*3,
+                            width: dimension.height100*2+20,
                           // color: Colors.green,
                             child: Padding(
-                              padding: EdgeInsets.all(15),
+                              padding: EdgeInsets.all(dimension.radius15),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -334,7 +334,7 @@ class _couponsupdateState extends State<couponsupdate> {
                             ),
                           ),
                           Container(
-                            height: 300,
+                            height: dimension.height100*3,
                             width: 120,
                             //  color: Colors.red,
                             child: Center(

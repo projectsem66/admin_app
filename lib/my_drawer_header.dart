@@ -39,6 +39,7 @@ class _MyHederDrawerState extends State<MyHederDrawer> {
                 fontWeight: FontWeight.bold,
                 fontSize: dimension.font20),
           ),
+
           Text(
             "up2181@gmail.com",
             style: GoogleFonts.poppins(
