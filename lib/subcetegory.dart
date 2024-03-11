@@ -18,7 +18,7 @@ class sub_category extends StatefulWidget {
   @override
   State<sub_category> createState() => _sub_categoryState();
 }
-
+String sectionn = "";
 class _sub_categoryState extends State<sub_category> {
   File? pickedSCimg;
   TextEditingController _scName = TextEditingController();
@@ -231,6 +231,7 @@ class _sub_categoryState extends State<sub_category> {
             GestureDetector(
               onTap: () {
                 addSubCategory(_scName.text.toString());
+                sectionn = _scName.text.toString();
                 Get.to(section());
               },
               child: Container(
