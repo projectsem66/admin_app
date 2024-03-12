@@ -185,6 +185,7 @@ class _simpleState extends State<simple> {
                    Get.snackbar("Enter required field", "Both fields are required",
                       colorText: Colors.white);
                 } else {
+
                   uploadData();
                   categoryNamee = _cname.text.toString();
                   Get.to(sub_category());

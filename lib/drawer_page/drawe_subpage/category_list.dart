@@ -357,6 +357,7 @@ class _categorylistState extends State<categorylist> {
                             child: Container(
                               decoration: BoxDecoration(
                                   //color: Colors.orange,
+
                                   borderRadius: BorderRadius.circular(
                                       dimension.radius15)),
                               child: Column(

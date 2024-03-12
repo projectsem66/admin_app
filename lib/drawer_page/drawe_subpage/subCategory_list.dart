@@ -22,6 +22,7 @@ class SubCategoryList extends StatefulWidget {
 
   const SubCategoryList({super.key, required this.categoryTitle});
 
+
   @override
   State<SubCategoryList> createState() => _SubCategoryListState();
 }

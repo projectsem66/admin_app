@@ -230,6 +230,7 @@ class _sub_categoryState extends State<sub_category> {
             ),
             GestureDetector(
               onTap: () {
+
                 addSubCategory(_scName.text.toString());
                 SCname = _scName.text.toString();
                 Get.to(Section());

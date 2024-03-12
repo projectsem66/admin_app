@@ -35,6 +35,7 @@ class _sectionlistState extends State<sectionlist> {
       .collection("sections");
 
   //
+
   // FirebaseFirestore.instance.collection('category')
   //     .doc(widget.categoryTitle)
   //     .collection("subcategories")
