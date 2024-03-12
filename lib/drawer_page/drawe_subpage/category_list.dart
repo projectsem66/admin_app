@@ -14,6 +14,8 @@ import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../section.dart';
+
 class categorylist extends StatefulWidget {
   categorylist({super.key});
 
@@ -364,7 +366,7 @@ class _categorylistState extends State<categorylist> {
                                   Bounce(
                                     onTap: () async {
                                       categoryName = documentSnapshot.id;
-
+                                      categoryNameForSection=documentSnapshot.id;
                                       Get.to(SubCategoryList(
                                         categoryTitle: documentSnapshot.id,
                                       ));

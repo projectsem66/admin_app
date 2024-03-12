@@ -3,6 +3,7 @@ import 'package:admin_app/Pages/home_page.dart';
 import 'package:admin_app/drawer_page/drawe_subpage/category.dart';
 import 'package:admin_app/drawer_page/drawe_subpage/category_list.dart';
 import 'package:admin_app/home.dart';
+import 'package:admin_app/section_list.dart';
 import 'package:admin_app/simple.dart';
 import 'package:admin_app/subcetegory.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -30,7 +31,7 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
 theme: ThemeData(iconTheme: IconThemeData(color: Colors.white)),
       debugShowCheckedModeBanner: false,
-      home: simple(),
+      home: categorylist(),
     );
   }
 }

@@ -1,22 +1,19 @@
-import 'dart:html';
-
 import 'package:admin_app/section.dart';
-import 'package:admin_app/simple.dart';
 import 'package:admin_app/util/color.dart';
 import 'package:admin_app/util/dimension.dart';
 import 'package:bounce/bounce.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'drawer_page/drawe_subpage/category_list.dart';
 import 'drawer_page/drawe_subpage/subCategory_list.dart';
 
 class sectionlist extends StatefulWidget {
+  String subcategory;
 
-  const sectionlist({super.key,});
+  sectionlist({super.key, required this.subcategory});
 
   @override
   State<sectionlist> createState() => _sectionlistState();
@@ -30,8 +27,18 @@ class _sectionlistState extends State<sectionlist> {
   //       .collection("subcategories")
   //       .snapshots();
   // }
-  final CollectionReference refC =
-  FirebaseFirestore.instance.collection('category');
+  final CollectionReference refC = FirebaseFirestore.instance
+      .collection("category")
+      .doc(categoryNameForSection)
+      .collection("subcategories")
+      .doc(subCategoryNameForSection)
+      .collection("sections");
+
+  //
+  // FirebaseFirestore.instance.collection('category')
+  //     .doc(widget.categoryTitle)
+  //     .collection("subcategories")
+  //     .snapshots();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,44 +99,34 @@ class _sectionlistState extends State<sectionlist> {
                             childAspectRatio: 0.7),
                         itemBuilder: (context, index) {
                           final DocumentSnapshot documentSnapshot =
-                          streamSnapshot.data!.docs[index];
+                              streamSnapshot.data!.docs[index];
                           return Padding(
                             padding: EdgeInsets.all(dimension.height8),
                             child: Container(
                               decoration: BoxDecoration(
-                                //color: Colors.orange,
+                                  //color: Colors.orange,
                                   borderRadius: BorderRadius.circular(
                                       dimension.radius15)),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Bounce(
-                                    onTap: () async {
-                                      categoryName = documentSnapshot.id;
-
-                                      Get.to(SubCategoryList(
-                                        categoryTitle: documentSnapshot.id,
-                                      ));
-                                    },
-                                    duration: Duration(milliseconds: 200),
-                                    child: Container(
-                                      height: dimension.height70 * 2,
-                                      width: double.maxFinite,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.only(
-                                              topRight: Radius.circular(
-                                                  dimension.radius15),
-                                              topLeft: Radius.circular(
-                                                  dimension.radius15)),
-                                          color: AppColors.Colorq.withOpacity(
-                                              0.09),
-                                          image: DecorationImage(
-                                              image: NetworkImage(
-                                                  documentSnapshot['cimage']
-                                                      .toString()),
-                                              fit: BoxFit.cover)),
-                                    ),
+                                  Container(
+                                    height: dimension.height70 * 2,
+                                    width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(
+                                                dimension.radius15),
+                                            topLeft: Radius.circular(
+                                                dimension.radius15)),
+                                        color: AppColors.Colorq.withOpacity(
+                                            0.09),
+                                        image: DecorationImage(
+                                            image: NetworkImage(
+                                                documentSnapshot['simage']
+                                                    .toString()),
+                                            fit: BoxFit.cover)),
                                   ),
                                   Container(
                                     height: dimension.height83,
@@ -147,10 +144,10 @@ class _sectionlistState extends State<sectionlist> {
                                           top: dimension.height10),
                                       child: Column(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                              documentSnapshot['cname']
+                                              documentSnapshot['sname']
                                                   .toString(),
                                               overflow: TextOverflow.ellipsis,
                                               maxLines: 1,
@@ -164,20 +161,20 @@ class _sectionlistState extends State<sectionlist> {
                                                 right: dimension.height20),
                                             child: Row(
                                               mainAxisAlignment:
-                                              MainAxisAlignment
-                                                  .spaceBetween,
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 Bounce(
                                                   onTap: () {
-                                            //_update(documentSnapshot),
-                                            },
+                                                    //_update(documentSnapshot),
+                                                  },
                                                   child: Container(
                                                     height: dimension.height35,
                                                     width: dimension.height35,
                                                     decoration: BoxDecoration(
                                                         shape: BoxShape.circle,
                                                         color:
-                                                        AppColors.Colorq),
+                                                            AppColors.Colorq),
                                                     child: Icon(
                                                       Icons.edit,
                                                       color: Colors.white,
@@ -195,7 +192,7 @@ class _sectionlistState extends State<sectionlist> {
                                                     decoration: BoxDecoration(
                                                         shape: BoxShape.circle,
                                                         color:
-                                                        AppColors.Colorq),
+                                                            AppColors.Colorq),
                                                     child: Icon(
                                                       Icons.delete,
                                                       color: Colors.white,

@@ -14,6 +14,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'drawer_page/drawe_subpage/subCategory_list.dart';
+
 class Section extends StatefulWidget {
   const Section({super.key});
 
@@ -21,7 +23,9 @@ class Section extends StatefulWidget {
   State<Section> createState() => _Section_State();
 }
 
-String sectionn = "";
+// String sectionn = "";
+String categoryNameForSection="";
+String subCategoryNameForSection="";
 
 class _Section_State extends State<Section> {
   File? pickedSCimg;
@@ -59,9 +63,9 @@ class _Section_State extends State<Section> {
     String url = await taskSnapshot.ref.getDownloadURL();
     FirebaseFirestore.instance
         .collection("category")
-        .doc(categoryNamee)
+        .doc(categoryNameForSection)
         .collection("subcategories")
-        .doc(SCname)
+        .doc(subCategoryNameForSection)
         .collection("sections").doc(_SName.text.toString())
         .set({
       "sname": _SName.text.toString(),
@@ -151,7 +155,8 @@ class _Section_State extends State<Section> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Category Name: ${categoryNamee}"),
+            Text("SubCategory Name: $subCategoryNameForSection"),
+            Text("Category Name: $categoryNameForSection"),
             SizedBox(
               height: dimension.height15,
             ),

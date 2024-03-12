@@ -12,6 +12,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../section.dart';
 import '../../simple.dart';
 import '../../util/color.dart';
 import 'category_list.dart';
@@ -24,7 +25,7 @@ class SubCategoryList extends StatefulWidget {
   @override
   State<SubCategoryList> createState() => _SubCategoryListState();
 }
-
+String SubCategoryName="";
 class _SubCategoryListState extends State<SubCategoryList> {
   Stream<QuerySnapshot<Object?>> getSubCategory() {
     return FirebaseFirestore.instance
@@ -380,11 +381,9 @@ class _SubCategoryListState extends State<SubCategoryList> {
                             padding: EdgeInsets.all(dimension.height8),
                             child: Bounce(
                               onTap: () {
-                                //categoryName = documentSnapshot.id;
+                                subCategoryNameForSection = documentSnapshot.id;
 
-                                // Get.to(sectionlist(
-                                //   categoryTitle: documentSnapshot.id,
-                                // ));
+                                Get.to(sectionlist(subcategory: documentSnapshot.id));
 
                               },
                               duration: Duration(milliseconds: 200),
