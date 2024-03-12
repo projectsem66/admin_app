@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:admin_app/section_list.dart';
 import 'package:admin_app/subcetegory.dart';
 import 'package:admin_app/util/dimension.dart';
 import 'package:bounce/bounce.dart';
@@ -378,7 +379,14 @@ class _SubCategoryListState extends State<SubCategoryList> {
                           return Padding(
                             padding: EdgeInsets.all(dimension.height8),
                             child: Bounce(
-                              onTap: () {},
+                              onTap: () {
+                                categoryName = documentSnapshot.id;
+
+                                // Get.to(sectionlist(
+                                //   categoryTitle: documentSnapshot.id,
+                                // ));
+
+                              },
                               duration: Duration(milliseconds: 200),
                               child: Container(
                                 decoration: BoxDecoration(

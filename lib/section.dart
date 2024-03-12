@@ -136,7 +136,7 @@ class _Section_State extends State<Section> {
             size: dimension.icon30,
           ),
         ),
-        title: Text("Add Sub Category",
+        title: Text("Add Section",
             style: GoogleFonts.poppins(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
@@ -163,6 +163,7 @@ class _Section_State extends State<Section> {
                   onTap: () {
                     showAlertBox();
                   },
+
                   child: Stack(
                     children: [
                       pickedSCimg != null
@@ -237,7 +238,7 @@ class _Section_State extends State<Section> {
             GestureDetector(
               onTap: () {
                 addSection(_SName.text.toString());
-                // Get.to(section());
+                Get.to(categorylist());
               },
               child: Container(
                 height: dimension.height60,
