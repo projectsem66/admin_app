@@ -15,21 +15,21 @@ import 'drawer_page/drawe_subpage/category_list.dart';
 import 'drawer_page/drawe_subpage/subCategory_list.dart';
 
 class sectionlist extends StatefulWidget {
-  final String categoryTitle;
-  const sectionlist({super.key,required this.categoryTitle});
+
+  const sectionlist({super.key,});
 
   @override
   State<sectionlist> createState() => _sectionlistState();
 }
 
 class _sectionlistState extends State<sectionlist> {
-  Stream<QuerySnapshot<Object?>> getsection() {
-    return FirebaseFirestore.instance
-        .collection('category')
-        .doc(widget.categoryTitle)
-        .collection("subcategories")
-        .snapshots();
-  }
+  // Stream<QuerySnapshot<Object?>> getsection() {
+  //   return FirebaseFirestore.instance
+  //       .collection('category')
+  //       .doc(widget.categoryTitle)
+  //       .collection("subcategories")
+  //       .snapshots();
+  // }
   final CollectionReference refC =
   FirebaseFirestore.instance.collection('category');
   @override
@@ -78,7 +78,8 @@ class _sectionlistState extends State<sectionlist> {
               Container(
                 height: screenheight() - 95,
                 child: StreamBuilder(
-                  stream: getsection(),
+                  // aa ref emj lidho che
+                  stream: refC.snapshots(),
                   builder:
                       (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
                     if (streamSnapshot.hasData) {

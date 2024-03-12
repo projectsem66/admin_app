@@ -380,7 +380,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
                             padding: EdgeInsets.all(dimension.height8),
                             child: Bounce(
                               onTap: () {
-                                categoryName = documentSnapshot.id;
+                                //categoryName = documentSnapshot.id;
 
                                 // Get.to(sectionlist(
                                 //   categoryTitle: documentSnapshot.id,
