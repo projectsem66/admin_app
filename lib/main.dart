@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
 theme: ThemeData(iconTheme: IconThemeData(color: Colors.white)),
       debugShowCheckedModeBanner: false,
-      home: categorylist(),
+      home: home_page(),
     );
   }
 }
