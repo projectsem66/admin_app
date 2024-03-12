@@ -86,7 +86,6 @@ class _sectionlistState extends State<sectionlist> {
               Container(
                 height: screenheight() - 95,
                 child: StreamBuilder(
-                  // aa ref emj lidho che
                   stream: refC.snapshots(),
                   builder:
                       (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {

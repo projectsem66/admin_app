@@ -366,6 +366,7 @@ class _categorylistState extends State<categorylist> {
                                 children: [
                                   Bounce(
                                     onTap: () async {
+                                      
                                       categoryName = documentSnapshot.id;
                                       categoryNameForSection=documentSnapshot.id;
                                       Get.to(SubCategoryList(

@@ -6,6 +6,8 @@ import 'package:admin_app/simple.dart';
 import 'package:admin_app/subcetegory.dart';
 import 'package:admin_app/total_provider.dart';
 import 'package:admin_app/total_provider_list.dart';
+import 'package:admin_app/total_user.dart';
+import 'package:admin_app/total_user_list.dart';
 import 'package:admin_app/util/color.dart';
 import 'package:admin_app/util/dimension.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -654,132 +656,132 @@ class _home_pageState extends State<home_page> {
               SizedBox(
                 height: dimension.height15,
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                    left: dimension.height12, right: dimension.height12),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Job Request List",
-                      style: GoogleFonts.poppins(
-                          color: AppColors.Colorq,
-                          fontWeight: FontWeight.w400,
-                          fontSize: dimension.font22),
-                    ),
-                    Text(
-                      "View all",
-                      style: GoogleFonts.poppins(
-                          color: AppColors.Colorq.withOpacity(0.8),
-                          fontWeight: FontWeight.w400,
-                          fontSize: dimension.font18),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: dimension.height15,
-              ),
-              ListView.builder(
-                // scrollDirection: Axis.vertical,
-                itemCount: 3,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.only(
-                        left: dimension.height12,
-                        right: dimension.height12,
-                        bottom: dimension.height8),
-                    child: Container(
-                      height: dimension.height100,
-                      width: double.maxFinite,
-                      decoration: BoxDecoration(
-                          color: AppColors.Colorq.withOpacity(0.07),
-                          borderRadius:
-                              BorderRadius.circular(dimension.height12)),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.only(
-                                    top: dimension.height18,
-                                    left: dimension.height15),
-                                height: dimension.height70,
-                                width: dimension.height70,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                        dimension.height15),
-                                    //color: Colors.green,
-                                    image: DecorationImage(
-                                        image: AssetImage(helper[index]),
-                                        fit: BoxFit.cover)),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    left: dimension.height12,
-                                    top: dimension.height10),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(jobre[index],
-                                        style: GoogleFonts.poppins(
-                                            color: AppColors.Colorq,
-                                            fontSize: dimension.font15,
-                                            fontWeight: FontWeight.bold)),
-                                    SizedBox(
-                                      height: dimension.height7,
-                                    ),
-                                    Text(jobru[index],
-                                        style: GoogleFonts.poppins(
-                                            color: AppColors.Colorq,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: dimension.font12)),
-                                    SizedBox(
-                                      height: dimension.height7,
-                                    ),
-                                    Text(jobdate[index],
-                                        style: GoogleFonts.poppins(
-                                            color: AppColors.Colorq,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: dimension.font12)),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    left: dimension.height46,
-                                    bottom: dimension.height20),
-                                child: Container(
-                                  margin:
-                                      EdgeInsets.only(right: dimension.height7),
-                                  height: dimension.height35,
-                                  width: dimension.height87,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(
-                                          dimension.height10),
-                                      color: Colors.green.shade100),
-                                  child: Center(
-                                      child: Text("Assigned",
-                                          style: GoogleFonts.poppins(
-                                              color: Colors.green,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: dimension.font15))),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
-              SizedBox(
-                height: dimension.height15,
-              ),
+              // Padding(
+              //   padding: EdgeInsets.only(
+              //       left: dimension.height12, right: dimension.height12),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       Text(
+              //         "Job Request List",
+              //         style: GoogleFonts.poppins(
+              //             color: AppColors.Colorq,
+              //             fontWeight: FontWeight.w400,
+              //             fontSize: dimension.font22),
+              //       ),
+              //       Text(
+              //         "View all",
+              //         style: GoogleFonts.poppins(
+              //             color: AppColors.Colorq.withOpacity(0.8),
+              //             fontWeight: FontWeight.w400,
+              //             fontSize: dimension.font18),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: dimension.height15,
+              // ),
+              // ListView.builder(
+              //   // scrollDirection: Axis.vertical,
+              //   itemCount: 3,
+              //   shrinkWrap: true,
+              //   physics: NeverScrollableScrollPhysics(),
+              //   itemBuilder: (context, index) {
+              //     return Padding(
+              //       padding: EdgeInsets.only(
+              //           left: dimension.height12,
+              //           right: dimension.height12,
+              //           bottom: dimension.height8),
+              //       child: Container(
+              //         height: dimension.height100,
+              //         width: double.maxFinite,
+              //         decoration: BoxDecoration(
+              //             color: AppColors.Colorq.withOpacity(0.07),
+              //             borderRadius:
+              //                 BorderRadius.circular(dimension.height12)),
+              //         child: Column(
+              //           children: [
+              //             Row(
+              //               children: [
+              //                 Container(
+              //                   margin: EdgeInsets.only(
+              //                       top: dimension.height18,
+              //                       left: dimension.height15),
+              //                   height: dimension.height70,
+              //                   width: dimension.height70,
+              //                   decoration: BoxDecoration(
+              //                       borderRadius: BorderRadius.circular(
+              //                           dimension.height15),
+              //                       //color: Colors.green,
+              //                       image: DecorationImage(
+              //                           image: AssetImage(helper[index]),
+              //                           fit: BoxFit.cover)),
+              //                 ),
+              //                 Padding(
+              //                   padding: EdgeInsets.only(
+              //                       left: dimension.height12,
+              //                       top: dimension.height10),
+              //                   child: Column(
+              //                     mainAxisAlignment: MainAxisAlignment.start,
+              //                     crossAxisAlignment: CrossAxisAlignment.start,
+              //                     children: [
+              //                       Text(jobre[index],
+              //                           style: GoogleFonts.poppins(
+              //                               color: AppColors.Colorq,
+              //                               fontSize: dimension.font15,
+              //                               fontWeight: FontWeight.bold)),
+              //                       SizedBox(
+              //                         height: dimension.height7,
+              //                       ),
+              //                       Text(jobru[index],
+              //                           style: GoogleFonts.poppins(
+              //                               color: AppColors.Colorq,
+              //                               fontWeight: FontWeight.w400,
+              //                               fontSize: dimension.font12)),
+              //                       SizedBox(
+              //                         height: dimension.height7,
+              //                       ),
+              //                       Text(jobdate[index],
+              //                           style: GoogleFonts.poppins(
+              //                               color: AppColors.Colorq,
+              //                               fontWeight: FontWeight.w400,
+              //                               fontSize: dimension.font12)),
+              //                     ],
+              //                   ),
+              //                 ),
+              //                 Padding(
+              //                   padding: EdgeInsets.only(
+              //                       left: dimension.height46,
+              //                       bottom: dimension.height20),
+              //                   child: Container(
+              //                     margin:
+              //                         EdgeInsets.only(right: dimension.height7),
+              //                     height: dimension.height35,
+              //                     width: dimension.height87,
+              //                     decoration: BoxDecoration(
+              //                         borderRadius: BorderRadius.circular(
+              //                             dimension.height10),
+              //                         color: Colors.green.shade100),
+              //                     child: Center(
+              //                         child: Text("Assigned",
+              //                             style: GoogleFonts.poppins(
+              //                                 color: Colors.green,
+              //                                 fontWeight: FontWeight.bold,
+              //                                 fontSize: dimension.font15))),
+              //                   ),
+              //                 ),
+              //               ],
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //     );
+              //   },
+              // ),
+              // SizedBox(
+              //   height: dimension.height15,
+              // ),
               Container(
                 height: dimension.height100 * 3,
                 color: AppColors.Colorq.withOpacity(0.07),
@@ -801,141 +803,24 @@ class _home_pageState extends State<home_page> {
                                 fontWeight: FontWeight.w400,
                                 fontSize: dimension.font22),
                           ),
-                          Text(
-                            "View all",
-                            style: GoogleFonts.poppins(
-                                color: AppColors.Colorq.withOpacity(0.8),
-                                fontWeight: FontWeight.w400,
-                                fontSize: dimension.font18),
+                          InkWell(
+                            onTap: () {
+                              Get.to(Total_User_List());
+                            },
+                            child: Text(
+                              "View all",
+                              style: GoogleFonts.poppins(
+                                  color: AppColors.Colorq.withOpacity(0.8),
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: dimension.font18),
+                            ),
                           ),
                         ],
                       ),
                       SizedBox(
                         height: dimension.height10,
                       ),
-                      Expanded(
-                        child: ListView.builder(
-                          itemCount: 3,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              margin: EdgeInsets.all(dimension.height7),
-                              height: dimension.height100 * 2 + 20,
-                              width: dimension.height60 * 3,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(
-                                      dimension.height12)),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: dimension.height100 + 50,
-                                    width: double.maxFinite,
-                                    decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                            image:
-                                                AssetImage(providerimg[index]),
-                                            fit: BoxFit.cover),
-                                        color:
-                                            AppColors.Colorq.withOpacity(0.09),
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(
-                                              dimension.height12,
-                                            ),
-                                            topRight: Radius.circular(
-                                                dimension.height12))),
-                                    child: Padding(
-                                      padding: EdgeInsets.only(
-                                          right: dimension.height15,
-                                          top: dimension.height10),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          Container(
-                                            height: dimension.height40,
-                                            width: dimension.height40,
-                                            decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                color: AppColors.Colorq
-                                                    .withOpacity(0.05)),
-                                            child: Icon(
-                                              Icons.power_settings_new_sharp,
-                                              color: AppColors.lightGreen,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    height: dimension.height70,
-                                    width: double.maxFinite,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(
-                                              dimension.height12),
-                                          bottomRight: Radius.circular(
-                                              dimension.height12)),
-                                      color: AppColors.Colorq.withOpacity(0.05),
-                                    ),
-                                    child: Column(
-                                      //  crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          providername[index],
-                                          style: GoogleFonts.poppins(
-                                              color: AppColors.Colorq,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: dimension.font15),
-                                        ),
-                                        SizedBox(
-                                          height: dimension.height5,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Container(
-                                              height: dimension.height32,
-                                              width: dimension.height32,
-                                              decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  color: AppColors.Colorq
-                                                      .withOpacity(0.05)),
-                                              child: Icon(Icons.call,
-                                                  color: AppColors.Colorq
-                                                      .withOpacity(0.9)),
-                                            ),
-                                            SizedBox(
-                                              width: dimension.height15,
-                                            ),
-                                            Container(
-                                              height: dimension.height32,
-                                              width: dimension.height32,
-                                              decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  color: AppColors.Colorq
-                                                      .withOpacity(0.05)),
-                                              child: Icon(Icons.email_outlined,
-                                                  color: AppColors.Colorq
-                                                      .withOpacity(0.9)),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: dimension.height3,
-                                        )
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            );
-                          },
-                        ),
-                      ),
+                      Total_user()
                     ],
                   ),
                 ),
@@ -1022,30 +907,30 @@ class _home_pageState extends State<home_page> {
               ),
             ),
           ),
-          InkWell(
-            onTap: () {
-              Get.to(sub_category());
-            },
-            child: Padding(
-              padding: EdgeInsets.all(15),
-              child: Row(
-                children: [
-                  Expanded(
-                      child: Icon(
-                    Icons.design_services_rounded,
-                    color: AppColors.Colorq,
-                  )),
-                  Expanded(
-                      flex: 3,
-                      child: Text("Add SubCategory",
-                          style: GoogleFonts.poppins(
-                              color: AppColors.Colorq.withOpacity(0.7),
-                              fontWeight: FontWeight.bold,
-                              fontSize: dimension.font16))),
-                ],
-              ),
-            ),
-          ),
+          // InkWell(
+          //   onTap: () {
+          //     Get.to(sub_category());
+          //   },
+          //   child: Padding(
+          //     padding: EdgeInsets.all(15),
+          //     child: Row(
+          //       children: [
+          //         Expanded(
+          //             child: Icon(
+          //           Icons.design_services_rounded,
+          //           color: AppColors.Colorq,
+          //         )),
+          //         Expanded(
+          //             flex: 3,
+          //             child: Text("Add SubCategory",
+          //                 style: GoogleFonts.poppins(
+          //                     color: AppColors.Colorq.withOpacity(0.7),
+          //                     fontWeight: FontWeight.bold,
+          //                     fontSize: dimension.font16))),
+          //       ],
+          //     ),
+          //   ),
+          // ),
           InkWell(
             onTap: () {
               Get.to(categorylist());
@@ -1095,7 +980,9 @@ class _home_pageState extends State<home_page> {
             ),
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Get.to(Total_User_List());
+            },
             child: Padding(
               padding: EdgeInsets.all(15),
               child: Row(

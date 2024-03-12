@@ -22,12 +22,13 @@ class Section extends StatefulWidget {
   @override
   State<Section> createState() => _Section_State();
 }
-
+String Sectionname = "";
 // String sectionn = "";
 String categoryNameForSection="";
 String subCategoryNameForSection="";
 
 class _Section_State extends State<Section> {
+
   File? pickedSCimg;
   TextEditingController _SName = TextEditingController();
 
@@ -44,6 +45,8 @@ class _Section_State extends State<Section> {
                     Get.back();
                   },
                   child: Text("Ok")),
+              //NEW CATEGORY ADD KR TU KR HU JOV
+
             ],
           );
         },
@@ -156,8 +159,8 @@ class _Section_State extends State<Section> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("SubCategory Name: $subCategoryNameForSection"),
-            Text("Category Name: $categoryNameForSection"),
+            Text("SubCategory Name: ${SCname}"),
+            Text("Category Name:  ${categoryNamee}"),
             SizedBox(
               height: dimension.height15,
             ),
@@ -244,6 +247,7 @@ class _Section_State extends State<Section> {
             GestureDetector(
               onTap: () {
                 addSection(_SName.text.toString());
+                Sectionname = _SName.text.toString();
                 Get.to(categorylist());
               },
               child: Container(
