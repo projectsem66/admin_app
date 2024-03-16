@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:admin_app/Pages/home_page.dart';
+import 'package:admin_app/section.dart';
 import 'package:admin_app/subcetegory.dart';
 import 'package:admin_app/util/color.dart';
 import 'package:admin_app/util/dimension.dart';
@@ -23,8 +24,6 @@ String categoryNamee = "";
 
 class _simpleState extends State<simple> {
   File? pickedImage;
-
-
 
   uploadData() async {
     UploadTask uploadtask = FirebaseStorage.instance
@@ -85,130 +84,147 @@ class _simpleState extends State<simple> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.Colorq,
-        leading: IconButton(
-          onPressed: () {
-            Get.to(home_page());
-          },
-          icon: Icon(
-            Icons.keyboard_arrow_left,
-            color: Colors.white,
-            size: dimension.icon30,
+    return WillPopScope(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: AppColors.Colorq,
+          leading: IconButton(
+            onPressed: () {
+              Get.to(home_page());
+            },
+            icon: Icon(
+              Icons.keyboard_arrow_left,
+              color: Colors.white,
+              size: dimension.icon30,
+            ),
           ),
+          title: Text("Add Category",
+              style: GoogleFonts.poppins(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: dimension.font20)),
         ),
-        title: Text("Add Category",
-            style: GoogleFonts.poppins(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: dimension.font20)),
-      ),
-      body: Padding(
-        padding: EdgeInsets.only(left: dimension.height12, right: dimension.height12, top: dimension.height12),
-        child: Column(
-          children: [
-            GestureDetector(
-              onTap: () {
-                showAlertBox();
-              },
-              child: Stack(
-                children: [
-                  pickedImage != null
-                      ? Container(
-                          height: dimension.height60*2,
-                          width: dimension.height60*2,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: FileImage(pickedImage!),
-                                  fit: BoxFit.cover),
-                              shape: BoxShape.circle,
-                              color: AppColors.Colorq.withOpacity(0.05)),
-                        )
-                      : Container(
-                          height: dimension.height60*2,
-                          width: dimension.height60*2,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage("images/addCategoryy.png"),
-                                  fit: BoxFit.cover),
-                              shape: BoxShape.circle,
-                              color: AppColors.Colorq.withOpacity(0.05)),
+        body: Padding(
+          padding: EdgeInsets.only(
+              left: dimension.height12,
+              right: dimension.height12,
+              top: dimension.height12),
+          child: Column(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  showAlertBox();
+                },
+                child: Stack(
+                  children: [
+                    pickedImage != null
+                        ? Container(
+                            height: dimension.height60 * 2,
+                            width: dimension.height60 * 2,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: FileImage(pickedImage!),
+                                    fit: BoxFit.cover),
+                                shape: BoxShape.circle,
+                                color: AppColors.Colorq.withOpacity(0.05)),
+                          )
+                        : Container(
+                            height: dimension.height60 * 2,
+                            width: dimension.height60 * 2,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image:
+                                        AssetImage("images/addCategoryy.png"),
+                                    fit: BoxFit.cover),
+                                shape: BoxShape.circle,
+                                color: AppColors.Colorq.withOpacity(0.05)),
+                          ),
+                    Container(
+                      margin: EdgeInsets.only(
+                          top: dimension.height65, left: dimension.height80),
+                      height: dimension.height50,
+                      width: dimension.height50,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        //   color: AppColors.Colorq
+                      ),
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          size: dimension.icon30,
+                          Icons.camera_enhance,
+                          color: AppColors.Colorq,
                         ),
-                  Container(
-                    margin: EdgeInsets.only(top: dimension.height65, left: dimension.height80),
-                    height: dimension.height50,
-                    width: dimension.height50,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      //   color: AppColors.Colorq
-                    ),
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        size: dimension.icon30,
-                        Icons.camera_enhance,
-                        color: AppColors.Colorq,
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            SizedBox(
-              height: dimension.height15,
-            ),
-            TextFormField(
-              controller: _cname,
-              decoration: InputDecoration(
-                  filled: true,
-                  fillColor: AppColors.Colorq.withOpacity(0.05),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(dimension.radius15)),
-                  hintText: "Salon for Men",
-                  labelText: "Category Name",
-                  labelStyle: TextStyle(color: Colors.black87),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(dimension.radius15),
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColors.Colorq),
-                      borderRadius: BorderRadius.circular(dimension.radius15))),
-            ),
-            SizedBox(
-              height: dimension.height20,
-            ),
-            GestureDetector(
-              onTap: () {
-                if (_cname.text.isEmpty && pickedImage == null) {
-                   Get.snackbar("Enter required field", "Both fields are required",
-                      colorText: Colors.white);
-                } else {
-
-                  uploadData();
-                  categoryNamee = _cname.text.toString();
-                  Get.to(sub_category());
-                }
-              },
-              child: Container(
-                height: dimension.height60,
-                width: double.maxFinite,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(dimension.radius15),
-                    color: AppColors.Colorq),
-                child: Center(
-                  child: Text(
-                    "Next",
-                    style:
-                        GoogleFonts.poppins(color: Colors.white, fontSize: dimension.font22),
+              SizedBox(
+                height: dimension.height15,
+              ),
+              TextFormField(
+                controller: _cname,
+                decoration: InputDecoration(
+                    filled: true,
+                    fillColor: AppColors.Colorq.withOpacity(0.05),
+                    border: OutlineInputBorder(
+                        borderRadius:
+                            BorderRadius.circular(dimension.radius15)),
+                    hintText: "Salon for Men",
+                    labelText: "Category Name",
+                    labelStyle: TextStyle(color: Colors.black87),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(dimension.radius15),
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: AppColors.Colorq),
+                        borderRadius:
+                            BorderRadius.circular(dimension.radius15))),
+              ),
+              SizedBox(
+                height: dimension.height20,
+              ),
+              GestureDetector(
+                onTap: () {
+                  categoryNameForSection = _cname.text.toString();
+                  if (_cname.text.isEmpty && pickedImage == null) {
+                    Get.snackbar(
+                        "Enter required field", "Both fields are required",
+                        colorText: Colors.white);
+                  } else {
+                    uploadData();
+                    categoryNamee = _cname.text.toString();
+                    Get.to(sub_category());
+                  }
+                },
+                child: Container(
+                  height: dimension.height60,
+                  width: double.maxFinite,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(dimension.radius15),
+                      color: AppColors.Colorq),
+                  child: Center(
+                    child: Text(
+                      "Next",
+                      style: GoogleFonts.poppins(
+                          color: Colors.white, fontSize: dimension.font22),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
+      onWillPop: () async{
+        print("Tapped");
+        setState(() {
+          Get.off(home_page());
+        });
+        return false;
+      },
     );
   }
 

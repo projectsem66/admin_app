@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:admin_app/Pages/home_page.dart';
 import 'package:admin_app/drawer_page/drawe_subpage/category_list.dart';
 import 'package:admin_app/section.dart';
 import 'package:admin_app/simple.dart';
@@ -131,7 +132,7 @@ class _Section_State extends State<Section> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(child: Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.Colorq,
         leading: IconButton(
@@ -177,26 +178,26 @@ class _Section_State extends State<Section> {
                     children: [
                       pickedSCimg != null
                           ? Container(
-                              height: dimension.height100 + 20,
-                              width: dimension.height100 + 20,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: FileImage(pickedSCimg!),
-                                      fit: BoxFit.cover),
-                                  shape: BoxShape.circle,
-                                  color: AppColors.Colorq.withOpacity(0.05)),
-                            )
+                        height: dimension.height100 + 20,
+                        width: dimension.height100 + 20,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: FileImage(pickedSCimg!),
+                                fit: BoxFit.cover),
+                            shape: BoxShape.circle,
+                            color: AppColors.Colorq.withOpacity(0.05)),
+                      )
                           : Container(
-                              height: dimension.height100 + 20,
-                              width: dimension.height100 + 20,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image:
-                                          AssetImage("images/addCategoryy.png"),
-                                      fit: BoxFit.cover),
-                                  shape: BoxShape.circle,
-                                  color: AppColors.Colorq.withOpacity(0.05)),
-                            ),
+                        height: dimension.height100 + 20,
+                        width: dimension.height100 + 20,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image:
+                                AssetImage("images/addCategoryy.png"),
+                                fit: BoxFit.cover),
+                            shape: BoxShape.circle,
+                            color: AppColors.Colorq.withOpacity(0.05)),
+                      ),
                       Container(
                         margin: EdgeInsets.only(
                             top: dimension.height65, left: dimension.height80),
@@ -268,6 +269,12 @@ class _Section_State extends State<Section> {
           ],
         ),
       ),
-    );
+    ),  onWillPop: () async{
+      print("Tapped");
+      setState(() {
+        Get.off(home_page());
+      });
+      return false;
+    }, );
   }
 }

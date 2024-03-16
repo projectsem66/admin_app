@@ -28,7 +28,7 @@ class _providerListState extends State<providerList> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(child: Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.white, size: dimension.icon30),
         backgroundColor: AppColors.Colorq,
@@ -67,14 +67,14 @@ class _providerListState extends State<providerList> {
                       //  scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         final DocumentSnapshot documentSnapshot =
-                            streamSnapshot.data!.docs[index];
+                        streamSnapshot.data!.docs[index];
                         return Container(
                           margin: EdgeInsets.all(dimension.height7),
                           height: dimension.height100 * 2 + 20,
                           width: dimension.height60 * 3,
                           decoration: BoxDecoration(
                               borderRadius:
-                                  BorderRadius.circular(dimension.height12)),
+                              BorderRadius.circular(dimension.height12)),
                           child: Column(
                             children: [
                               Container(
@@ -111,16 +111,16 @@ class _providerListState extends State<providerList> {
                                                   style: GoogleFonts.poppins(
                                                       color: AppColors.Colorq,
                                                       fontWeight:
-                                                          FontWeight.bold,
+                                                      FontWeight.bold,
                                                       fontSize:
-                                                          dimension.font15),
+                                                      dimension.font15),
                                                 ),
                                                 content: Row(
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                                   crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
+                                                  CrossAxisAlignment.start,
                                                   children: [
                                                     InkWell(
                                                       onTap: () {
@@ -130,22 +130,22 @@ class _providerListState extends State<providerList> {
                                                       },
                                                       child: Container(
                                                         height:
-                                                            dimension.height40,
+                                                        dimension.height40,
                                                         width:
-                                                            dimension.height95,
+                                                        dimension.height95,
                                                         decoration: BoxDecoration(
                                                             color: AppColors
                                                                 .Colorq,
                                                             borderRadius: BorderRadius
                                                                 .circular(dimension
-                                                                    .radius15)),
+                                                                .radius15)),
                                                         child: Row(
                                                           crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
+                                                          CrossAxisAlignment
+                                                              .center,
                                                           mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
+                                                          MainAxisAlignment
+                                                              .center,
                                                           children: [
                                                             Icon(Icons.done),
                                                             SizedBox(
@@ -158,11 +158,11 @@ class _providerListState extends State<providerList> {
                                                                   color: Colors
                                                                       .white,
                                                                   fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
+                                                                  FontWeight
+                                                                      .bold,
                                                                   fontSize:
-                                                                      dimension
-                                                                          .font20),
+                                                                  dimension
+                                                                      .font20),
                                                             ),
                                                           ],
                                                         ),
@@ -178,22 +178,22 @@ class _providerListState extends State<providerList> {
                                                       },
                                                       child: Container(
                                                         height:
-                                                            dimension.height40,
+                                                        dimension.height40,
                                                         width:
-                                                            dimension.height95,
+                                                        dimension.height95,
                                                         decoration: BoxDecoration(
                                                             color: AppColors
                                                                 .Colorq,
                                                             borderRadius: BorderRadius
                                                                 .circular(dimension
-                                                                    .radius15)),
+                                                                .radius15)),
                                                         child: Row(
                                                           mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
+                                                          MainAxisAlignment
+                                                              .center,
                                                           crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
+                                                          CrossAxisAlignment
+                                                              .center,
                                                           children: [
                                                             Icon(Icons.cancel),
                                                             SizedBox(
@@ -206,11 +206,11 @@ class _providerListState extends State<providerList> {
                                                                   color: Colors
                                                                       .white,
                                                                   fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
+                                                                  FontWeight
+                                                                      .bold,
                                                                   fontSize:
-                                                                      dimension
-                                                                          .font20),
+                                                                  dimension
+                                                                      .font20),
                                                             ),
                                                           ],
                                                         ),
@@ -244,9 +244,9 @@ class _providerListState extends State<providerList> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.only(
                                       bottomLeft:
-                                          Radius.circular(dimension.height12),
+                                      Radius.circular(dimension.height12),
                                       bottomRight:
-                                          Radius.circular(dimension.height12)),
+                                      Radius.circular(dimension.height12)),
                                   color: AppColors.Colorq.withOpacity(0.05),
                                 ),
                                 child: Column(
@@ -265,7 +265,7 @@ class _providerListState extends State<providerList> {
                                     ),
                                     Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      MainAxisAlignment.center,
                                       children: [
                                         Container(
                                           height: dimension.height32,
@@ -273,12 +273,12 @@ class _providerListState extends State<providerList> {
                                           decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                               color:
-                                                  AppColors.Colorq.withOpacity(
-                                                      0.05)),
+                                              AppColors.Colorq.withOpacity(
+                                                  0.05)),
                                           child: Icon(Icons.call,
                                               color:
-                                                  AppColors.Colorq.withOpacity(
-                                                      0.9)),
+                                              AppColors.Colorq.withOpacity(
+                                                  0.9)),
                                         ),
                                         SizedBox(
                                           width: dimension.height15,
@@ -289,12 +289,12 @@ class _providerListState extends State<providerList> {
                                           decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                               color:
-                                                  AppColors.Colorq.withOpacity(
-                                                      0.05)),
+                                              AppColors.Colorq.withOpacity(
+                                                  0.05)),
                                           child: Icon(Icons.email_outlined,
                                               color:
-                                                  AppColors.Colorq.withOpacity(
-                                                      0.9)),
+                                              AppColors.Colorq.withOpacity(
+                                                  0.9)),
                                         ),
                                       ],
                                     ),
@@ -319,6 +319,12 @@ class _providerListState extends State<providerList> {
           ],
         ),
       ),
-    );
+    ),   onWillPop: () async{
+      print("Tapped");
+      setState(() {
+        Get.off(home_page());
+      });
+      return false;
+    },);
   }
 }

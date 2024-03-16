@@ -1,19 +1,29 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:admin_app/section.dart';
 import 'package:admin_app/util/color.dart';
 import 'package:admin_app/util/dimension.dart';
 import 'package:bounce/bounce.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'drawer_page/drawe_subpage/category_list.dart';
 import 'drawer_page/drawe_subpage/subCategory_list.dart';
 
 class sectionlist extends StatefulWidget {
   String subcategory;
+  final String categoryTitle;
 
-  sectionlist({super.key, required this.subcategory});
+  sectionlist({
+    super.key,
+    required this.subcategory,
+    required this.categoryTitle,
+  });
 
   @override
   State<sectionlist> createState() => _sectionlistState();
@@ -34,7 +44,272 @@ class _sectionlistState extends State<sectionlist> {
       .doc(subCategoryNameForSection)
       .collection("sections");
 
-  //
+  Future<void> deleteSC(String documentId) async {
+    try {
+      CollectionReference subcategoriesRef = FirebaseFirestore.instance
+          .collection("category")
+          .doc(categoryNameForSection)
+          .collection("subcategories")
+          .doc(subCategoryNameForSection)
+          .collection("sections");
+
+      DocumentReference docRefToDelete = subcategoriesRef.doc(documentId);
+
+      await docRefToDelete.delete();
+
+      print('ID $documentId deletee');
+    } catch (e) {
+      print('Error $e');
+    }
+  }
+
+  String imgPath = "";
+  String snapid = "";
+  final TextEditingController _namecontroller = TextEditingController();
+  File? pickedImage;
+
+  addcategory(String cName) async {
+    if (cName == null && pickedImage == null) {
+      return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Enter Required Field"),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text("Ok")),
+            ],
+          );
+        },
+      );
+    } else {
+      uploadData();
+    }
+  }
+
+  uploadData() async {
+    UploadTask uploadtask = FirebaseStorage.instance
+        .ref("Category img")
+        .child("${_namecontroller.text}")
+        .putFile(pickedImage!, SettableMetadata(contentType: 'image/jpeg'));
+    TaskSnapshot taskSnapshot = await uploadtask;
+    String url = await taskSnapshot.ref.getDownloadURL();
+    FirebaseFirestore.instance
+        .collection('category')
+        .doc(widget.categoryTitle)
+        .collection("subcategories")
+        .doc(snapid)
+        .collection('section')
+        .doc(snapid)
+        .set({"sname": _namecontroller.text.toString(), "simage": url}).then(
+            (value) {
+      log("User Uploaded");
+    });
+    // await _collectionReference
+    //     .doc(_cname.toString())
+    //     .set({"cname": _cname.text.toString(), "cimage": url}).then(
+    //   (value) {
+    //     print("data Added");
+    //   },
+    // );
+  }
+
+  showAlertBox() {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Pick Image From"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                onTap: () {
+                  pickImage(ImageSource.camera);
+                  Get.back();
+                },
+                leading: Icon(Icons.camera_alt),
+                title: Text("Camera"),
+              ),
+              ListTile(
+                onTap: () {
+                  pickImage(ImageSource.gallery);
+                  Get.back();
+                },
+                leading: Icon(Icons.image),
+                title: Text("Gallery"),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _update([DocumentSnapshot? documentSnapshot]) async {
+    if (documentSnapshot != null) {
+      _namecontroller.text = documentSnapshot['sname'];
+
+      imgPath = documentSnapshot['simage'];
+    }
+    await showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      builder: (BuildContext ctx) {
+        return Padding(
+          padding: EdgeInsets.only(
+              top: dimension.height20,
+              left: dimension.height20,
+              right: dimension.height20,
+              bottom: MediaQuery.of(ctx).viewInsets.bottom + 20),
+          child: Padding(
+            padding: EdgeInsets.only(top: dimension.height15),
+            child: Column(
+              children: [
+                Center(
+                  child: Text("Update your Items",
+                      style: TextStyle(
+                          color: AppColors.Colorq,
+                          fontWeight: FontWeight.bold,
+                          fontSize: dimension.font20)),
+                ),
+                SizedBox(
+                  height: dimension.height15,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    showAlertBox();
+                  },
+                  child: Stack(
+                    children: [
+                      pickedImage != null
+                          ? Container(
+                              height: dimension.height100 + 20,
+                              width: dimension.height100 + 20,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: FileImage(pickedImage!),
+                                      fit: BoxFit.cover),
+                                  shape: BoxShape.circle,
+                                  color: AppColors.Colorq.withOpacity(0.05)),
+                            )
+                          : Container(
+                              height: dimension.height100 + 20,
+                              width: dimension.height100 + 20,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: NetworkImage(imgPath),
+                                      fit: BoxFit.cover),
+                                  shape: BoxShape.circle,
+                                  color: AppColors.Colorq.withOpacity(0.05)),
+                            ),
+                      Container(
+                        margin: EdgeInsets.only(
+                            top: dimension.height65, left: dimension.height80),
+                        height: dimension.height50,
+                        width: dimension.height50,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          //   color: AppColors.Colorq
+                        ),
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            size: dimension.icon30,
+                            Icons.camera_enhance,
+                            color: AppColors.Colorq,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: dimension.height30,
+                ),
+                TextField(
+                  controller: _namecontroller,
+                  decoration: InputDecoration(
+                      labelText: 'Name',
+                      hintText: "Umang m patel",
+                      border: OutlineInputBorder(
+                          borderRadius:
+                              BorderRadius.circular(dimension.radius15)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius:
+                              BorderRadius.circular(dimension.radius15),
+                          borderSide: BorderSide(color: AppColors.Colorq)),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius:
+                              BorderRadius.circular(dimension.radius15),
+                          borderSide: BorderSide(color: AppColors.Colorq))),
+                ),
+                SizedBox(
+                  height: dimension.height20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // ElevatedButton(
+                    //     onPressed: () async {
+                    //       final String name = _namecontroller.text;
+                    //
+                    //       await refC
+                    //           .doc(documentSnapshot!.id)
+                    //           .update({"scname": name});
+                    //       _namecontroller.text = '';
+                    //
+                    //       Get.back();
+                    //     },
+                    //     child: const Text(
+                    //       "Update",
+                    //       style: TextStyle(
+                    //           fontWeight: FontWeight.bold, color: Colors.black),
+                    //     )),
+                    Bounce(
+                      duration: Duration(milliseconds: 200),
+                      onTap: () async {
+                        print("00000000000000000000000000000");
+                        print(snapid);
+                        final String name = _namecontroller.text;
+                        final String url = imgPath.toString();
+                        addcategory(_namecontroller.text);
+                        await refC
+                            .doc(snapid)
+                            .update({"sname": name, "simage": url});
+                        Get.back();
+                      },
+                      child: Container(
+                        height: dimension.height55,
+                        width: dimension.height100 + 20,
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.circular(dimension.radius15),
+                            color: AppColors.Colorq),
+                        child: Center(
+                          child: Text(
+                            "Update",
+                            style: GoogleFonts.poppins(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: dimension.font20),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 
   // FirebaseFirestore.instance.collection('category')
   //     .doc(widget.categoryTitle)
@@ -120,8 +395,8 @@ class _sectionlistState extends State<sectionlist> {
                                                 dimension.radius15),
                                             topLeft: Radius.circular(
                                                 dimension.radius15)),
-                                        color: AppColors.Colorq.withOpacity(
-                                            0.09),
+                                        color:
+                                            AppColors.Colorq.withOpacity(0.09),
                                         image: DecorationImage(
                                             image: NetworkImage(
                                                 documentSnapshot['simage']
@@ -166,7 +441,9 @@ class _sectionlistState extends State<sectionlist> {
                                               children: [
                                                 Bounce(
                                                   onTap: () {
-                                                    //_update(documentSnapshot),
+                                                    snapid =
+                                                        documentSnapshot.id;
+                                                    _update(documentSnapshot);
                                                   },
                                                   child: Container(
                                                     height: dimension.height35,
@@ -182,9 +459,9 @@ class _sectionlistState extends State<sectionlist> {
                                                   ),
                                                 ),
                                                 Bounce(
-                                                  onTap: () {
-                                                    // _delete(
-                                                    //     documentSnapshot.id),
+                                                  onTap: () async {
+                                                    await deleteSC(
+                                                        documentSnapshot.id);
                                                   },
                                                   child: Container(
                                                     height: dimension.height35,
@@ -224,5 +501,21 @@ class _sectionlistState extends State<sectionlist> {
         ),
       ),
     );
+  }
+
+  pickImage(ImageSource imageSource) async {
+    try {
+      final photo = await ImagePicker().pickImage(source: imageSource);
+      if (photo == null) {
+        return;
+      }
+      final tempImage = File(photo.path);
+      setState(() {
+        pickedImage = tempImage;
+      });
+    } catch (ex) {
+      log(ex.toString());
+      print(ex.toString());
+    }
   }
 }

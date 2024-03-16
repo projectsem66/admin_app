@@ -1,5 +1,7 @@
+import 'package:admin_app/Booking_Show.dart';
 import 'package:admin_app/Pages/all_service.dart';
 import 'package:admin_app/Pages/booking_page.dart';
+import 'package:admin_app/Total_Booking_List.dart';
 import 'package:admin_app/drawer_page/drawe_subpage/category_list.dart';
 import 'package:admin_app/my_drawer_header.dart';
 import 'package:admin_app/simple.dart';
@@ -71,434 +73,84 @@ class _home_pageState extends State<home_page> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.white, size: dimension.icon30),
-          backgroundColor: AppColors.Colorq,
-          // leading: IconButton(
-          //   onPressed: () {
-          //     Get.to(drawer());
-          //   },
-          //   icon: Icon(
-          //     Icons.menu,
-          //     color: Colors.white,
-          //     size:dimension.icon30,
-          //   ),
-          // ),
-          title: Text("Dashboard",
-              style: GoogleFonts.poppins(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: dimension.font20)),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                height: dimension.height100 * 3,
-                width: double.maxFinite,
-                // color: Colors.orangeAccent.shade100,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      left: dimension.height12,
-                      right: dimension.height12,
-                      top: dimension.height15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Hello, Demo Admin",
-                        style: GoogleFonts.poppins(
-                            fontSize: dimension.font22,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.Colorq),
-                      ),
-                      SizedBox(),
-                      Text(
-                        "Welcome back!",
-                        style: GoogleFonts.poppins(
-                            fontSize: dimension.font18,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.Colorq),
-                      ),
-                      SizedBox(
-                        height: dimension.height15,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: () {
-                                Get.to(bookingpage());
-                              },
-                              child: Container(
-                                height: dimension.height100,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                        dimension.height10),
-                                    border:
-                                        Border.all(color: AppColors.Colorq)),
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                      left: dimension.height15,
-                                      right: dimension.height15,
-                                      top: dimension.height15),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "96",
-                                            style: GoogleFonts.poppins(
-                                                color: AppColors.Colorq,
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: dimension.font25),
-                                          ),
-                                          Container(
-                                            height: dimension.height30,
-                                            width: dimension.height30,
-                                            decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                color: Colors.white10),
-                                            child: Icon(
-                                              Icons.note_add,
-                                              color: AppColors.Colorq,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: dimension.height8,
-                                      ),
-                                      Text(
-                                        "Total Bookings",
-                                        style: GoogleFonts.poppins(
-                                            color: AppColors.Colorq,
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: dimension.font15),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: dimension.height10,
-                          ),
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: () {
-                                Get.to(allservice());
-                              },
-                              child: Container(
-                                height: dimension.height100,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                        dimension.height10),
-                                    border:
-                                        Border.all(color: AppColors.Colorq)),
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                      left: dimension.height15,
-                                      right: dimension.height15,
-                                      top: dimension.height15),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "35",
-                                            style: GoogleFonts.poppins(
-                                                color: AppColors.Colorq,
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: dimension.font25),
-                                          ),
-                                          Container(
-                                            height: dimension.height30,
-                                            width: dimension.height30,
-                                            decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                color: Colors.white10),
-                                            child: Icon(
-                                              Icons.list_alt,
-                                              color: AppColors.Colorq,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: dimension.height8,
-                                      ),
-                                      Text(
-                                        "Total Services",
-                                        style: GoogleFonts.poppins(
-                                            color: AppColors.Colorq,
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: dimension.font15),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: dimension.height10,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              height: dimension.height100,
-                              decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.circular(dimension.height10),
-                                  border: Border.all(color: AppColors.Colorq)),
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                    left: dimension.height15,
-                                    right: dimension.height15,
-                                    top: dimension.height15),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "13",
-                                          style: GoogleFonts.poppins(
-                                              color: AppColors.Colorq,
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: dimension.font25),
-                                        ),
-                                        Container(
-                                          height: dimension.height30,
-                                          width: dimension.height30,
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: Colors.white10),
-                                          child: Icon(
-                                            Icons.person,
-                                            color: AppColors.Colorq,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: dimension.height8,
-                                    ),
-                                    Text(
-                                      "Total Providers",
-                                      style: GoogleFonts.poppins(
-                                          color: AppColors.Colorq,
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: dimension.font15),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: dimension.height10,
-                          ),
-                          Expanded(
-                            child: Container(
-                              height: dimension.height100,
-                              decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.circular(dimension.height10),
-                                  border: Border.all(color: AppColors.Colorq)),
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                    left: dimension.height15,
-                                    right: dimension.height15,
-                                    top: dimension.height15),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "3168.99",
-                                          style: GoogleFonts.poppins(
-                                              color: AppColors.Colorq,
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: dimension.font25),
-                                        ),
-                                        Container(
-                                          height: dimension.height30,
-                                          width: dimension.height30,
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: Colors.white10),
-                                          child: Icon(
-                                            Icons.wallet,
-                                            color: AppColors.Colorq,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: dimension.height8,
-                                    ),
-                                    Text(
-                                      "Total Revenue",
-                                      style: GoogleFonts.poppins(
-                                          color: AppColors.Colorq,
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: dimension.font15),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: dimension.height15,
-              ),
-              Container(
-                height: dimension.height100 * 3,
-                color: AppColors.Colorq.withOpacity(0.07),
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      left: dimension.height15,
-                      right: dimension.height15,
-                      top: dimension.height20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "New Provider",
-                            style: GoogleFonts.poppins(
-                                color: AppColors.Colorq,
-                                fontWeight: FontWeight.w400,
-                                fontSize: dimension.font22),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Get.to(providerList());
-                            },
-                            child: Text(
-                              "View all",
-                              style: GoogleFonts.poppins(
-                                  color: AppColors.Colorq.withOpacity(0.8),
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: dimension.font18),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: dimension.height10,
-                      ),
-                      totalprovider()
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: dimension.height18,
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                    left: dimension.height12, right: dimension.height12),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "New Booking",
-                      style: GoogleFonts.poppins(
-                          color: AppColors.Colorq,
-                          fontWeight: FontWeight.w400,
-                          fontSize: dimension.font22),
-                    ),
-                    Text(
-                      "View all",
-                      style: GoogleFonts.poppins(
-                          color: AppColors.Colorq.withOpacity(0.8),
-                          fontWeight: FontWeight.w400,
-                          fontSize: dimension.font18),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: dimension.height18,
-              ),
-              Container(
-                height: dimension.height100 * 8 + 30,
-                //   color: Colors.deepPurpleAccent,
-                child: ListView.builder(
-                  itemCount: 3,
-                  //  scrollDirection: Axis.vertical,
-                  // shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: EdgeInsets.only(
-                          left: dimension.height12, right: dimension.height12),
-                      child: Padding(
-                        padding: EdgeInsets.only(bottom: dimension.height20),
-                        child: Container(
-                          height: dimension.height100 * 2 + 60,
-                          width: double.maxFinite,
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.circular(dimension.height15),
-                              border: Border.all(color: AppColors.Colorq)),
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    margin: EdgeInsets.only(
-                                        top: dimension.height18,
-                                        left: dimension.height15),
-                                    height: dimension.height100,
-                                    width: dimension.height100,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(
-                                            dimension.height15),
-                                        //color: Colors.green,
-                                        image: DecorationImage(
-                                            image: AssetImage(helper[index]),
-                                            fit: BoxFit.cover)),
-                                  ),
-                                  Padding(
+    return WillPopScope(
+      child: Scaffold(
+          appBar: AppBar(
+            iconTheme:
+                IconThemeData(color: Colors.white, size: dimension.icon30),
+            backgroundColor: AppColors.Colorq,
+            // leading: IconButton(
+            //   onPressed: () {
+            //     Get.to(drawer());
+            //   },
+            //   icon: Icon(
+            //     Icons.menu,
+            //     color: Colors.white,
+            //     size:dimension.icon30,
+            //   ),
+            // ),
+            title: Text("Dashboard",
+                style: GoogleFonts.poppins(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: dimension.font20)),
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: dimension.height100 * 3,
+                  width: double.maxFinite,
+                  // color: Colors.orangeAccent.shade100,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        left: dimension.height12,
+                        right: dimension.height12,
+                        top: dimension.height15),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Hello, Demo Admin",
+                          style: GoogleFonts.poppins(
+                              fontSize: dimension.font22,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.Colorq),
+                        ),
+                        SizedBox(),
+                        Text(
+                          "Welcome back!",
+                          style: GoogleFonts.poppins(
+                              fontSize: dimension.font18,
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.Colorq),
+                        ),
+                        SizedBox(
+                          height: dimension.height15,
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              flex:1,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Get.to(Total_booking_List());
+                                },
+                                child: Container(
+                                  height: dimension.height100,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(
+                                          dimension.height10),
+                                      border:
+                                          Border.all(color: AppColors.Colorq)),
+                                  child: Padding(
                                     padding: EdgeInsets.only(
-                                        left: dimension.height15),
+                                        left: dimension.height15,
+                                        right: dimension.height15,
+                                        top: dimension.height15),
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
@@ -506,343 +158,739 @@ class _home_pageState extends State<home_page> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Container(
-                                              height: dimension.height32,
-                                              width: dimension.height82,
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          dimension.height10),
-                                                  color: Colors.red.shade100),
-                                              child: Center(
-                                                  child: Text("Pending",
-                                                      style: GoogleFonts.poppins(
-                                                          color: Colors.red,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: dimension
-                                                              .font15))),
-                                            ),
-                                            SizedBox(
-                                              width: dimension.height85,
-                                            ),
                                             Text(
-                                              bookingnum[index],
+                                              "96",
                                               style: GoogleFonts.poppins(
                                                   color: AppColors.Colorq,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: dimension.font15),
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: dimension.font25),
+                                            ),
+                                            Container(
+                                              height: dimension.height30,
+                                              width: dimension.height30,
+                                              decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: Colors.white10),
+                                              child: Icon(
+                                                Icons.note_add,
+                                                color: AppColors.Colorq,
+                                              ),
                                             ),
                                           ],
                                         ),
                                         SizedBox(
-                                          height: dimension.height7,
+                                          height: dimension.height8,
                                         ),
                                         Text(
-                                          bookingname[index],
+                                          "Total Bookings",
                                           style: GoogleFonts.poppins(
                                               color: AppColors.Colorq,
-                                              fontSize: dimension.font15,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                        SizedBox(
-                                          height: dimension.height7,
-                                        ),
-                                        Text(
-                                          bookingprice[index],
-                                          style: GoogleFonts.poppins(
-                                              color: AppColors.Colorq,
-                                              fontWeight: FontWeight.w600,
+                                              fontWeight: FontWeight.w300,
                                               fontSize: dimension.font15),
                                         ),
                                       ],
                                     ),
                                   ),
-                                ],
+                                ),
                               ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    left: dimension.height15,
-                                    right: dimension.height15,
-                                    top: dimension.height15),
+                            ),
+                            SizedBox(
+                              width: dimension.height10,
+                            ),
+                            Expanded(
+                              flex:1,
+                              child: GestureDetector(
+                                onTap: () {
+                                 // Get.to(allservice());
+                                },
                                 child: Container(
-                                  height: dimension.height100 + 10,
-                                  width: double.maxFinite,
+                                  height: dimension.height100,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(
-                                          dimension.height15),
-                                      color:
-                                          AppColors.Colorq.withOpacity(0.07)),
+                                          dimension.height10),
+                                      border:
+                                          Border.all(color: AppColors.Colorq)),
                                   child: Padding(
                                     padding: EdgeInsets.only(
-                                        top: dimension.height15,
                                         left: dimension.height15,
-                                        right: dimension.height15),
+                                        right: dimension.height15,
+                                        top: dimension.height15),
                                     child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text('Date & Time',
-                                                style: GoogleFonts.poppins(
-                                                    color: AppColors.Colorq,
-                                                    fontSize: dimension.font13,
-                                                    fontWeight:
-                                                        FontWeight.w300)),
-                                            Text(timedate[index],
-                                                style: GoogleFonts.poppins(
-                                                    fontSize: dimension.font13,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: AppColors.Colorq)),
-                                          ],
-                                        ),
-                                        Divider(
-                                          color: AppColors.Colorq,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text('Provider',
-                                                style: GoogleFonts.poppins(
-                                                    color: AppColors.Colorq,
-                                                    fontSize: dimension.font13,
-                                                    fontWeight:
-                                                        FontWeight.w300)),
-                                            Text(providernamee[index],
-                                                style: GoogleFonts.poppins(
-                                                    fontSize: dimension.font13,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: AppColors.Colorq)),
-                                          ],
-                                        ),
-                                        Divider(
-                                          color: AppColors.Colorq,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text('Customer Name',
-                                                style: GoogleFonts.poppins(
-                                                    color: AppColors.Colorq,
-                                                    fontSize: dimension.font13,
-                                                    fontWeight:
-                                                        FontWeight.w300)),
                                             Text(
-                                              'Pedro Norris',
+                                              "35",
                                               style: GoogleFonts.poppins(
-                                                  fontSize: dimension.font13,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: AppColors.Colorq),
+                                                  color: AppColors.Colorq,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: dimension.font25),
+                                            ),
+                                            Container(
+                                              height: dimension.height30,
+                                              width: dimension.height30,
+                                              decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: Colors.white10),
+                                              child: Icon(
+                                                Icons.list_alt,
+                                                color: AppColors.Colorq,
+                                              ),
                                             ),
                                           ],
+                                        ),
+                                        SizedBox(
+                                          height: dimension.height8,
+                                        ),
+                                        Text(
+                                          "Total Services",
+                                          style: GoogleFonts.poppins(
+                                              color: AppColors.Colorq,
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: dimension.font15),
                                         ),
                                       ],
                                     ),
                                   ),
                                 ),
-                              )
-                            ],
-                          ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: dimension.height10,
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              flex:1,
+                              child: InkWell(
+                                onTap: () {
+                                  Get.to(providerList());
+                                },
+                                child: Container(
+                                  height: dimension.height100,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(
+                                          dimension.height10),
+                                      border:
+                                          Border.all(color: AppColors.Colorq)),
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        left: dimension.height15,
+                                        right: dimension.height15,
+                                        top: dimension.height15),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              "13",
+                                              style: GoogleFonts.poppins(
+                                                  color: AppColors.Colorq,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: dimension.font25),
+                                            ),
+                                            Container(
+                                              height: dimension.height30,
+                                              width: dimension.height30,
+                                              decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: Colors.white10),
+                                              child: Icon(
+                                                Icons.person,
+                                                color: AppColors.Colorq,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: dimension.height8,
+                                        ),
+                                        Text(
+                                          "Total Providers",
+                                          style: GoogleFonts.poppins(
+                                              color: AppColors.Colorq,
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: dimension.font15),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: dimension.height10,
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: InkWell(
+                                onTap: (){
+                                  Get.to(Total_User_List());
+                                },
+                                child: Container(
+                                  height: dimension.height100,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(
+                                          dimension.height10),
+                                      border:
+                                          Border.all(color: AppColors.Colorq)),
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        left: dimension.height15,
+                                        right: dimension.height15,
+                                        top: dimension.height15),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              "31",
+                                              style: GoogleFonts.poppins(
+                                                  color: AppColors.Colorq,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: dimension.font25),
+                                            ),
+                                            Container(
+                                              height: dimension.height30,
+                                              width: dimension.height30,
+                                              decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: Colors.white10),
+                                              child: Icon(
+                                                Icons.wallet,
+                                                color: AppColors.Colorq,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: dimension.height8,
+                                        ),
+                                        Text(
+                                          "Total Useres",
+                                          style: GoogleFonts.poppins(
+                                              color: AppColors.Colorq,
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: dimension.font15),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: dimension.height15,
+                ),
+                Container(
+                  height: dimension.height100 * 3,
+                  color: AppColors.Colorq.withOpacity(0.07),
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        left: dimension.height15,
+                        right: dimension.height15,
+                        top: dimension.height20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "New Provider",
+                              style: GoogleFonts.poppins(
+                                  color: AppColors.Colorq,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: dimension.font22),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Get.to(providerList());
+                              },
+                              child: Text(
+                                "View all",
+                                style: GoogleFonts.poppins(
+                                    color: AppColors.Colorq.withOpacity(0.8),
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: dimension.font18),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: dimension.height10,
+                        ),
+                        totalprovider()
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: dimension.height18,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: dimension.height12, right: dimension.height12),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "New Booking",
+                        style: GoogleFonts.poppins(
+                            color: AppColors.Colorq,
+                            fontWeight: FontWeight.w400,
+                            fontSize: dimension.font22),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Get.to(Total_booking_List());
+                        },
+                        child: Text(
+                          "View all",
+                          style: GoogleFonts.poppins(
+                              color: AppColors.Colorq.withOpacity(0.8),
+                              fontWeight: FontWeight.w400,
+                              fontSize: dimension.font18),
                         ),
                       ),
-                    );
-                  },
-                ),
-              ),
-              SizedBox(
-                height: dimension.height15,
-              ),
-              // Padding(
-              //   padding: EdgeInsets.only(
-              //       left: dimension.height12, right: dimension.height12),
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //     children: [
-              //       Text(
-              //         "Job Request List",
-              //         style: GoogleFonts.poppins(
-              //             color: AppColors.Colorq,
-              //             fontWeight: FontWeight.w400,
-              //             fontSize: dimension.font22),
-              //       ),
-              //       Text(
-              //         "View all",
-              //         style: GoogleFonts.poppins(
-              //             color: AppColors.Colorq.withOpacity(0.8),
-              //             fontWeight: FontWeight.w400,
-              //             fontSize: dimension.font18),
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: dimension.height15,
-              // ),
-              // ListView.builder(
-              //   // scrollDirection: Axis.vertical,
-              //   itemCount: 3,
-              //   shrinkWrap: true,
-              //   physics: NeverScrollableScrollPhysics(),
-              //   itemBuilder: (context, index) {
-              //     return Padding(
-              //       padding: EdgeInsets.only(
-              //           left: dimension.height12,
-              //           right: dimension.height12,
-              //           bottom: dimension.height8),
-              //       child: Container(
-              //         height: dimension.height100,
-              //         width: double.maxFinite,
-              //         decoration: BoxDecoration(
-              //             color: AppColors.Colorq.withOpacity(0.07),
-              //             borderRadius:
-              //                 BorderRadius.circular(dimension.height12)),
-              //         child: Column(
-              //           children: [
-              //             Row(
-              //               children: [
-              //                 Container(
-              //                   margin: EdgeInsets.only(
-              //                       top: dimension.height18,
-              //                       left: dimension.height15),
-              //                   height: dimension.height70,
-              //                   width: dimension.height70,
-              //                   decoration: BoxDecoration(
-              //                       borderRadius: BorderRadius.circular(
-              //                           dimension.height15),
-              //                       //color: Colors.green,
-              //                       image: DecorationImage(
-              //                           image: AssetImage(helper[index]),
-              //                           fit: BoxFit.cover)),
-              //                 ),
-              //                 Padding(
-              //                   padding: EdgeInsets.only(
-              //                       left: dimension.height12,
-              //                       top: dimension.height10),
-              //                   child: Column(
-              //                     mainAxisAlignment: MainAxisAlignment.start,
-              //                     crossAxisAlignment: CrossAxisAlignment.start,
-              //                     children: [
-              //                       Text(jobre[index],
-              //                           style: GoogleFonts.poppins(
-              //                               color: AppColors.Colorq,
-              //                               fontSize: dimension.font15,
-              //                               fontWeight: FontWeight.bold)),
-              //                       SizedBox(
-              //                         height: dimension.height7,
-              //                       ),
-              //                       Text(jobru[index],
-              //                           style: GoogleFonts.poppins(
-              //                               color: AppColors.Colorq,
-              //                               fontWeight: FontWeight.w400,
-              //                               fontSize: dimension.font12)),
-              //                       SizedBox(
-              //                         height: dimension.height7,
-              //                       ),
-              //                       Text(jobdate[index],
-              //                           style: GoogleFonts.poppins(
-              //                               color: AppColors.Colorq,
-              //                               fontWeight: FontWeight.w400,
-              //                               fontSize: dimension.font12)),
-              //                     ],
-              //                   ),
-              //                 ),
-              //                 Padding(
-              //                   padding: EdgeInsets.only(
-              //                       left: dimension.height46,
-              //                       bottom: dimension.height20),
-              //                   child: Container(
-              //                     margin:
-              //                         EdgeInsets.only(right: dimension.height7),
-              //                     height: dimension.height35,
-              //                     width: dimension.height87,
-              //                     decoration: BoxDecoration(
-              //                         borderRadius: BorderRadius.circular(
-              //                             dimension.height10),
-              //                         color: Colors.green.shade100),
-              //                     child: Center(
-              //                         child: Text("Assigned",
-              //                             style: GoogleFonts.poppins(
-              //                                 color: Colors.green,
-              //                                 fontWeight: FontWeight.bold,
-              //                                 fontSize: dimension.font15))),
-              //                   ),
-              //                 ),
-              //               ],
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //     );
-              //   },
-              // ),
-              // SizedBox(
-              //   height: dimension.height15,
-              // ),
-              Container(
-                height: dimension.height100 * 3,
-                color: AppColors.Colorq.withOpacity(0.07),
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      left: dimension.height15,
-                      right: dimension.height15,
-                      top: dimension.height20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "New User",
-                            style: GoogleFonts.poppins(
-                                color: AppColors.Colorq,
-                                fontWeight: FontWeight.w400,
-                                fontSize: dimension.font22),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Get.to(Total_User_List());
-                            },
-                            child: Text(
-                              "View all",
-                              style: GoogleFonts.poppins(
-                                  color: AppColors.Colorq.withOpacity(0.8),
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: dimension.font18),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: dimension.height10,
-                      ),
-                      Total_user()
                     ],
                   ),
                 ),
-              ),
-              SizedBox(
-                height: dimension.height20,
-              ),
-            ],
-          ),
-        ),
-        drawer: Drawer(
-          child: SingleChildScrollView(
-            child: Container(
-              child: Column(
-                children: [
-                  MyHederDrawer(),
-                  MyDrawerList(),
-                ],
-              ),
+                SizedBox(
+                  height: dimension.height18,
+                ),
+                Bookingshow(),
+                // Container(
+                //   height: dimension.height100 * 8 + 30,
+                //   //   color: Colors.deepPurpleAccent,
+                //   child: ListView.builder(
+                //     itemCount: 3,
+                //     //  scrollDirection: Axis.vertical,
+                //     // shrinkWrap: true,
+                //     physics: NeverScrollableScrollPhysics(),
+                //     itemBuilder: (context, index) {
+                //       return Padding(
+                //         padding: EdgeInsets.only(
+                //             left: dimension.height12,
+                //             right: dimension.height12),
+                //         child: Padding(
+                //           padding: EdgeInsets.only(bottom: dimension.height20),
+                //           child: Container(
+                //             height: dimension.height100 * 2 + 60,
+                //             width: double.maxFinite,
+                //             decoration: BoxDecoration(
+                //                 borderRadius:
+                //                     BorderRadius.circular(dimension.height15),
+                //                 border: Border.all(color: AppColors.Colorq)),
+                //             child: Column(
+                //               children: [
+                //                 Row(
+                //                   children: [
+                //                     Container(
+                //                       margin: EdgeInsets.only(
+                //                           top: dimension.height18,
+                //                           left: dimension.height15),
+                //                       height: dimension.height100,
+                //                       width: dimension.height100,
+                //                       decoration: BoxDecoration(
+                //                           borderRadius: BorderRadius.circular(
+                //                               dimension.height15),
+                //                           //color: Colors.green,
+                //                           image: DecorationImage(
+                //                               image: AssetImage(helper[index]),
+                //                               fit: BoxFit.cover)),
+                //                     ),
+                //                     Padding(
+                //                       padding: EdgeInsets.only(
+                //                           left: dimension.height15),
+                //                       child: Column(
+                //                         mainAxisAlignment:
+                //                             MainAxisAlignment.start,
+                //                         crossAxisAlignment:
+                //                             CrossAxisAlignment.start,
+                //                         children: [
+                //                           Row(
+                //                             children: [
+                //                               Container(
+                //                                 height: dimension.height32,
+                //                                 width: dimension.height82,
+                //                                 decoration: BoxDecoration(
+                //                                     borderRadius:
+                //                                         BorderRadius.circular(
+                //                                             dimension.height10),
+                //                                     color: Colors.red.shade100),
+                //                                 child: Center(
+                //                                     child: Text("Pending",
+                //                                         style: GoogleFonts.poppins(
+                //                                             color: Colors.red,
+                //                                             fontWeight:
+                //                                                 FontWeight.bold,
+                //                                             fontSize: dimension
+                //                                                 .font15))),
+                //                               ),
+                //                               SizedBox(
+                //                                 width: dimension.height85,
+                //                               ),
+                //                               Text(
+                //                                 bookingnum[index],
+                //                                 style: GoogleFonts.poppins(
+                //                                     color: AppColors.Colorq,
+                //                                     fontWeight: FontWeight.bold,
+                //                                     fontSize: dimension.font15),
+                //                               ),
+                //                             ],
+                //                           ),
+                //                           SizedBox(
+                //                             height: dimension.height7,
+                //                           ),
+                //                           Text(
+                //                             bookingname[index],
+                //                             style: GoogleFonts.poppins(
+                //                                 color: AppColors.Colorq,
+                //                                 fontSize: dimension.font15,
+                //                                 fontWeight: FontWeight.w500),
+                //                           ),
+                //                           SizedBox(
+                //                             height: dimension.height7,
+                //                           ),
+                //                           Text(
+                //                             bookingprice[index],
+                //                             style: GoogleFonts.poppins(
+                //                                 color: AppColors.Colorq,
+                //                                 fontWeight: FontWeight.w600,
+                //                                 fontSize: dimension.font15),
+                //                           ),
+                //                         ],
+                //                       ),
+                //                     ),
+                //                   ],
+                //                 ),
+                //                 Padding(
+                //                   padding: EdgeInsets.only(
+                //                       left: dimension.height15,
+                //                       right: dimension.height15,
+                //                       top: dimension.height15),
+                //                   child: Container(
+                //                     height: dimension.height100 + 10,
+                //                     width: double.maxFinite,
+                //                     decoration: BoxDecoration(
+                //                         borderRadius: BorderRadius.circular(
+                //                             dimension.height15),
+                //                         color:
+                //                             AppColors.Colorq.withOpacity(0.07)),
+                //                     child: Padding(
+                //                       padding: EdgeInsets.only(
+                //                           top: dimension.height15,
+                //                           left: dimension.height15,
+                //                           right: dimension.height15),
+                //                       child: Column(
+                //                         children: [
+                //                           Row(
+                //                             mainAxisAlignment:
+                //                                 MainAxisAlignment.spaceBetween,
+                //                             children: [
+                //                               Text('Date & Time',
+                //                                   style: GoogleFonts.poppins(
+                //                                       color: AppColors.Colorq,
+                //                                       fontSize:
+                //                                           dimension.font13,
+                //                                       fontWeight:
+                //                                           FontWeight.w300)),
+                //                               Text(timedate[index],
+                //                                   style: GoogleFonts.poppins(
+                //                                       fontSize:
+                //                                           dimension.font13,
+                //                                       fontWeight:
+                //                                           FontWeight.w500,
+                //                                       color: AppColors.Colorq)),
+                //                             ],
+                //                           ),
+                //                           Divider(
+                //                             color: AppColors.Colorq,
+                //                           ),
+                //                           Row(
+                //                             mainAxisAlignment:
+                //                                 MainAxisAlignment.spaceBetween,
+                //                             children: [
+                //                               Text('Provider',
+                //                                   style: GoogleFonts.poppins(
+                //                                       color: AppColors.Colorq,
+                //                                       fontSize:
+                //                                           dimension.font13,
+                //                                       fontWeight:
+                //                                           FontWeight.w300)),
+                //                               Text(providernamee[index],
+                //                                   style: GoogleFonts.poppins(
+                //                                       fontSize:
+                //                                           dimension.font13,
+                //                                       fontWeight:
+                //                                           FontWeight.w500,
+                //                                       color: AppColors.Colorq)),
+                //                             ],
+                //                           ),
+                //                           Divider(
+                //                             color: AppColors.Colorq,
+                //                           ),
+                //                           Row(
+                //                             mainAxisAlignment:
+                //                                 MainAxisAlignment.spaceBetween,
+                //                             children: [
+                //                               Text('Customer Name',
+                //                                   style: GoogleFonts.poppins(
+                //                                       color: AppColors.Colorq,
+                //                                       fontSize:
+                //                                           dimension.font13,
+                //                                       fontWeight:
+                //                                           FontWeight.w300)),
+                //                               Text(
+                //                                 'Pedro Norris',
+                //                                 style: GoogleFonts.poppins(
+                //                                     fontSize: dimension.font13,
+                //                                     fontWeight: FontWeight.w500,
+                //                                     color: AppColors.Colorq),
+                //                               ),
+                //                             ],
+                //                           ),
+                //                         ],
+                //                       ),
+                //                     ),
+                //                   ),
+                //                 )
+                //               ],
+                //             ),
+                //           ),
+                //         ),
+                //       );
+                //     },
+                //   ),
+                // ),
+
+                SizedBox(
+                  height: dimension.height15,
+                ),
+                // Padding(
+                //   padding: EdgeInsets.only(
+                //       left: dimension.height12, right: dimension.height12),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       Text(
+                //         "Job Request List",
+                //         style: GoogleFonts.poppins(
+                //             color: AppColors.Colorq,
+                //             fontWeight: FontWeight.w400,
+                //             fontSize: dimension.font22),
+                //       ),
+                //       Text(
+                //         "View all",
+                //         style: GoogleFonts.poppins(
+                //             color: AppColors.Colorq.withOpacity(0.8),
+                //             fontWeight: FontWeight.w400,
+                //             fontSize: dimension.font18),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: dimension.height15,
+                // ),
+                // ListView.builder(
+                //   // scrollDirection: Axis.vertical,
+                //   itemCount: 3,
+                //   shrinkWrap: true,
+                //   physics: NeverScrollableScrollPhysics(),
+                //   itemBuilder: (context, index) {
+                //     return Padding(
+                //       padding: EdgeInsets.only(
+                //           left: dimension.height12,
+                //           right: dimension.height12,
+                //           bottom: dimension.height8),
+                //       child: Container(
+                //         height: dimension.height100,
+                //         width: double.maxFinite,
+                //         decoration: BoxDecoration(
+                //             color: AppColors.Colorq.withOpacity(0.07),
+                //             borderRadius:
+                //                 BorderRadius.circular(dimension.height12)),
+                //         child: Column(
+                //           children: [
+                //             Row(
+                //               children: [
+                //                 Container(
+                //                   margin: EdgeInsets.only(
+                //                       top: dimension.height18,
+                //                       left: dimension.height15),
+                //                   height: dimension.height70,
+                //                   width: dimension.height70,
+                //                   decoration: BoxDecoration(
+                //                       borderRadius: BorderRadius.circular(
+                //                           dimension.height15),
+                //                       //color: Colors.green,
+                //                       image: DecorationImage(
+                //                           image: AssetImage(helper[index]),
+                //                           fit: BoxFit.cover)),
+                //                 ),
+                //                 Padding(
+                //                   padding: EdgeInsets.only(
+                //                       left: dimension.height12,
+                //                       top: dimension.height10),
+                //                   child: Column(
+                //                     mainAxisAlignment: MainAxisAlignment.start,
+                //                     crossAxisAlignment: CrossAxisAlignment.start,
+                //                     children: [
+                //                       Text(jobre[index],
+                //                           style: GoogleFonts.poppins(
+                //                               color: AppColors.Colorq,
+                //                               fontSize: dimension.font15,
+                //                               fontWeight: FontWeight.bold)),
+                //                       SizedBox(
+                //                         height: dimension.height7,
+                //                       ),
+                //                       Text(jobru[index],
+                //                           style: GoogleFonts.poppins(
+                //                               color: AppColors.Colorq,
+                //                               fontWeight: FontWeight.w400,
+                //                               fontSize: dimension.font12)),
+                //                       SizedBox(
+                //                         height: dimension.height7,
+                //                       ),
+                //                       Text(jobdate[index],
+                //                           style: GoogleFonts.poppins(
+                //                               color: AppColors.Colorq,
+                //                               fontWeight: FontWeight.w400,
+                //                               fontSize: dimension.font12)),
+                //                     ],
+                //                   ),
+                //                 ),
+                //                 Padding(
+                //                   padding: EdgeInsets.only(
+                //                       left: dimension.height46,
+                //                       bottom: dimension.height20),
+                //                   child: Container(
+                //                     margin:
+                //                         EdgeInsets.only(right: dimension.height7),
+                //                     height: dimension.height35,
+                //                     width: dimension.height87,
+                //                     decoration: BoxDecoration(
+                //                         borderRadius: BorderRadius.circular(
+                //                             dimension.height10),
+                //                         color: Colors.green.shade100),
+                //                     child: Center(
+                //                         child: Text("Assigned",
+                //                             style: GoogleFonts.poppins(
+                //                                 color: Colors.green,
+                //                                 fontWeight: FontWeight.bold,
+                //                                 fontSize: dimension.font15))),
+                //                   ),
+                //                 ),
+                //               ],
+                //             ),
+                //           ],
+                //         ),
+                //       ),
+                //     );
+                //   },
+                // ),
+                SizedBox(
+                  height: dimension.height15,
+                ),
+                Container(
+                  height: dimension.height100 * 3,
+                  color: AppColors.Colorq.withOpacity(0.07),
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        left: dimension.height15,
+                        right: dimension.height15,
+                        top: dimension.height20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "New User",
+                              style: GoogleFonts.poppins(
+                                  color: AppColors.Colorq,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: dimension.font22),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Get.to(Total_User_List());
+                              },
+                              child: Text(
+                                "View all",
+                                style: GoogleFonts.poppins(
+                                    color: AppColors.Colorq.withOpacity(0.8),
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: dimension.font18),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: dimension.height10,
+                        ),
+                        Total_user()
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: dimension.height20,
+                ),
+              ],
             ),
           ),
-        ));
+          drawer: Drawer(
+            child: SingleChildScrollView(
+              child: Container(
+                child: Column(
+                  children: [
+                    MyHederDrawer(),
+                    MyDrawerList(),
+                  ],
+                ),
+              ),
+            ),
+          )),
+      onWillPop: () async {
+        print("Tapped");
+        setState(() {
+          Get.off(home_page());
+        });
+        return false;
+      },
+    );
   }
 
   Widget MyDrawerList() {

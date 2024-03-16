@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 
 class servise_Description extends StatefulWidget {
+
   const servise_Description({super.key});
 
   @override
@@ -16,6 +17,7 @@ class servise_Description extends StatefulWidget {
 }
 
 class _servise_DescriptionState extends State<servise_Description> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,15 +58,7 @@ class _servise_DescriptionState extends State<servise_Description> {
                                 color: AppColors.Colorq),
                           ),
                         ),
-                        Container(
-                          height: dimension.height40,
-                          width: dimension.height40,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: AppColors.Colorq.withOpacity(0.4)),
-                          child: Icon(Icons.more_horiz,
-                              size: dimension.icon25, color: AppColors.Colorq),
-                        )
+
                       ],
                     ),
                   ),

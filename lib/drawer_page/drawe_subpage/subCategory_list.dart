@@ -384,7 +384,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
                               onTap: () {
                                 subCategoryNameForSection = documentSnapshot.id;
 
-                                Get.to(sectionlist(subcategory: documentSnapshot.id));
+                                Get.to(sectionlist(subcategory: documentSnapshot.id, categoryTitle: documentSnapshot.id,));
 
                               },
                               duration: Duration(milliseconds: 200),

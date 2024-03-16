@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:admin_app/Pages/home_page.dart';
 import 'package:admin_app/drawer_page/drawe_subpage/category_list.dart';
 import 'package:admin_app/section.dart';
 import 'package:admin_app/simple.dart';
@@ -18,7 +19,9 @@ class sub_category extends StatefulWidget {
   @override
   State<sub_category> createState() => _sub_categoryState();
 }
+
 String SCname = "";
+
 class _sub_categoryState extends State<sub_category> {
   File? pickedSCimg;
   TextEditingController _scName = TextEditingController();
@@ -117,142 +120,154 @@ class _sub_categoryState extends State<sub_category> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.Colorq,
-        leading: IconButton(
-          onPressed: () {
-            Get.to(simple());
-          },
-          icon: Icon(
-            Icons.keyboard_arrow_left,
-            color: Colors.white,
-            size: dimension.icon30,
-          ),
-        ),
-        title: Text("Add Sub Category",
-            style: GoogleFonts.poppins(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: dimension.font20)),
-      ),
-      body: Padding(
-        padding: EdgeInsets.only(
-            left: dimension.height12,
-            right: dimension.height12,
-            top: dimension.height15),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Category Name: ${categoryNamee}"),
-            SizedBox(
-              height: dimension.height15,
+    return WillPopScope(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: AppColors.Colorq,
+          leading: IconButton(
+            onPressed: () {
+              Get.to(simple());
+            },
+            icon: Icon(
+              Icons.keyboard_arrow_left,
+              color: Colors.white,
+              size: dimension.icon30,
             ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    showAlertBox();
-                  },
-                  child: Stack(
-                    children: [
-                      pickedSCimg != null
-                          ? Container(
-                              height: dimension.height100 + 20,
-                              width: dimension.height100 + 20,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: FileImage(pickedSCimg!),
-                                      fit: BoxFit.cover),
-                                  shape: BoxShape.circle,
-                                  color: AppColors.Colorq.withOpacity(0.05)),
-                            )
-                          : Container(
-                              height: dimension.height100 + 20,
-                              width: dimension.height100 + 20,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image:
-                                          AssetImage("images/addCategoryy.png"),
-                                      fit: BoxFit.cover),
-                                  shape: BoxShape.circle,
-                                  color: AppColors.Colorq.withOpacity(0.05)),
+          ),
+          title: Text("Add Sub Category",
+              style: GoogleFonts.poppins(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: dimension.font20)),
+        ),
+        body: Padding(
+          padding: EdgeInsets.only(
+              left: dimension.height12,
+              right: dimension.height12,
+              top: dimension.height15),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Category Name: ${categoryNamee}"),
+              SizedBox(
+                height: dimension.height15,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      showAlertBox();
+                    },
+                    child: Stack(
+                      children: [
+                        pickedSCimg != null
+                            ? Container(
+                                height: dimension.height100 + 20,
+                                width: dimension.height100 + 20,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: FileImage(pickedSCimg!),
+                                        fit: BoxFit.cover),
+                                    shape: BoxShape.circle,
+                                    color: AppColors.Colorq.withOpacity(0.05)),
+                              )
+                            : Container(
+                                height: dimension.height100 + 20,
+                                width: dimension.height100 + 20,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            "images/addCategoryy.png"),
+                                        fit: BoxFit.cover),
+                                    shape: BoxShape.circle,
+                                    color: AppColors.Colorq.withOpacity(0.05)),
+                              ),
+                        Container(
+                          margin: EdgeInsets.only(
+                              top: dimension.height65,
+                              left: dimension.height80),
+                          height: dimension.height50,
+                          width: dimension.height50,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            //   color: AppColors.Colorq
+                          ),
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              size: dimension.icon30,
+                              Icons.camera_enhance,
+                              color: AppColors.Colorq,
                             ),
-                      Container(
-                        margin: EdgeInsets.only(
-                            top: dimension.height65, left: dimension.height80),
-                        height: dimension.height50,
-                        width: dimension.height50,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          //   color: AppColors.Colorq
-                        ),
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            size: dimension.icon30,
-                            Icons.camera_enhance,
-                            color: AppColors.Colorq,
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: dimension.height15,
-            ),
-            TextFormField(
-              controller: _scName,
-              decoration: InputDecoration(
-                  filled: true,
-                  fillColor: AppColors.Colorq.withOpacity(0.05),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(dimension.radius15)),
-                  hintText: "Salon for Men",
-                  labelText: "Sub Category Name",
-                  labelStyle: TextStyle(color: Colors.black87),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(dimension.radius15),
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColors.Colorq),
-                      borderRadius: BorderRadius.circular(dimension.radius15))),
-            ),
-            SizedBox(
-              height: dimension.height20,
-            ),
-            GestureDetector(
-              onTap: () {
-
-                addSubCategory(_scName.text.toString());
-                SCname = _scName.text.toString();
-                Get.to(Section());
-              },
-              child: Container(
-                height: dimension.height60,
-                width: double.maxFinite,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(dimension.radius15),
-                    color: AppColors.Colorq),
-                child: Center(
-                  child: Text(
-                    "Next",
-                    style: GoogleFonts.poppins(
-                        color: Colors.white, fontSize: dimension.font22),
+                ],
+              ),
+              SizedBox(
+                height: dimension.height15,
+              ),
+              TextFormField(
+                controller: _scName,
+                decoration: InputDecoration(
+                    filled: true,
+                    fillColor: AppColors.Colorq.withOpacity(0.05),
+                    border: OutlineInputBorder(
+                        borderRadius:
+                            BorderRadius.circular(dimension.radius15)),
+                    hintText: "Salon for Men",
+                    labelText: "Sub Category Name",
+                    labelStyle: TextStyle(color: Colors.black87),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(dimension.radius15),
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: AppColors.Colorq),
+                        borderRadius:
+                            BorderRadius.circular(dimension.radius15))),
+              ),
+              SizedBox(
+                height: dimension.height20,
+              ),
+              GestureDetector(
+                onTap: () {
+                  subCategoryNameForSection = _scName.text.toString();
+                  addSubCategory(_scName.text.toString());
+                  SCname = _scName.text.toString();
+                  Get.to(Section());
+                },
+                child: Container(
+                  height: dimension.height60,
+                  width: double.maxFinite,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(dimension.radius15),
+                      color: AppColors.Colorq),
+                  child: Center(
+                    child: Text(
+                      "Next",
+                      style: GoogleFonts.poppins(
+                          color: Colors.white, fontSize: dimension.font22),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
+      onWillPop: () async {
+        print("Tapped");
+        setState(() {
+          Get.off(home_page());
+        });
+        return false;
+      },
     );
   }
 }

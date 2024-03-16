@@ -1,5 +1,9 @@
 import 'dart:io';
+import 'package:admin_app/Booking_Show.dart';
+import 'package:admin_app/Pages/all_service.dart';
 import 'package:admin_app/Pages/home_page.dart';
+import 'package:admin_app/Pages/servise_description.dart';
+
 import 'package:admin_app/drawer_page/drawe_subpage/category.dart';
 import 'package:admin_app/drawer_page/drawe_subpage/category_list.dart';
 import 'package:admin_app/home.dart';
@@ -24,15 +28,14 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
-
 class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-theme: ThemeData(iconTheme: IconThemeData(color: Colors.white)),
+      theme: ThemeData(iconTheme: IconThemeData(color: Colors.white)),
       debugShowCheckedModeBanner: false,
-      home: home_page(),
+      home: allservice(),
     );
   }
 }

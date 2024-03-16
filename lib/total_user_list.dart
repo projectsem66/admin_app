@@ -18,7 +18,7 @@ class _Total_User_ListState extends State<Total_User_List> {
   FirebaseFirestore.instance.collection('userDetails');
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(child: Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.white, size: dimension.icon30),
         backgroundColor: AppColors.Colorq,
@@ -323,6 +323,12 @@ class _Total_User_ListState extends State<Total_User_List> {
           ],
         ),
       ),
-    );
+    ),  onWillPop: () async{
+      print("Tapped");
+      setState(() {
+        Get.off(home_page());
+      });
+      return false;
+    }, );
   }
 }

@@ -108,7 +108,7 @@ class _totalproviderState extends State<totalprovider> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
+    return WillPopScope(child: StreamBuilder(
       stream: refpro.snapshots(),
       builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
         if (streamSnapshot.hasData) {
@@ -118,7 +118,7 @@ class _totalproviderState extends State<totalprovider> {
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 final DocumentSnapshot documentSnapshot =
-                    streamSnapshot.data!.docs[index];
+                streamSnapshot.data!.docs[index];
                 return Container(
                   margin: EdgeInsets.all(dimension.height7),
                   height: dimension.height100 * 2 + 20,
@@ -163,9 +163,9 @@ class _totalproviderState extends State<totalprovider> {
                                         ),
                                         content: Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: [
                                             InkWell(
                                               onTap: () {
@@ -178,14 +178,14 @@ class _totalproviderState extends State<totalprovider> {
                                                 decoration: BoxDecoration(
                                                     color: AppColors.Colorq,
                                                     borderRadius:
-                                                        BorderRadius.circular(
-                                                            dimension
-                                                                .radius15)),
+                                                    BorderRadius.circular(
+                                                        dimension
+                                                            .radius15)),
                                                 child: Row(
                                                   crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
+                                                  CrossAxisAlignment.center,
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment.center,
+                                                  MainAxisAlignment.center,
                                                   children: [
                                                     Icon(Icons.done),
                                                     SizedBox(
@@ -194,15 +194,15 @@ class _totalproviderState extends State<totalprovider> {
                                                     Text(
                                                       "Yes",
                                                       style:
-                                                          GoogleFonts.poppins(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontSize:
-                                                                  dimension
-                                                                      .font20),
+                                                      GoogleFonts.poppins(
+                                                          color:
+                                                          Colors.white,
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .bold,
+                                                          fontSize:
+                                                          dimension
+                                                              .font20),
                                                     ),
                                                   ],
                                                 ),
@@ -222,14 +222,14 @@ class _totalproviderState extends State<totalprovider> {
                                                 decoration: BoxDecoration(
                                                     color: AppColors.Colorq,
                                                     borderRadius:
-                                                        BorderRadius.circular(
-                                                            dimension
-                                                                .radius15)),
+                                                    BorderRadius.circular(
+                                                        dimension
+                                                            .radius15)),
                                                 child: Row(
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment.center,
+                                                  MainAxisAlignment.center,
                                                   crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
+                                                  CrossAxisAlignment.center,
                                                   children: [
                                                     Icon(Icons.cancel),
                                                     SizedBox(
@@ -238,15 +238,15 @@ class _totalproviderState extends State<totalprovider> {
                                                     Text(
                                                       "No",
                                                       style:
-                                                          GoogleFonts.poppins(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontSize:
-                                                                  dimension
-                                                                      .font20),
+                                                      GoogleFonts.poppins(
+                                                          color:
+                                                          Colors.white,
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .bold,
+                                                          fontSize:
+                                                          dimension
+                                                              .font20),
                                                     ),
                                                   ],
                                                 ),
@@ -306,7 +306,7 @@ class _totalproviderState extends State<totalprovider> {
                                   decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       color:
-                                          AppColors.Colorq.withOpacity(0.05)),
+                                      AppColors.Colorq.withOpacity(0.05)),
                                   child: Icon(Icons.call,
                                       color: AppColors.Colorq.withOpacity(0.9)),
                                 ),
@@ -319,7 +319,7 @@ class _totalproviderState extends State<totalprovider> {
                                   decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       color:
-                                          AppColors.Colorq.withOpacity(0.05)),
+                                      AppColors.Colorq.withOpacity(0.05)),
                                   child: Icon(Icons.email_outlined,
                                       color: AppColors.Colorq.withOpacity(0.9)),
                                 ),
@@ -342,6 +342,12 @@ class _totalproviderState extends State<totalprovider> {
           child: CircularProgressIndicator(),
         );
       },
-    );
+    ),   onWillPop: () async{
+      print("Tapped");
+      setState(() {
+        Get.off(home_page());
+      });
+      return false;
+    },);
   }
 }
