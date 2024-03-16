@@ -114,7 +114,7 @@ class _home_pageState extends State<home_page> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          "Hello, Demo Admin",
+                          "Hello, Admin",
                           style: GoogleFonts.poppins(
                               fontSize: dimension.font22,
                               fontWeight: FontWeight.w600,
@@ -124,7 +124,7 @@ class _home_pageState extends State<home_page> {
                         Text(
                           "Welcome back!",
                           style: GoogleFonts.poppins(
-                              fontSize: dimension.font18,
+                              fontSize: dimension.font15,
                               fontWeight: FontWeight.w400,
                               color: AppColors.Colorq),
                         ),

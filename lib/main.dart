@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:admin_app/Booking_Show.dart';
+import 'package:admin_app/FAVRATE.dart';
 import 'package:admin_app/Pages/all_service.dart';
 import 'package:admin_app/Pages/home_page.dart';
 import 'package:admin_app/Pages/servise_description.dart';
@@ -35,7 +36,7 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       theme: ThemeData(iconTheme: IconThemeData(color: Colors.white)),
       debugShowCheckedModeBanner: false,
-      home: allservice(),
+      home: LoginPage(),
     );
   }
 }
