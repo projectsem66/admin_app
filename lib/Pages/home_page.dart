@@ -134,7 +134,7 @@ class _home_pageState extends State<home_page> {
                         Row(
                           children: [
                             Expanded(
-                              flex:1,
+                              flex: 1,
                               child: GestureDetector(
                                 onTap: () {
                                   Get.to(Total_booking_List());
@@ -201,7 +201,7 @@ class _home_pageState extends State<home_page> {
                               width: dimension.height10,
                             ),
                             Expanded(
-                              flex:1,
+                              flex: 1,
                               child: GestureDetector(
                                 onTap: () {
                                   Get.to(allservice());
@@ -242,7 +242,8 @@ class _home_pageState extends State<home_page> {
                                                   shape: BoxShape.circle,
                                                   color: Colors.white10),
                                               child: Icon(
-                                                Icons.miscellaneous_services_outlined,
+                                                Icons
+                                                    .miscellaneous_services_outlined,
                                                 color: AppColors.Colorq,
                                               ),
                                             ),
@@ -272,7 +273,7 @@ class _home_pageState extends State<home_page> {
                         Row(
                           children: [
                             Expanded(
-                              flex:1,
+                              flex: 1,
                               child: InkWell(
                                 onTap: () {
                                   Get.to(providerList());
@@ -341,7 +342,7 @@ class _home_pageState extends State<home_page> {
                             Expanded(
                               flex: 1,
                               child: InkWell(
-                                onTap: (){
+                                onTap: () {
                                   Get.to(Total_User_List());
                                 },
                                 child: Container(
@@ -357,7 +358,8 @@ class _home_pageState extends State<home_page> {
                                         right: dimension.height15,
                                         top: dimension.height15),
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
@@ -906,8 +908,6 @@ class _home_pageState extends State<home_page> {
     return Material(
       child: Column(
         children: [
-
-
           InkWell(
             onTap: () {
               Get.to(simple());
@@ -1038,9 +1038,9 @@ class _home_pageState extends State<home_page> {
                 children: [
                   Expanded(
                       child: Icon(
-                        Icons.book_outlined,
-                        color: AppColors.Colorq,
-                      )),
+                    Icons.book_outlined,
+                    color: AppColors.Colorq,
+                  )),
                   Expanded(
                       flex: 3,
                       child: Text("Bookings List",
@@ -1062,9 +1062,9 @@ class _home_pageState extends State<home_page> {
                 children: [
                   Expanded(
                       child: Icon(
-                        Icons.login_outlined,
-                        color: AppColors.Colorq,
-                      )),
+                    Icons.login_outlined,
+                    color: AppColors.Colorq,
+                  )),
                   Expanded(
                       flex: 3,
                       child: Text("Logout",

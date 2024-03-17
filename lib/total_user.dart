@@ -258,7 +258,7 @@ class _Total_userState extends State<Total_user> {
                               ),
                               SizedBox(
                                 height: dimension.height3,
-                              )
+                              ),
                             ],
                           ),
                         )

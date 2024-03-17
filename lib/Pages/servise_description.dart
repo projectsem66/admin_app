@@ -9,8 +9,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 
 class servise_Description extends StatefulWidget {
+  String serviceId;
 
-  const servise_Description({super.key});
+   servise_Description({super.key,required this.serviceId});
 
   @override
   State<servise_Description> createState() => _servise_DescriptionState();
@@ -279,50 +280,7 @@ class _servise_DescriptionState extends State<servise_Description> {
                             SizedBox(
                               height: dimension.height1,
                             ),
-                            Row(
-                              children: [
-                                Icon(
-                                  (Icons.star),
-                                  color: AppColors.Colorq,
-                                  size: dimension.icon17,
-                                ),
-                                SizedBox(
-                                  width: dimension.height2,
-                                ),
-                                Icon(
-                                  (Icons.star),
-                                  color: AppColors.Colorq,
-                                  size: dimension.icon17,
-                                ),
-                                SizedBox(
-                                  width: dimension.height2,
-                                ),
-                                Icon(
-                                  (Icons.star),
-                                  color: AppColors.Colorq,
-                                  size: dimension.icon17,
-                                ),
-                                SizedBox(
-                                  width: dimension.height2,
-                                ),
-                                Icon(
-                                  (Icons.star),
-                                  color: AppColors.Colorq,
-                                  size: dimension.icon17,
-                                ),
-                                SizedBox(
-                                  width: dimension.height2,
-                                ),
-                                Icon(
-                                  (Icons.star),
-                                  color: AppColors.Colorq,
-                                  size: dimension.icon17,
-                                ),
-                                SizedBox(
-                                  width: dimension.height2,
-                                ),
-                              ],
-                            ),
+
                           ],
                         ),
                       ),
