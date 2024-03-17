@@ -4,6 +4,7 @@ import 'package:admin_app/util/dimension.dart';
 import 'package:bounce/bounce.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -234,6 +235,7 @@ class _Total_userState extends State<Total_user> {
                                     Bounce(
                                       duration: Duration(milliseconds: 200),
                                       onTap: () {
+                                          //  callProviderNumber(refpro ? get('mono'));
 
                                       },
                                       child: Container(
@@ -281,4 +283,12 @@ class _Total_userState extends State<Total_user> {
       },
     );
   }
+callProviderNumber(String phoneNumber) async{
+    bool? res = await FlutterPhoneDirectCaller.callNumber(phoneNumber);
+    if(!res!){
+
+    }
 }
+}
+
+
