@@ -204,7 +204,7 @@ class _home_pageState extends State<home_page> {
                               flex:1,
                               child: GestureDetector(
                                 onTap: () {
-                                 // Get.to(allservice());
+                                  Get.to(allservice());
                                 },
                                 child: Container(
                                   height: dimension.height100,

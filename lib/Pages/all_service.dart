@@ -41,17 +41,9 @@ class _allserviceState extends State<allservice> {
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: dimension.font20)),
-          actions: [
-            Padding(
-              padding: EdgeInsets.only(right: dimension.height15),
-              child: Icon(
-                Icons.menu,
-                color: Colors.white,
-              ),
-            ),
-          ],
+
         ),
-        body: Padding(
+        body: WillPopScope(child: Padding(
           padding: EdgeInsets.only(
               top: dimension.height15,
               left: dimension.height12,
@@ -74,7 +66,7 @@ class _allserviceState extends State<allservice> {
                         //  scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
                           final DocumentSnapshot documentSnapshot =
-                              streamSnapshot.data!.docs[index];
+                          streamSnapshot.data!.docs[index];
                           return Stack(
                             children: [
                               Container(
@@ -82,7 +74,7 @@ class _allserviceState extends State<allservice> {
                                 width: dimension.height100 + 72,
                                 decoration: BoxDecoration(
                                   borderRadius:
-                                      BorderRadius.circular(dimension.height15),
+                                  BorderRadius.circular(dimension.height15),
                                   //color: Colors.green
                                 ),
                                 child: Column(
@@ -109,7 +101,7 @@ class _allserviceState extends State<allservice> {
                                         ),
                                         child: Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.only(
@@ -120,8 +112,8 @@ class _allserviceState extends State<allservice> {
                                                 width: dimension.height100 + 15,
                                                 decoration: BoxDecoration(
                                                   borderRadius:
-                                                      BorderRadius.circular(
-                                                          dimension.radius12),
+                                                  BorderRadius.circular(
+                                                      dimension.radius12),
                                                   color: AppColors.Colorq
                                                       .withOpacity(0.4),
                                                   // color: Colors.green
@@ -129,15 +121,15 @@ class _allserviceState extends State<allservice> {
                                                 child: Center(
                                                   child: AutoScrollText(
                                                       documentSnapshot[
-                                                              'serviceName']
+                                                      'serviceName']
                                                           .toString(),
                                                       style:
-                                                          GoogleFonts.poppins(
-                                                              color: AppColors
-                                                                  .Colorq,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold)),
+                                                      GoogleFonts.poppins(
+                                                          color: AppColors
+                                                              .Colorq,
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .bold)),
                                                 ),
                                               ),
                                             ),
@@ -158,9 +150,9 @@ class _allserviceState extends State<allservice> {
                                               0.08)),
                                       child: Column(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                        MainAxisAlignment.start,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                         children: [
                                           Padding(
                                             padding: EdgeInsets.only(
@@ -187,7 +179,7 @@ class _allserviceState extends State<allservice> {
                                                 ),
                                                 SizedBox(
                                                   width:
-                                                      dimension.height1 + 0.3,
+                                                  dimension.height1 + 0.3,
                                                 ),
                                                 Icon(
                                                   (Icons.star),
@@ -196,7 +188,7 @@ class _allserviceState extends State<allservice> {
                                                 ),
                                                 SizedBox(
                                                   width:
-                                                      dimension.height1 + 0.3,
+                                                  dimension.height1 + 0.3,
                                                 ),
                                                 Icon(
                                                   (Icons.star),
@@ -205,7 +197,7 @@ class _allserviceState extends State<allservice> {
                                                 ),
                                                 SizedBox(
                                                   width:
-                                                      dimension.height1 + 0.3,
+                                                  dimension.height1 + 0.3,
                                                 ),
                                                 Icon(
                                                   (Icons.star),
@@ -214,7 +206,7 @@ class _allserviceState extends State<allservice> {
                                                 ),
                                                 SizedBox(
                                                   width:
-                                                      dimension.height1 + 0.3,
+                                                  dimension.height1 + 0.3,
                                                 ),
                                                 Icon(
                                                   (Icons.star),
@@ -240,7 +232,7 @@ class _allserviceState extends State<allservice> {
                                                     color: AppColors.Colorq,
                                                     fontSize: dimension.font13,
                                                     fontWeight:
-                                                        FontWeight.bold)),
+                                                    FontWeight.bold)),
                                           ),
                                           SizedBox(
                                             height: dimension.height7,
@@ -258,7 +250,7 @@ class _allserviceState extends State<allservice> {
                                                       image: DecorationImage(
                                                           image: NetworkImage(
                                                               documentSnapshot[
-                                                                      'providerImage']
+                                                              'providerImage']
                                                                   .toString()),
                                                           fit: BoxFit.cover)),
                                                 ),
@@ -268,14 +260,14 @@ class _allserviceState extends State<allservice> {
                                               ),
                                               Text(
                                                   documentSnapshot[
-                                                          'providerName']
+                                                  'providerName']
                                                       .toString(),
                                                   style: GoogleFonts.poppins(
                                                       color: AppColors.Colorq,
                                                       fontSize:
-                                                          dimension.font10,
+                                                      dimension.font10,
                                                       fontWeight:
-                                                          FontWeight.w300)),
+                                                      FontWeight.w300)),
                                             ],
                                           )
                                         ],
@@ -295,7 +287,7 @@ class _allserviceState extends State<allservice> {
                                         dimension.height15),
                                     border: Border.all(
                                         color:
-                                            AppColors.Colorq.withOpacity(0.4),
+                                        AppColors.Colorq.withOpacity(0.4),
                                         width: dimension.height2 + 0.5),
                                     color: AppColors.Colorq),
                                 child: Center(
@@ -323,7 +315,13 @@ class _allserviceState extends State<allservice> {
               // ),
             ],
           ),
-        ),
+        ),  onWillPop: () async{
+          print("Tapped");
+          setState(() {
+            Get.off(home_page());
+          });
+          return false;
+        },)
       ),
       onWillPop: () async {
         print("Tapped");

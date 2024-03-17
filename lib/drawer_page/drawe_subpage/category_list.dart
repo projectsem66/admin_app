@@ -198,8 +198,8 @@ class _categorylistState extends State<categorylist> {
                 TextField(
                   controller: _namecontroller,
                   decoration: InputDecoration(
-                      labelText: 'Name',
-                      hintText: "Umang m patel",
+                      labelText: 'Enter Category name',
+                      hintText: "Enter Categoty name",
                       labelStyle: TextStyle(color: AppColors.Colorq),
                       border: OutlineInputBorder(
                           borderRadius:

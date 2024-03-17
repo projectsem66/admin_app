@@ -1,4 +1,5 @@
 
+import 'package:admin_app/util/color.dart';
 import 'package:flutter/material.dart';
 
 
@@ -19,8 +20,8 @@ class RoundButton extends StatelessWidget {
       child: Container(
         height: 50,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: Colors.purple.shade300,
+          borderRadius: BorderRadius.circular(7),
+          color: AppColors.Colorq,
         ),
         child: Center(
           child:

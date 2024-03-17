@@ -192,7 +192,7 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                                                           fontWeight:
                                                           FontWeight.w300)),
                                                   SizedBox(
-                                                    width: 68,
+                                                    width: 50,
                                                   ),
                                                   Text(
                                                       documentSnapshot['date']
