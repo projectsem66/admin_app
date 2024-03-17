@@ -28,16 +28,15 @@ class sectionlist extends StatefulWidget {
   @override
   State<sectionlist> createState() => _sectionlistState();
 }
+String CnameForS = "";
+String SCnameForS = "";
 
 class _sectionlistState extends State<sectionlist> {
-  // Stream<QuerySnapshot<Object?>> getsection() {
-  //   return FirebaseFirestore.instance
-  //       .collection('category')
-  //       .doc(widget.categoryTitle)
-  //       .collection("subcategories")
-  //       .snapshots();
-  // }
-  final CollectionReference refC = FirebaseFirestore.instance
+  String imgPath = "";
+  String snapid = "";
+  final TextEditingController _namecontroller = TextEditingController();
+  File? pickedImage;
+  final CollectionReference refSC = FirebaseFirestore.instance
       .collection("category")
       .doc(categoryNameForSection)
       .collection("subcategories")
@@ -63,10 +62,6 @@ class _sectionlistState extends State<sectionlist> {
     }
   }
 
-  String imgPath = "";
-  String snapid = "";
-  final TextEditingController _namecontroller = TextEditingController();
-  File? pickedImage;
 
   addcategory(String cName) async {
     if (cName == null && pickedImage == null) {
@@ -97,62 +92,18 @@ class _sectionlistState extends State<sectionlist> {
         .putFile(pickedImage!, SettableMetadata(contentType: 'image/jpeg'));
     TaskSnapshot taskSnapshot = await uploadtask;
     String url = await taskSnapshot.ref.getDownloadURL();
-    FirebaseFirestore.instance
-        .collection('category')
-        .doc(widget.categoryTitle)
-        .collection("subcategories")
-        .doc(snapid)
-        .collection('section')
+    refSC
         .doc(snapid)
         .set({"sname": _namecontroller.text.toString(), "simage": url}).then(
             (value) {
-      log("User Uploaded");
-    });
-    // await _collectionReference
-    //     .doc(_cname.toString())
-    //     .set({"cname": _cname.text.toString(), "cimage": url}).then(
-    //   (value) {
-    //     print("data Added");
-    //   },
-    // );
-  }
+          log("User Uploaded");
+        });
 
-  showAlertBox() {
-    return showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text("Pick Image From"),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ListTile(
-                onTap: () {
-                  pickImage(ImageSource.camera);
-                  Get.back();
-                },
-                leading: Icon(Icons.camera_alt),
-                title: Text("Camera"),
-              ),
-              ListTile(
-                onTap: () {
-                  pickImage(ImageSource.gallery);
-                  Get.back();
-                },
-                leading: Icon(Icons.image),
-                title: Text("Gallery"),
-              ),
-            ],
-          ),
-        );
-      },
-    );
   }
-
   Future<void> _update([DocumentSnapshot? documentSnapshot]) async {
     if (documentSnapshot != null) {
       _namecontroller.text = documentSnapshot['sname'];
-
+      snapid = documentSnapshot.id;
       imgPath = documentSnapshot['simage'];
     }
     await showModalBottomSheet(
@@ -182,30 +133,33 @@ class _sectionlistState extends State<sectionlist> {
                 GestureDetector(
                   onTap: () {
                     showAlertBox();
+                    setState(() {
+
+                    });
                   },
                   child: Stack(
                     children: [
                       pickedImage != null
                           ? Container(
-                              height: dimension.height100 + 20,
-                              width: dimension.height100 + 20,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: FileImage(pickedImage!),
-                                      fit: BoxFit.cover),
-                                  shape: BoxShape.circle,
-                                  color: AppColors.Colorq.withOpacity(0.05)),
-                            )
+                        height: dimension.height60 * 2,
+                        width: dimension.height60 * 2,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: FileImage(pickedImage!),
+                                fit: BoxFit.cover),
+                            shape: BoxShape.circle,
+                            color: AppColors.Colorq.withOpacity(0.05)),
+                      )
                           : Container(
-                              height: dimension.height100 + 20,
-                              width: dimension.height100 + 20,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: NetworkImage(imgPath),
-                                      fit: BoxFit.cover),
-                                  shape: BoxShape.circle,
-                                  color: AppColors.Colorq.withOpacity(0.05)),
-                            ),
+                        height: dimension.height60 * 2,
+                        width: dimension.height60 * 2,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage(imgPath),
+                                fit: BoxFit.cover),
+                            shape: BoxShape.circle,
+                            color: AppColors.Colorq.withOpacity(0.05)),
+                      ),
                       Container(
                         margin: EdgeInsets.only(
                             top: dimension.height65, left: dimension.height80),
@@ -235,16 +189,17 @@ class _sectionlistState extends State<sectionlist> {
                   decoration: InputDecoration(
                       labelText: 'Name',
                       hintText: "Umang m patel",
+                      labelStyle: TextStyle(color: AppColors.Colorq),
                       border: OutlineInputBorder(
                           borderRadius:
-                              BorderRadius.circular(dimension.radius15)),
+                          BorderRadius.circular(dimension.radius15)),
                       focusedBorder: OutlineInputBorder(
                           borderRadius:
-                              BorderRadius.circular(dimension.radius15),
+                          BorderRadius.circular(dimension.radius15),
                           borderSide: BorderSide(color: AppColors.Colorq)),
                       enabledBorder: OutlineInputBorder(
                           borderRadius:
-                              BorderRadius.circular(dimension.radius15),
+                          BorderRadius.circular(dimension.radius15),
                           borderSide: BorderSide(color: AppColors.Colorq))),
                 ),
                 SizedBox(
@@ -257,38 +212,48 @@ class _sectionlistState extends State<sectionlist> {
                     // ElevatedButton(
                     //     onPressed: () async {
                     //       final String name = _namecontroller.text;
-                    //
+                    //       final String url = imgPath.toString();
+                    //       addcategory(_namecontroller.text);
                     //       await refC
                     //           .doc(documentSnapshot!.id)
-                    //           .update({"scname": name});
-                    //       _namecontroller.text = '';
+                    //           .update({"cname": name});
+                    //       //_namecontroller.text = '';
                     //
-                    //       Get.back();
+                    //       //addcategory(_namecontroller.text.toString());
+                    //       // categoryNamee = _cname.text.toString();
+                    //       Navigator.of(context).pop();
+                    //       // setState(() {
+                    //       //
+                    //       // });
                     //     },
                     //     child: const Text(
                     //       "Update",
                     //       style: TextStyle(
                     //           fontWeight: FontWeight.bold, color: Colors.black),
                     //     )),
-                    Bounce(
-                      duration: Duration(milliseconds: 200),
+                    InkWell(
                       onTap: () async {
-                        print("00000000000000000000000000000");
-                        print(snapid);
                         final String name = _namecontroller.text;
                         final String url = imgPath.toString();
                         addcategory(_namecontroller.text);
-                        await refC
-                            .doc(snapid)
-                            .update({"sname": name, "simage": url});
-                        Get.back();
+                        await refSC
+                            .doc(documentSnapshot!.id)
+                            .update({"cname": name});
+                        //_namecontroller.text = '';
+
+                        //addcategory(_namecontroller.text.toString());
+                        // categoryNamee = _cname.text.toString();
+                        Navigator.of(context).pop();
+                        // setState(() {
+                        //
+                        // });
                       },
                       child: Container(
                         height: dimension.height55,
-                        width: dimension.height100 + 20,
+                        width: dimension.height60 * 2,
                         decoration: BoxDecoration(
                             borderRadius:
-                                BorderRadius.circular(dimension.radius15),
+                            BorderRadius.circular(dimension.radius15),
                             color: AppColors.Colorq),
                         child: Center(
                           child: Text(
@@ -311,10 +276,62 @@ class _sectionlistState extends State<sectionlist> {
     );
   }
 
-  // FirebaseFirestore.instance.collection('category')
-  //     .doc(widget.categoryTitle)
-  //     .collection("subcategories")
-  //     .snapshots();
+  showAlertBox() {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Pick Image From"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                onTap: () {
+                  pickImage(ImageSource.camera);
+                  Get.back();
+                  setState(() {
+
+                  });
+                },
+                leading: Icon(Icons.camera_alt),
+                title: Text("Camera"),
+              ),
+              ListTile(
+                onTap: () {
+                  pickImage(ImageSource.gallery);
+                  Get.back();
+                  setState(() {
+
+                  });
+                },
+                leading: Icon(Icons.image),
+                title: Text("Gallery"),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+  pickImage(ImageSource imageSource) async {
+    try {
+      final photo = await ImagePicker().pickImage(source: imageSource);
+      if (photo == null) {
+        return;
+      }
+      final tempImage = File(photo.path);
+      setState(() {
+        pickedImage = tempImage;
+      });
+    } catch (ex) {
+      log(ex.toString());
+      print(ex.toString());
+    }
+  }
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -361,7 +378,7 @@ class _sectionlistState extends State<sectionlist> {
               Container(
                 height: screenheight() - 95,
                 child: StreamBuilder(
-                  stream: refC.snapshots(),
+                  stream: refSC.snapshots(),
                   builder:
                       (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
                     if (streamSnapshot.hasData) {
@@ -443,7 +460,11 @@ class _sectionlistState extends State<sectionlist> {
                                                   onTap: () {
                                                     snapid =
                                                         documentSnapshot.id;
+                                                    print("00000000+$snapid");
                                                     _update(documentSnapshot);
+                                                    setState(() {
+
+                                                    });
                                                   },
                                                   child: Container(
                                                     height: dimension.height35,
@@ -503,19 +524,5 @@ class _sectionlistState extends State<sectionlist> {
     );
   }
 
-  pickImage(ImageSource imageSource) async {
-    try {
-      final photo = await ImagePicker().pickImage(source: imageSource);
-      if (photo == null) {
-        return;
-      }
-      final tempImage = File(photo.path);
-      setState(() {
-        pickedImage = tempImage;
-      });
-    } catch (ex) {
-      log(ex.toString());
-      print(ex.toString());
-    }
-  }
+
 }

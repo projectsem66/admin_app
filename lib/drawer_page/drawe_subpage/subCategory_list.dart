@@ -28,6 +28,7 @@ class SubCategoryList extends StatefulWidget {
 }
 String SubCategoryName="";
 class _SubCategoryListState extends State<SubCategoryList> {
+
   Stream<QuerySnapshot<Object?>> getSubCategory() {
     return FirebaseFirestore.instance
         .collection('category')
