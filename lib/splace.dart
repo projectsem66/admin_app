@@ -12,7 +12,7 @@ class SplashScreen extends StatelessWidget {
       Future.delayed(Duration(seconds: 7), () {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => home_page()),
+          MaterialPageRoute(builder: (context) => LoginPage()),
         );
       });
     }

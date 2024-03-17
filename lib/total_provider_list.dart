@@ -253,50 +253,39 @@ class _providerListState extends State<providerList> {
                                   //  crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text(
-                                      documentSnapshot['firstName'].toString(),
-                                      style: GoogleFonts.poppins(
-                                          color: AppColors.Colorq,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: dimension.font15),
-                                    ),
+
                                     SizedBox(
                                       height: dimension.height5,
                                     ),
-                                    Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          height: dimension.height32,
-                                          width: dimension.height32,
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color:
-                                              AppColors.Colorq.withOpacity(
-                                                  0.05)),
-                                          child: Icon(Icons.call,
-                                              color:
-                                              AppColors.Colorq.withOpacity(
-                                                  0.9)),
-                                        ),
-                                        SizedBox(
-                                          width: dimension.height15,
-                                        ),
-                                        Container(
-                                          height: dimension.height32,
-                                          width: dimension.height32,
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color:
-                                              AppColors.Colorq.withOpacity(
-                                                  0.05)),
-                                          child: Icon(Icons.email_outlined,
-                                              color:
-                                              AppColors.Colorq.withOpacity(
-                                                  0.9)),
-                                        ),
-                                      ],
+                                    Padding(
+                                      padding:  EdgeInsets.only(left: 12,right: 12),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            documentSnapshot['firstName'].toString(),
+                                            style: GoogleFonts.poppins(
+                                                color: AppColors.Colorq,
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: dimension.font20),
+                                          ),
+                                          Container(
+                                            height: dimension.height32,
+                                            width: dimension.height32,
+                                            decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color:
+                                                AppColors.Colorq.withOpacity(
+                                                    0.05)),
+                                            child: Icon(Icons.call,
+                                                color:
+                                                AppColors.Colorq.withOpacity(
+                                                    0.9)),
+                                          ),
+
+                                        ],
+                                      ),
                                     ),
                                     SizedBox(
                                       height: dimension.height3,

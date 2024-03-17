@@ -1052,6 +1052,30 @@ class _home_pageState extends State<home_page> {
               ),
             ),
           ),
+          InkWell(
+            onTap: () {
+              // Get.to(Total_booking_List());
+            },
+            child: Padding(
+              padding: EdgeInsets.all(15),
+              child: Row(
+                children: [
+                  Expanded(
+                      child: Icon(
+                        Icons.login_outlined,
+                        color: AppColors.Colorq,
+                      )),
+                  Expanded(
+                      flex: 3,
+                      child: Text("Logout",
+                          style: GoogleFonts.poppins(
+                              color: AppColors.Colorq.withOpacity(0.7),
+                              fontWeight: FontWeight.bold,
+                              fontSize: dimension.font16))),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
