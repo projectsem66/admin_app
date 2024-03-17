@@ -175,7 +175,7 @@ class _home_pageState extends State<home_page> {
                                                   shape: BoxShape.circle,
                                                   color: Colors.white10),
                                               child: Icon(
-                                                Icons.note_add,
+                                                Icons.list_alt,
                                                 color: AppColors.Colorq,
                                               ),
                                             ),
@@ -242,7 +242,7 @@ class _home_pageState extends State<home_page> {
                                                   shape: BoxShape.circle,
                                                   color: Colors.white10),
                                               child: Icon(
-                                                Icons.list_alt,
+                                                Icons.miscellaneous_services_outlined,
                                                 color: AppColors.Colorq,
                                               ),
                                             ),
@@ -379,7 +379,7 @@ class _home_pageState extends State<home_page> {
                                                   shape: BoxShape.circle,
                                                   color: Colors.white10),
                                               child: Icon(
-                                                Icons.wallet,
+                                                Icons.person,
                                                 color: AppColors.Colorq,
                                               ),
                                             ),
@@ -906,31 +906,8 @@ class _home_pageState extends State<home_page> {
     return Material(
       child: Column(
         children: [
-          InkWell(
-            onTap: () {
-              Get.to(home_page());
-            },
-            child: Padding(
-              padding: EdgeInsets.all(15),
-              child: Row(
-                children: [
-                  Expanded(
-                      child: Icon(
-                    Icons.space_dashboard_outlined,
-                    color: AppColors.Colorq,
-                  )),
-                  Expanded(
-                      flex: 3,
-                      child: Text("Dashboard",
-                          style: GoogleFonts.poppins(
-                              color: AppColors.Colorq.withOpacity(0.7),
-                              fontWeight: FontWeight.bold,
-                              fontSize: dimension.font16))),
-                ],
-              ),
-            ),
-          ),
-          //SizedBox(height: 5,),
+
+
           InkWell(
             onTap: () {
               Get.to(simple());
@@ -941,7 +918,7 @@ class _home_pageState extends State<home_page> {
                 children: [
                   Expanded(
                       child: Icon(
-                    Icons.electrical_services,
+                    Icons.category,
                     color: AppColors.Colorq,
                   )),
                   Expanded(
@@ -1043,6 +1020,30 @@ class _home_pageState extends State<home_page> {
                   Expanded(
                       flex: 3,
                       child: Text("User List",
+                          style: GoogleFonts.poppins(
+                              color: AppColors.Colorq.withOpacity(0.7),
+                              fontWeight: FontWeight.bold,
+                              fontSize: dimension.font16))),
+                ],
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              Get.to(Total_booking_List());
+            },
+            child: Padding(
+              padding: EdgeInsets.all(15),
+              child: Row(
+                children: [
+                  Expanded(
+                      child: Icon(
+                        Icons.book_outlined,
+                        color: AppColors.Colorq,
+                      )),
+                  Expanded(
+                      flex: 3,
+                      child: Text("Bookings List",
                           style: GoogleFonts.poppins(
                               color: AppColors.Colorq.withOpacity(0.7),
                               fontWeight: FontWeight.bold,

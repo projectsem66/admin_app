@@ -67,7 +67,7 @@ class _BookingshowState extends State<Bookingshow> {
       builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
         if (streamSnapshot.hasData) {
           return Container(
-            height: dimension.height100 * 7 + 90,
+            height: dimension.height100 * 8,
             //   color: Colors.deepPurpleAccent,
             child: ListView.builder(
               itemCount: 3,
@@ -193,7 +193,7 @@ class _BookingshowState extends State<Bookingshow> {
                                                 fontSize: dimension.font13,
                                                 fontWeight: FontWeight.w300)),
                                         SizedBox(
-                                          width: 68,
+                                          width: 50,
                                         ),
                                         Text(
                                             documentSnapshot['date'].toString(),

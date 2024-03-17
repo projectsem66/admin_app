@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:admin_app/Pages/home_page.dart';
 import 'package:admin_app/section_list.dart';
 import 'package:admin_app/subcetegory.dart';
 import 'package:admin_app/util/dimension.dart';
@@ -357,7 +358,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
           ),
         ],
       ),
-      body: Padding(
+      body: WillPopScope(child: Padding(
         padding: EdgeInsets.only(left: dimension.height12, right: dimension.height12, top: dimension.height15),
         child: SingleChildScrollView(
           child: Column(
@@ -378,7 +379,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
                             childAspectRatio: 0.7),
                         itemBuilder: (context, index) {
                           final DocumentSnapshot documentSnapshot =
-                              streamSnapshot.data!.docs[index];
+                          streamSnapshot.data!.docs[index];
                           return Padding(
                             padding: EdgeInsets.all(dimension.height8),
                             child: Bounce(
@@ -391,7 +392,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
                               duration: Duration(milliseconds: 200),
                               child: Container(
                                 decoration: BoxDecoration(
-                                    //  color: Colors.black,
+                                  //  color: Colors.black,
                                     borderRadius: BorderRadius.circular(dimension.radius15)),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -426,7 +427,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
                                         padding: EdgeInsets.only(top: dimension.height10),
                                         child: Column(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
                                                 documentSnapshot['scname']
@@ -434,7 +435,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
                                                 style: TextStyle(
                                                     color: Colors.black,
                                                     fontWeight:
-                                                        FontWeight.bold)),
+                                                    FontWeight.bold)),
                                             Padding(
                                               padding:  EdgeInsets.only(
                                                   bottom: dimension.height10,
@@ -442,8 +443,8 @@ class _SubCategoryListState extends State<SubCategoryList> {
                                                   right: dimension.height20),
                                               child: Row(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                                MainAxisAlignment
+                                                    .spaceBetween,
                                                 children: [
                                                   Bounce(
                                                     duration: Duration(
@@ -458,9 +459,9 @@ class _SubCategoryListState extends State<SubCategoryList> {
                                                       width: dimension.height35,
                                                       decoration: BoxDecoration(
                                                           shape:
-                                                              BoxShape.circle,
+                                                          BoxShape.circle,
                                                           color:
-                                                              AppColors.Colorq),
+                                                          AppColors.Colorq),
                                                       child: Icon(
                                                         Icons.edit,
                                                         color: Colors.white,
@@ -477,9 +478,9 @@ class _SubCategoryListState extends State<SubCategoryList> {
                                                       width: dimension.height35,
                                                       decoration: BoxDecoration(
                                                           shape:
-                                                              BoxShape.circle,
+                                                          BoxShape.circle,
                                                           color:
-                                                              AppColors.Colorq),
+                                                          AppColors.Colorq),
                                                       child: Icon(
                                                         Icons.delete,
                                                         color: Colors.white,
@@ -511,7 +512,13 @@ class _SubCategoryListState extends State<SubCategoryList> {
             ],
           ),
         ),
-      ),
+      ), onWillPop: () async{
+        print("Tapped");
+        setState(() {
+          Get.off(home_page());
+        });
+        return false;
+      },)
     );
   }
 

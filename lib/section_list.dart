@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:admin_app/Pages/home_page.dart';
 import 'package:admin_app/section.dart';
 import 'package:admin_app/util/color.dart';
 import 'package:admin_app/util/dimension.dart';
@@ -367,7 +368,7 @@ class _sectionlistState extends State<sectionlist> {
           ),
         ],
       ),
-      body: Padding(
+      body: WillPopScope(child: Padding(
         padding: EdgeInsets.only(
             left: dimension.height12,
             right: dimension.height12,
@@ -391,12 +392,12 @@ class _sectionlistState extends State<sectionlist> {
                             childAspectRatio: 0.7),
                         itemBuilder: (context, index) {
                           final DocumentSnapshot documentSnapshot =
-                              streamSnapshot.data!.docs[index];
+                          streamSnapshot.data!.docs[index];
                           return Padding(
                             padding: EdgeInsets.all(dimension.height8),
                             child: Container(
                               decoration: BoxDecoration(
-                                  //color: Colors.orange,
+                                //color: Colors.orange,
                                   borderRadius: BorderRadius.circular(
                                       dimension.radius15)),
                               child: Column(
@@ -413,7 +414,7 @@ class _sectionlistState extends State<sectionlist> {
                                             topLeft: Radius.circular(
                                                 dimension.radius15)),
                                         color:
-                                            AppColors.Colorq.withOpacity(0.09),
+                                        AppColors.Colorq.withOpacity(0.09),
                                         image: DecorationImage(
                                             image: NetworkImage(
                                                 documentSnapshot['simage']
@@ -436,7 +437,7 @@ class _sectionlistState extends State<sectionlist> {
                                           top: dimension.height10),
                                       child: Column(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
                                               documentSnapshot['sname']
@@ -453,8 +454,8 @@ class _sectionlistState extends State<sectionlist> {
                                                 right: dimension.height20),
                                             child: Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                              MainAxisAlignment
+                                                  .spaceBetween,
                                               children: [
                                                 Bounce(
                                                   onTap: () {
@@ -472,7 +473,7 @@ class _sectionlistState extends State<sectionlist> {
                                                     decoration: BoxDecoration(
                                                         shape: BoxShape.circle,
                                                         color:
-                                                            AppColors.Colorq),
+                                                        AppColors.Colorq),
                                                     child: Icon(
                                                       Icons.edit,
                                                       color: Colors.white,
@@ -490,7 +491,7 @@ class _sectionlistState extends State<sectionlist> {
                                                     decoration: BoxDecoration(
                                                         shape: BoxShape.circle,
                                                         color:
-                                                            AppColors.Colorq),
+                                                        AppColors.Colorq),
                                                     child: Icon(
                                                       Icons.delete,
                                                       color: Colors.white,
@@ -520,7 +521,13 @@ class _sectionlistState extends State<sectionlist> {
             ],
           ),
         ),
-      ),
+      ),  onWillPop: () async{
+        print("Tapped");
+        setState(() {
+          Get.off(home_page());
+        });
+        return false;
+      },)
     );
   }
 

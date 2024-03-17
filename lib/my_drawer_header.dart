@@ -24,29 +24,24 @@ class _MyHederDrawerState extends State<MyHederDrawer> {
         children: [
           Container(
             margin: EdgeInsets.only(bottom: 10),
-            height: 70,
+            height: 120,
+            width: 120,
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color:  Colors.white54,
                 image: DecorationImage(
-                    image: AssetImage("images/pexels-hamed-gharaee-2117283.jpg"),
-                    fit: BoxFit.cover)),
+                    image: AssetImage("images/adminLogo.png"),
+                    fit: BoxFit.cover )),
           ),
           Text(
-            "Umang Patel",
+            "City Serve",
             style: GoogleFonts.poppins(
                 color: Colors.white60,
                 fontWeight: FontWeight.bold,
                 fontSize: dimension.font20),
           ),
 
-          Text(
-            "up2181@gmail.com",
-            style: GoogleFonts.poppins(
-                color: Colors.white54,
-                fontWeight: FontWeight.bold,
-                fontSize: dimension.font14),
-          ),
+        
         ],
       ),
     );

@@ -41,7 +41,7 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                 fontSize: dimension.font20)),
       ),
       body: SingleChildScrollView(
-        child: Padding(
+        child: WillPopScope(child: Padding(
           padding: const EdgeInsets.only(top: 15.0),
           child: Column(
             children: [
@@ -50,7 +50,7 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                 builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
                   if (streamSnapshot.hasData) {
                     return Container(
-                      height: dimension.height100 * 7 + 90,
+                      height:screenheight(),
                       //   color: Colors.deepPurpleAccent,
                       child: ListView.builder(
                         itemCount: streamSnapshot.data!.docs.length,
@@ -59,20 +59,20 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                         physics: NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
                           final DocumentSnapshot documentSnapshot =
-                              streamSnapshot.data!.docs[index];
+                          streamSnapshot.data!.docs[index];
                           return Padding(
                             padding: EdgeInsets.only(
                                 left: dimension.height12,
                                 right: dimension.height12),
                             child: Padding(
                               padding:
-                                  EdgeInsets.only(bottom: dimension.height20),
+                              EdgeInsets.only(bottom: dimension.height20),
                               child: Container(
                                 height: dimension.height100 * 2 + 50,
                                 width: double.maxFinite,
                                 decoration: BoxDecoration(
                                     borderRadius:
-                                        BorderRadius.circular(dimension.height15),
+                                    BorderRadius.circular(dimension.height15),
                                     border: Border.all(color: AppColors.Colorq)),
                                 child: Column(
                                   children: [
@@ -91,7 +91,7 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                                             image: DecorationImage(
                                                 image: NetworkImage(
                                                     documentSnapshot[
-                                                            ' serviceImg']
+                                                    ' serviceImg']
                                                         .toString()),
                                                 fit: BoxFit.cover),
                                           ),
@@ -101,9 +101,9 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                                               left: dimension.height15),
                                           child: Column(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                            MainAxisAlignment.start,
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                             children: [
                                               Row(
                                                 children: [
@@ -112,26 +112,26 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                                                     width: dimension.height86,
                                                     decoration: BoxDecoration(
                                                         borderRadius:
-                                                            BorderRadius.circular(
-                                                                dimension
-                                                                    .height10),
+                                                        BorderRadius.circular(
+                                                            dimension
+                                                                .height10),
                                                         color:
-                                                            Colors.red.shade100),
+                                                        Colors.red.shade100),
                                                     child: Center(
                                                         child: Text(
                                                             documentSnapshot[
-                                                                    'status']
+                                                            'status']
                                                                 .toString(),
                                                             style: GoogleFonts
                                                                 .poppins(
-                                                                    color: Colors
-                                                                        .red,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    fontSize:
-                                                                        dimension
-                                                                            .font15))),
+                                                                color: Colors
+                                                                    .red,
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .bold,
+                                                                fontSize:
+                                                                dimension
+                                                                    .font15))),
                                                   ),
                                                 ],
                                               ),
@@ -188,9 +188,9 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                                                       style: GoogleFonts.poppins(
                                                           color: AppColors.Colorq,
                                                           fontSize:
-                                                              dimension.font13,
+                                                          dimension.font13,
                                                           fontWeight:
-                                                              FontWeight.w300)),
+                                                          FontWeight.w300)),
                                                   SizedBox(
                                                     width: 68,
                                                   ),
@@ -199,22 +199,22 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                                                           .toString(),
                                                       style: GoogleFonts.poppins(
                                                           fontSize:
-                                                              dimension.font13,
+                                                          dimension.font13,
                                                           fontWeight:
-                                                              FontWeight.w500,
+                                                          FontWeight.w500,
                                                           color:
-                                                              AppColors.Colorq)),
+                                                          AppColors.Colorq)),
                                                   SizedBox(
                                                     width: 3,
                                                   ),
                                                   Text("At",
                                                       style: GoogleFonts.poppins(
                                                           fontSize:
-                                                              dimension.font13,
+                                                          dimension.font13,
                                                           fontWeight:
-                                                              FontWeight.w500,
+                                                          FontWeight.w500,
                                                           color:
-                                                              AppColors.Colorq)),
+                                                          AppColors.Colorq)),
                                                   SizedBox(
                                                     width: 3,
                                                   ),
@@ -223,11 +223,11 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                                                           .toString(),
                                                       style: GoogleFonts.poppins(
                                                           fontSize:
-                                                              dimension.font13,
+                                                          dimension.font13,
                                                           fontWeight:
-                                                              FontWeight.w500,
+                                                          FontWeight.w500,
                                                           color:
-                                                              AppColors.Colorq)),
+                                                          AppColors.Colorq)),
                                                 ],
                                               ),
                                               Divider(
@@ -235,27 +235,27 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                                               ),
                                               Row(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                                MainAxisAlignment
+                                                    .spaceBetween,
                                                 children: [
                                                   Text('Provider',
                                                       style: GoogleFonts.poppins(
                                                           color: AppColors.Colorq,
                                                           fontSize:
-                                                              dimension.font13,
+                                                          dimension.font13,
                                                           fontWeight:
-                                                              FontWeight.w300)),
+                                                          FontWeight.w300)),
                                                   Text(
                                                       documentSnapshot[
-                                                              ' providerName']
+                                                      ' providerName']
                                                           .toString(),
                                                       style: GoogleFonts.poppins(
                                                           fontSize:
-                                                              dimension.font13,
+                                                          dimension.font13,
                                                           fontWeight:
-                                                              FontWeight.w500,
+                                                          FontWeight.w500,
                                                           color:
-                                                              AppColors.Colorq)),
+                                                          AppColors.Colorq)),
                                                 ],
                                               ),
                                               Divider(
@@ -282,7 +282,13 @@ class _Total_booking_ListState extends State<Total_booking_List> {
               )
             ],
           ),
-        ),
+        ),  onWillPop: () async{
+          print("Tapped");
+          setState(() {
+            Get.off(home_page());
+          });
+          return false;
+        },)
       ),
     );
   }
