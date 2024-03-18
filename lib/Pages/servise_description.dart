@@ -1,366 +1,517 @@
+import 'dart:convert';
 
-import 'package:admin_app/Pages/all_service.dart';
 import 'package:admin_app/util/color.dart';
 import 'package:admin_app/util/dimension.dart';
+import 'package:bounce/bounce.dart';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
 
 
-class servise_Description extends StatefulWidget {
+class ServiceDescription extends StatefulWidget {
   String serviceId;
 
-   servise_Description({super.key,required this.serviceId});
+  ServiceDescription({super.key, required this.serviceId});
 
   @override
-  State<servise_Description> createState() => _servise_DescriptionState();
+  State<ServiceDescription> createState() => _ServiceDescriptionState();
 }
 
-class _servise_DescriptionState extends State<servise_Description> {
+DocumentSnapshot? serviceDetailsSS;
+DocumentSnapshot? documentSnapshot1;
+String bookServiceId = "";
+String ServiceProviderId = "";
+String serviceImg = "";
+String serviceName = "";
+String serviceDuration = "";
+String providerName = "";
+String servicePrice = "";
+String providerMoNo = "";
+String currentUid = "";
+String providerImg = "";
+
+
+
+class _ServiceDescriptionState extends State<ServiceDescription> {
+  @override
+  User? _user;
+  List<String> _favoriteItems = [];
+
+
+
+
+
+  // late final String phoneNumber;
+
+  callProviderNumber(String phoneNumber) async {
+    bool? res = await FlutterPhoneDirectCaller.callNumber(phoneNumber);
+    if (!res!) {
+      // Handle error
+    }
+  }
 
   @override
+  void initState() {
+    super.initState();
+    print(widget.serviceId);
+
+    bookServiceId = widget.serviceId;
+    fetchServiceData();
+    getProviderDetails();
+
+    setState(() {});
+    // currentUid = auth.currentUser.uid;
+  }
+
+  // for get service details
+  Future<void> fetchServiceData() async {
+    try {
+      DocumentSnapshot snapshot = await getDocument();
+      setState(() {
+        serviceDetailsSS = snapshot;
+      });
+    } catch (e) {
+      print('Error retrieving document: $e');
+      // Handle error appropriately
+    }
+  }
+
+  Future<DocumentSnapshot> getDocument() async {
+    DocumentReference documentReference =  FirebaseFirestore.instance.collection('providerServiceDetails').doc(widget.serviceId);
+    getProviderDetails();
+    return documentReference.get();
+  }
+
+  // for get provider details using provider id
+  Future<void> getProviderDetails() async {
+    try {
+      DocumentSnapshot snapshot = await getProvider();
+      setState(() {
+        documentSnapshot1 = snapshot;
+      });
+    } catch (e) {
+      print('Error retrieving document: $e');
+      // Handle error appropriately
+    }
+  }
+
+  Future<DocumentSnapshot> getProvider() async {
+    DocumentReference documentReference =
+    FirebaseFirestore.instance.collection('providerDetails').doc(serviceDetailsSS!.get("providerId"));
+    return documentReference.get();
+  }
+
+  bool like = false;
+
+
+  // double result = serviceRating / ratingUsers;
+  @override
   Widget build(BuildContext context) {
+    final Map<String, dynamic> templateParams = {
+      "from_name": "Your Name",
+      "to_name": "Recipient's Name",
+      "status": "Accepted"
+      // Add other dynamic template parameters as needed
+    };
+    num serviceRating = serviceDetailsSS?.get("serviceRating");
+    num ratingUsers = serviceDetailsSS?.get("ratingUsers");
+    num res = serviceRating / ratingUsers;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
+      body: serviceDetailsSS != null
+          ? Stack(
+        children: [
+          SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: dimension.height100 * 3 + 50,
-                  width: double.maxFinite,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("assets/images/helper3.jpg"),
-                          fit: BoxFit.cover)),
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                        left: dimension.height15,
-                        right: dimension.height12,
-                        top: dimension.height50),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Get.to(allservice());
-                          },
-                          child: Container(
-                            height: dimension.height40,
-                            width: dimension.height40,
+                  height: screenwidth() + dimension.height100 * 0.75,
+                  child: Stack(
+                    children: [
+                      Stack(
+                        children: [
+                          Container(
+                            height: screenwidth(),
+                            width: screenwidth(),
                             decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: AppColors.Colorq.withOpacity(0.4)),
-                            child: Icon(Icons.chevron_left,
-                                size: dimension.icon25,
-                                color: AppColors.Colorq),
-                          ),
-                        ),
-
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(
-                      top: dimension.height100 * 3,
-                      left: dimension.height25,
-                      right: dimension.height25),
-                  height: dimension.height100 + 67,
-                  width: dimension.height100 * 3 + 45,
-                  decoration: BoxDecoration(
-                      color: AppColors.Colorq.withOpacity(0.09),
-                      borderRadius: BorderRadius.circular(dimension.radius15)),
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                        left: dimension.height12, right: dimension.height12),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(top: dimension.height15),
-                          child: Row(
-                            children: [
-                              Text('Ac coolCare',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: dimension.font13,
-                                      fontWeight: FontWeight.w300,
-                                      color: AppColors.Colorq)),
-                              SizedBox(
-                                width: dimension.height2,
-                              ),
-                              Icon(
-                                Icons.navigate_next,
-                                color: AppColors.Colorq,
-                              ),
-                              SizedBox(
-                                width: dimension.height2,
-                              ),
-                              Text("Ac Maintenance and Cleaning",
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
-                                  style: GoogleFonts.poppins(
-                                    color: AppColors.Colorq,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: dimension.font11,
-                                  )),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: dimension.height8,
-                        ),
-                        Text("Filter Replacement",
-                            style: GoogleFonts.poppins(
-                                color: AppColors.Colorq,
-                                fontWeight: FontWeight.bold,
-                                fontSize: dimension.font18)),
-                        SizedBox(
-                          height: dimension.height8,
-                        ),
-                        Text("Fr15.00",
-                            style: GoogleFonts.poppins(
-                                color: AppColors.Colorq,
-                                fontWeight: FontWeight.bold,
-                                fontSize: dimension.font15)),
-                        SizedBox(
-                          height: dimension.height8,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Duration',
-                              style: TextStyle(
-                                  color: AppColors.Colorq,
-                                  fontSize: dimension.font12,
-                                  fontWeight: FontWeight.w300),
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                      serviceDetailsSS!.get("images")),
+                                  fit: BoxFit.cover),
                             ),
-                            Text("0:30 hour",
-                                style: GoogleFonts.poppins(
-                                    color: AppColors.Colorq,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: dimension.font14)),
-                          ],
-                        ),
-                        SizedBox(
-                          height: dimension.height8,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Rating',
-                              style: TextStyle(
-                                  color: AppColors.Colorq,
-                                  fontSize: dimension.font12,
-                                  fontWeight: FontWeight.w300),
-                            ),
-                            Container(
-                                child: Row(
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                top: dimension.height35,
+                                left: dimension.height10,
+                                right: 10),
+                            child: Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceBetween,
                               children: [
-                                Icon(
-                                  Icons.star,
-                                  color: AppColors.Colorq,
+                                Bounce(
+                                  onTap: () {
+                                    Get.back();
+                                  },
+                                  duration: Duration(milliseconds: 200),
+                                  child: Container(
+                                    height: 40,
+                                    width: 40,
+                                    decoration: BoxDecoration(
+                                      color: AppColors.Colorq.withOpacity(
+                                          0.1),
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Center(
+                                        child: Icon(
+                                          Icons.arrow_back,
+                                          color: AppColors.Colorq,
+                                          size: dimension.height28,
+                                        )),
+                                  ),
                                 ),
-                                SizedBox(
-                                  width: dimension.height3,
+                                Bounce(
+                                  onTap: () {
+
+                                    setState(() {});
+                                  },
+                                  duration: Duration(milliseconds: 200),
+                                  child: Container(
+                                    height: 40,
+                                    width: 40,
+                                    decoration: BoxDecoration(
+                                      color: AppColors.Colorq.withOpacity(
+                                          0.1),
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Center(
+                                      child: _favoriteItems
+                                          .contains(widget.serviceId)
+                                          ? Icon(
+                                        Icons.favorite,
+                                        color: AppColors.red,
+                                      )
+                                          : Icon(
+                                        Icons.favorite_border,
+                                        color: AppColors.red,
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                                Text("4.4",
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      Align(
+                        alignment: AlignmentDirectional.bottomCenter,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: dimension.height15),
+                          child: Container(
+                            height: dimension.height100 * 1.69,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                  dimension.height7),
+                              border: Border.all(color: AppColors.Colorq),
+                              color: Colors.white,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Column(
+                                crossAxisAlignment:
+                                CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    serviceDetailsSS!.get("category"),
+                                    overflow: TextOverflow.ellipsis,
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.black54,
+                                        fontSize: dimension.height15,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                  SizedBox(
+                                    height: dimension.height5,
+                                  ),
+                                  Text(
+                                    serviceDetailsSS!.get("serviceName"),
+                                    overflow: TextOverflow.ellipsis,
                                     style: GoogleFonts.poppins(
                                         color: AppColors.Colorq,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: dimension.font14)),
+                                        fontSize: dimension.height18,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                  SizedBox(
+                                    height: dimension.height4,
+                                  ),
+                                  Text(
+                                    serviceDetailsSS!.get("servicePrice"),
+                                    overflow: TextOverflow.ellipsis,
+                                    style: GoogleFonts.poppins(
+                                        color: AppColors.Colorq,
+                                        fontSize: dimension.height16,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                  SizedBox(
+                                    height: dimension.height4,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "Duration",
+                                        overflow: TextOverflow.ellipsis,
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.black54,
+                                            fontSize: dimension.height16,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                      Text(
+                                        serviceDetailsSS!
+                                            .get("serviceDuration"),
+                                        overflow: TextOverflow.ellipsis,
+                                        style: GoogleFonts.poppins(
+                                            color: AppColors.Colorq,
+                                            fontSize: dimension.height16,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "Ratings",
+                                        overflow: TextOverflow.ellipsis,
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.black54,
+                                            fontSize: dimension.height16,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                      Spacer(),
+                                      Icon(
+                                        Icons.star_outlined,
+                                        size: dimension.height16,
+                                        color: Colors.orange,
+                                      ),
+                                      Text(
+                                        '${res}(${(ratingUsers.round())})',
+                                        overflow: TextOverflow.ellipsis,
+                                        style: GoogleFonts.poppins(
+                                            color: AppColors.Colorq,
+                                            fontSize: dimension.height16,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: dimension.height10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Description",
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.poppins(
+                            color: AppColors.Colorq,
+                            fontSize: dimension.height18,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      Text(
+                        serviceDetailsSS!.get("serviceDescription"),
+                        style: GoogleFonts.poppins(
+                            color: Colors.black54,
+                            fontSize: dimension.height16,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      SizedBox(
+                        height: dimension.height15,
+                      ),
+                      Text(
+                        "About Provider",
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.poppins(
+                            color: AppColors.Colorq,
+                            fontSize: dimension.height18,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      SizedBox(
+                        height: dimension.height10,
+                      ),
+                      Bounce(
+                        duration: Duration(milliseconds: 200),
+                        onTap: () {
+                          getProviderDetails();
+
+                          setState(() {});
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius:
+                            BorderRadius.circular(dimension.height7),
+                            color: AppColors.Colorq.withOpacity(0.1),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child: Row(
+                              children: [
+                                Row(
+                                  children: [
+                                    Container(
+                                      height: dimension.height70,
+                                      width: dimension.height70,
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: NetworkImage(
+                                                  serviceDetailsSS!.get(
+                                                      "providerImage")),
+                                              fit: BoxFit.cover),
+                                          shape: BoxShape.circle,
+                                          color: AppColors.Colorq),
+                                    ),
+                                    SizedBox(
+                                      width: dimension.height15,
+                                    ),
+                                    Container(
+                                      width: dimension.height100 * 2,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            serviceDetailsSS!.get(
+                                                "providerName") ??
+                                                "hello",
+                                            // myObject?.property ?? 'Default Value'
+                                            style: GoogleFonts.poppins(
+                                                color: AppColors.Colorq,
+                                                fontSize:
+                                                dimension.height20,
+                                                fontWeight:
+                                                FontWeight.w500),
+                                          ),
+                                          Text(
+                                            serviceDetailsSS!.get(
+                                                "providerPhoneNumber") ??
+                                                "hello",
+                                            // myObject?.property ?? 'Default Value'
+                                            style: GoogleFonts.poppins(
+                                                color: AppColors.Colorq,
+                                                fontSize:
+                                                dimension.height20,
+                                                fontWeight:
+                                                FontWeight.w500),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Bounce(
+                                      onTap: () {
+                                        // phoneNumber = documentSnapshot!.get("providerPhoneNumber");
+                                        callProviderNumber(
+                                            serviceDetailsSS!.get(
+                                                "providerPhoneNumber"));
+                                      },
+                                      duration:
+                                      Duration(milliseconds: 200),
+                                      child: Container(
+                                        height: dimension.height40,
+                                        width: dimension.height40,
+                                        decoration: BoxDecoration(
+                                            color: AppColors.Colorq
+                                                .withOpacity(0.3),
+                                            shape: BoxShape.circle),
+                                        child: Icon(Icons.call),
+                                      ),
+                                    ),
+                                  ],
+                                )
                               ],
-                            )),
-                          ],
-                        )
-                      ],
-                    ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: dimension.height100 * 1,
+                      )
+                    ],
                   ),
                 )
               ],
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                  top: dimension.height20, left: dimension.height15),
-              child: Text("Description",
-                  style: GoogleFonts.poppins(
+          ),
+          Align(
+            alignment: AlignmentDirectional.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Bounce(
+                duration: Duration(milliseconds: 200),
+                onTap: () async {
+                  getProviderDetails();
+
+                  serviceImg = serviceDetailsSS!.get("images");
+                  serviceName = serviceDetailsSS!.get("serviceName");
+                  servicePrice = serviceDetailsSS!.get("servicePrice");
+                  serviceDuration =
+                      serviceDetailsSS!.get("serviceDuration");
+                  providerName = serviceDetailsSS?.get("providerName");
+                  ServiceProviderId = serviceDetailsSS!.get("providerId");
+                  providerMoNo =
+                      serviceDetailsSS!.get("providerPhoneNumber");
+                  providerImg = serviceDetailsSS!.get("providerImage");
+
+                },
+                child: Container(
+                  height: dimension.height50,
+                  width: double.maxFinite,
+                  decoration: BoxDecoration(
                       color: AppColors.Colorq,
-                      fontWeight: FontWeight.bold,
-                      fontSize: dimension.font15)),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                  left: dimension.height12, top: dimension.height10),
-              child: Container(
-                margin: EdgeInsets.only(right: dimension.height15),
-                child: Text(
-                  "Breathe clean air. We proptly replace filters, imporovig air quality and ensuring efficient circulation throughout your space. 👨🏼‍🔧🔩🪛",
-                  style: TextStyle(
-                      color: AppColors.Colorq,
-                      fontWeight: FontWeight.w300,
-                      fontSize: dimension.font12),
+                      border: Border.all(color: Colors.white),
+                      borderRadius:
+                      BorderRadius.circular(dimension.height7)),
+                  child: Center(
+                    child: Text(
+                      "Book now",
+                      overflow: TextOverflow.ellipsis,
+                      style: GoogleFonts.poppins(
+                          color: Colors.white,
+                          fontSize: dimension.height18,
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ),
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                  top: dimension.height20, left: dimension.height12),
-              child: Text("About  Provider",
-                  style: GoogleFonts.poppins(
-                      color: AppColors.Colorq,
-                      fontWeight: FontWeight.bold,
-                      fontSize: dimension.font15)),
-            ),
-            SizedBox(
-              height: dimension.height15,
-            ),
-            Container(
-              margin: EdgeInsets.only(
-                  left: dimension.height12, right: dimension.height12),
-              width: double.maxFinite,
-              height: dimension.height100 * 2,
-              decoration: BoxDecoration(
-                color: AppColors.Colorq.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(dimension.radius15),
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(
-                            top: dimension.height18, left: dimension.height12),
-                        height: dimension.height60,
-                        width: dimension.height60,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            // color: Colors.green,
-                            image: DecorationImage(
-                                image:
-                                    AssetImage("assets/images/provider2.jpg"),
-                                fit: BoxFit.cover)),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: dimension.height12),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Text("Felix Harris",
-                                    style: GoogleFonts.poppins(
-                                        color: AppColors.Colorq,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: dimension.font15)),
-                                SizedBox(
-                                  width: dimension.height100 + 40,
-                                ),
-                                Container(
-                                  height: dimension.height30,
-                                  width: dimension.height30,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: AppColors.Colorq,
-                                  ),
-                                  child: Center(
-                                      child: Icon(
-                                    Icons.done,
-                                    color: Colors.white,
-                                  )),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: dimension.height1,
-                            ),
-
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        top: dimension.height12,
-                        left: dimension.height12,
-                        right: dimension.height12),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 10.0),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.email_outlined,
-                              ),
-                              SizedBox(width: dimension.height10),
-                              Text("demo@provider.com",
-                                  style: GoogleFonts.poppins(
-                                      color: AppColors.Colorq,
-                                      fontSize: dimension.font13,
-                                      fontWeight: FontWeight.w300)),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: dimension.height7,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: dimension.height10),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.location_on,
-                              ),
-                              SizedBox(width: dimension.height10),
-                              Text("North Battleford, SK, canaad",
-                                  style: GoogleFonts.poppins(
-                                    color: AppColors.Colorq,
-                                    fontSize: dimension.font13,
-                                    fontWeight: FontWeight.w300,
-                                  )),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: dimension.height7,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: dimension.height10),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.call,
-                              ),
-                              SizedBox(width: dimension.height10),
-                              Text("9104892220",
-                                  style: GoogleFonts.poppins(
-                                    color: AppColors.Colorq,
-                                    fontSize: dimension.font13,
-                                    fontWeight: FontWeight.w300,
-                                  )),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: dimension.height35,
-            ),
-          ],
-        ),
-      ),
+          )
+        ],
+      )
+          : CircularProgressIndicator(),
     );
   }
 }
+// Center(
+// child: documentSnapshot != null
+// ? Text(documentSnapshot!.get("images"))
+//     : CircularProgressIndicator(), // Show a loading indicator while fetching data
+// ),

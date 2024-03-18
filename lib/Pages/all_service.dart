@@ -84,7 +84,7 @@ class _allserviceState extends State<allservice> {
                                           onTap: () {
                                             documentSnapshot.id;
 
-                                            Get.to(servise_Description(
+                                            Get.to(ServiceDescription(
                                               serviceId: documentSnapshot.id,
                                             ));
                                           },
