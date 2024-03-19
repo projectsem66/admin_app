@@ -340,7 +340,7 @@ class _sectionlistState extends State<sectionlist> {
         backgroundColor: AppColors.Colorq,
         leading: IconButton(
           onPressed: () {
-            // Get.to(home_page());
+            Get.to(home_page());
           },
           icon: Icon(
             Icons.keyboard_arrow_left,

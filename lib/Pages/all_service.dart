@@ -82,6 +82,7 @@ class _allserviceState extends State<allservice> {
                                       children: [
                                         InkWell(
                                           onTap: () {
+                                            // ani click per service desc page open karavvu
                                             documentSnapshot.id;
 
                                             Get.to(ServiceDescription(

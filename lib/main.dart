@@ -4,6 +4,7 @@ import 'package:admin_app/FAVRATE.dart';
 import 'package:admin_app/Pages/all_service.dart';
 import 'package:admin_app/Pages/home_page.dart';
 import 'package:admin_app/Pages/servise_description.dart';
+import 'package:admin_app/Splace_Screen.dart';
 
 import 'package:admin_app/drawer_page/drawe_subpage/category.dart';
 import 'package:admin_app/drawer_page/drawe_subpage/category_list.dart';
@@ -37,7 +38,7 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       theme: ThemeData(iconTheme: IconThemeData(color: Colors.white)),
       debugShowCheckedModeBanner: false,
-      home: allservice(),
+      home: splashScreen(),
     );
   }
 }

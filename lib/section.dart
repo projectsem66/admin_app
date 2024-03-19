@@ -137,7 +137,7 @@ class _Section_State extends State<Section> {
         backgroundColor: AppColors.Colorq,
         leading: IconButton(
           onPressed: () {
-            Get.to(simple());
+            Get.to(sub_category());
           },
           icon: Icon(
             Icons.keyboard_arrow_left,

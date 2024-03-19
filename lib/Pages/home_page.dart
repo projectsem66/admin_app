@@ -1,4 +1,5 @@
 import 'package:admin_app/Booking_Show.dart';
+import 'package:admin_app/FAVRATE.dart';
 import 'package:admin_app/Pages/all_service.dart';
 import 'package:admin_app/Pages/booking_page.dart';
 import 'package:admin_app/Total_Booking_List.dart';
@@ -12,7 +13,9 @@ import 'package:admin_app/total_user.dart';
 import 'package:admin_app/total_user_list.dart';
 import 'package:admin_app/util/color.dart';
 import 'package:admin_app/util/dimension.dart';
+import 'package:admin_app/utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -28,6 +31,8 @@ class home_page extends StatefulWidget {
   @override
   State<home_page> createState() => _home_pageState();
 }
+
+FirebaseAuth _auth = FirebaseAuth.instance;
 
 class _home_pageState extends State<home_page> {
   List providerimg = [
@@ -1054,7 +1059,118 @@ class _home_pageState extends State<home_page> {
           ),
           InkWell(
             onTap: () {
-              // Get.to(Total_booking_List());
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    backgroundColor: Colors.white,
+                    title: Text(
+                      "Confirm Logout",
+                      style: GoogleFonts.poppins(
+                          color: AppColors.Colorq,
+                          fontWeight: FontWeight.w700,
+                          fontSize: dimension.font22),
+                    ),
+                    content: Text("Are you sure you want to logout?",
+                        style: GoogleFonts.poppins(
+                            color: AppColors.Colorq,
+                            fontWeight: FontWeight.bold,
+                            fontSize: dimension.font15),
+                        overflow: TextOverflow.fade),
+                    actions: [
+                      // TextButton(
+                      //     onPressed: () {
+                      //       Navigator.of(context).pop();
+                      //     },
+                      //     child: Text("No")),
+                      // TextButton(
+                      //     onPressed: () {
+                      //       _auth.signOut().then((value) {
+                      //         Navigator.pushReplacement(
+                      //           context,
+                      //           MaterialPageRoute(
+                      //               builder: (context) => LoginPage()),
+                      //         );
+                      //       }).onError((error, stackTrace) {
+                      //         Utils().tostmessage(error.toString());
+                      //       });
+                      //     },
+                      //     child: Text("Yes"))
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Container(
+                          height: dimension.height40,
+                          width: dimension.height95,
+                          decoration: BoxDecoration(
+                              color: AppColors.Colorq,
+                              borderRadius:
+                                  BorderRadius.circular(dimension.radius15)),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.cancel_outlined),
+                              SizedBox(
+                                width: dimension.height7,
+                              ),
+                              Text(
+                                "No",
+                                style: GoogleFonts.poppins(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: dimension.font20),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: dimension.height20,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          _auth.signOut().then((value) {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage()),
+                            );
+                          }).onError((error, stackTrace) {
+                            Utils().tostmessage(error.toString());
+                          });
+                        },
+                        child: Container(
+                          height: dimension.height40,
+                          width: dimension.height95,
+                          decoration: BoxDecoration(
+                              color: AppColors.Colorq,
+                              borderRadius:
+                                  BorderRadius.circular(dimension.radius15)),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.done),
+                              SizedBox(
+                                width: dimension.height7,
+                              ),
+                              Text(
+                                "Yes",
+                                style: GoogleFonts.poppins(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: dimension.font20),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
             },
             child: Padding(
               padding: EdgeInsets.all(15),

@@ -177,34 +177,7 @@ class _ServiceDescriptionState extends State<ServiceDescription> {
                                         )),
                                   ),
                                 ),
-                                Bounce(
-                                  onTap: () {
 
-                                    setState(() {});
-                                  },
-                                  duration: Duration(milliseconds: 200),
-                                  child: Container(
-                                    height: 40,
-                                    width: 40,
-                                    decoration: BoxDecoration(
-                                      color: AppColors.Colorq.withOpacity(
-                                          0.1),
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Center(
-                                      child: _favoriteItems
-                                          .contains(widget.serviceId)
-                                          ? Icon(
-                                        Icons.favorite,
-                                        color: AppColors.red,
-                                      )
-                                          : Icon(
-                                        Icons.favorite_border,
-                                        color: AppColors.red,
-                                      ),
-                                    ),
-                                  ),
-                                ),
                               ],
                             ),
                           ),
@@ -453,7 +426,7 @@ class _ServiceDescriptionState extends State<ServiceDescription> {
                         ),
                       ),
                       SizedBox(
-                        height: dimension.height100 * 1,
+                        height: dimension.height30,
                       )
                     ],
                   ),
@@ -461,49 +434,7 @@ class _ServiceDescriptionState extends State<ServiceDescription> {
               ],
             ),
           ),
-          Align(
-            alignment: AlignmentDirectional.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Bounce(
-                duration: Duration(milliseconds: 200),
-                onTap: () async {
-                  getProviderDetails();
 
-                  serviceImg = serviceDetailsSS!.get("images");
-                  serviceName = serviceDetailsSS!.get("serviceName");
-                  servicePrice = serviceDetailsSS!.get("servicePrice");
-                  serviceDuration =
-                      serviceDetailsSS!.get("serviceDuration");
-                  providerName = serviceDetailsSS?.get("providerName");
-                  ServiceProviderId = serviceDetailsSS!.get("providerId");
-                  providerMoNo =
-                      serviceDetailsSS!.get("providerPhoneNumber");
-                  providerImg = serviceDetailsSS!.get("providerImage");
-
-                },
-                child: Container(
-                  height: dimension.height50,
-                  width: double.maxFinite,
-                  decoration: BoxDecoration(
-                      color: AppColors.Colorq,
-                      border: Border.all(color: Colors.white),
-                      borderRadius:
-                      BorderRadius.circular(dimension.height7)),
-                  child: Center(
-                    child: Text(
-                      "Book now",
-                      overflow: TextOverflow.ellipsis,
-                      style: GoogleFonts.poppins(
-                          color: Colors.white,
-                          fontSize: dimension.height18,
-                          fontWeight: FontWeight.w400),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          )
         ],
       )
           : CircularProgressIndicator(),

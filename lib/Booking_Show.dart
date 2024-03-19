@@ -120,8 +120,8 @@ class _BookingshowState extends State<Bookingshow> {
                                     Row(
                                       children: [
                                         Container(
-                                          height: dimension.height32,
-                                          width: dimension.height86,
+                                          height: dimension.height35,
+                                          width: dimension.height95,
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(
@@ -193,7 +193,7 @@ class _BookingshowState extends State<Bookingshow> {
                                                 fontSize: dimension.font13,
                                                 fontWeight: FontWeight.w300)),
                                         SizedBox(
-                                          width: 50,
+                                          width: dimension.height50,
                                         ),
                                         Text(
                                             documentSnapshot['date'].toString(),
@@ -202,7 +202,7 @@ class _BookingshowState extends State<Bookingshow> {
                                                 fontWeight: FontWeight.w500,
                                                 color: AppColors.Colorq)),
                                         SizedBox(
-                                          width: 3,
+                                          width: dimension.height3,
                                         ),
                                         Text("At",
                                             style: GoogleFonts.poppins(
@@ -210,7 +210,7 @@ class _BookingshowState extends State<Bookingshow> {
                                                 fontWeight: FontWeight.w500,
                                                 color: AppColors.Colorq)),
                                         SizedBox(
-                                          width: 3,
+                                          width: dimension.height3,
                                         ),
                                         Text(
                                             documentSnapshot['time'].toString(),

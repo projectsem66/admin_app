@@ -42,7 +42,7 @@ class _Total_booking_ListState extends State<Total_booking_List> {
       ),
       body: SingleChildScrollView(
         child: WillPopScope(child: Padding(
-          padding: const EdgeInsets.only(top: 15.0),
+          padding:  EdgeInsets.only(top: dimension.height15),
           child: Column(
             children: [
               StreamBuilder(
@@ -108,8 +108,8 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                                               Row(
                                                 children: [
                                                   Container(
-                                                    height: dimension.height32,
-                                                    width: dimension.height86,
+                                                    height: dimension.height35,
+                                                    width: dimension.height95,
                                                     decoration: BoxDecoration(
                                                         borderRadius:
                                                         BorderRadius.circular(
@@ -192,7 +192,7 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                                                           fontWeight:
                                                           FontWeight.w300)),
                                                   SizedBox(
-                                                    width: 50,
+                                                    width: dimension.height50,
                                                   ),
                                                   Text(
                                                       documentSnapshot['date']
@@ -205,7 +205,7 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                                                           color:
                                                           AppColors.Colorq)),
                                                   SizedBox(
-                                                    width: 3,
+                                                    width: dimension.height3,
                                                   ),
                                                   Text("At",
                                                       style: GoogleFonts.poppins(
@@ -216,7 +216,7 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                                                           color:
                                                           AppColors.Colorq)),
                                                   SizedBox(
-                                                    width: 3,
+                                                    width: dimension.height3,
                                                   ),
                                                   Text(
                                                       documentSnapshot['time']

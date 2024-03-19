@@ -30,6 +30,13 @@ class _Total_userState extends State<Total_user> {
   final CollectionReference refpro =
       FirebaseFirestore.instance.collection('userDetails');
 
+  callProviderNumber(String phoneNumber) async {
+    bool? res = await FlutterPhoneDirectCaller.callNumber(phoneNumber);
+    if (!res!) {
+      //HandleERROR
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -215,15 +222,14 @@ class _Total_userState extends State<Total_user> {
                             //  crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-
                               SizedBox(
                                 height: dimension.height5,
                               ),
                               Padding(
-                                padding:  EdgeInsets.only(left: 15,right: 15),
+                                padding: EdgeInsets.only(left: 15, right: 15),
                                 child: Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       documentSnapshot['fname'].toString(),
@@ -235,24 +241,21 @@ class _Total_userState extends State<Total_user> {
                                     Bounce(
                                       duration: Duration(milliseconds: 200),
                                       onTap: () {
-                                          //  callProviderNumber(refpro ? get('mono'));
-
+                                        callProviderNumber(
+                                            documentSnapshot["mono"]);
                                       },
                                       child: Container(
                                         height: dimension.height32,
                                         width: dimension.height32,
                                         decoration: BoxDecoration(
                                             shape: BoxShape.circle,
-                                            color:
-                                            AppColors.Colorq.withOpacity(
+                                            color: AppColors.Colorq.withOpacity(
                                                 0.05)),
                                         child: Icon(Icons.call,
-                                            color:
-                                            AppColors.Colorq.withOpacity(
+                                            color: AppColors.Colorq.withOpacity(
                                                 0.9)),
                                       ),
                                     ),
-
                                   ],
                                 ),
                               ),
@@ -283,12 +286,4 @@ class _Total_userState extends State<Total_user> {
       },
     );
   }
-callProviderNumber(String phoneNumber) async{
-    bool? res = await FlutterPhoneDirectCaller.callNumber(phoneNumber);
-    if(!res!){
-
-    }
 }
-}
-
-

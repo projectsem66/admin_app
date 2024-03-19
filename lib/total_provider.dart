@@ -1,8 +1,10 @@
 import 'package:admin_app/Pages/home_page.dart';
 import 'package:admin_app/util/color.dart';
 import 'package:admin_app/util/dimension.dart';
+import 'package:bounce/bounce.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -104,6 +106,12 @@ class _totalproviderState extends State<totalprovider> {
     await refpro.doc(productID).delete();
 
     //  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("you have successfully deleted a items")));
+  }
+  callProviderNumber(String phoneNumber) async{
+    bool? res = await FlutterPhoneDirectCaller.callNumber(phoneNumber);
+    if(!res!){
+      //HandleERROR
+    }
   }
 
   @override
@@ -303,15 +311,21 @@ class _totalproviderState extends State<totalprovider> {
                                         fontWeight: FontWeight.w500,
                                         fontSize: dimension.font20),
                                   ),
-                                  Container(
-                                    height: dimension.height32,
-                                    width: dimension.height32,
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color:
-                                        AppColors.Colorq.withOpacity(0.05)),
-                                    child: Icon(Icons.call,
-                                        color: AppColors.Colorq.withOpacity(0.9)),
+                                  Bounce(
+                                    duration: Duration(milliseconds: 200),
+                                    onTap: () {
+                                      callProviderNumber(documentSnapshot["phoneNumber"]);
+                                    },
+                                    child: Container(
+                                      height: dimension.height32,
+                                      width: dimension.height32,
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color:
+                                          AppColors.Colorq.withOpacity(0.05)),
+                                      child: Icon(Icons.call,
+                                          color: AppColors.Colorq.withOpacity(0.9)),
+                                    ),
                                   ),
 
                                 ],
