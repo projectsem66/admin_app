@@ -53,10 +53,11 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                       height:screenheight(),
                       //   color: Colors.deepPurpleAccent,
                       child: ListView.builder(
+                      shrinkWrap: true,
                         itemCount: streamSnapshot.data!.docs.length,
-                        //  scrollDirection: Axis.vertical,
+                         scrollDirection: Axis.vertical,
                         // shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
+                     //   physics: NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
                           final DocumentSnapshot documentSnapshot =
                           streamSnapshot.data!.docs[index];
@@ -192,7 +193,7 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                                                           fontWeight:
                                                           FontWeight.w300)),
                                                   SizedBox(
-                                                    width: dimension.height50,
+                                                    width: dimension.height47,
                                                   ),
                                                   Text(
                                                       documentSnapshot['date']
