@@ -105,44 +105,7 @@ class _allserviceState extends State<allservice> {
                                                       dimension.height15)),
                                               //  color: Colors.green,
                                             ),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsets.only(
-                                                      top: dimension.height10,
-                                                      left: dimension.height7),
-                                                  child: Container(
-                                                    height: dimension.height30,
-                                                    width: dimension.height100 +
-                                                        15,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              dimension
-                                                                  .radius12),
-                                                      color: AppColors.Colorq
-                                                          .withOpacity(0.4),
-                                                      // color: Colors.green
-                                                    ),
-                                                    child: Center(
-                                                      child: AutoScrollText(
-                                                          documentSnapshot[
-                                                                  'serviceName']
-                                                              .toString(),
-                                                          style: GoogleFonts
-                                                              .poppins(
-                                                                  color: AppColors
-                                                                      .Colorq,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold)),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
+
                                           ),
                                         ),
                                         Container(
@@ -193,7 +156,7 @@ class _allserviceState extends State<allservice> {
                                                         .toString(),
                                                     overflow:
                                                         TextOverflow.ellipsis,
-                                                    maxLines: 1,
+                                                    maxLines: 2,
                                                     style: GoogleFonts.poppins(
                                                         color: AppColors.Colorq,
                                                         fontSize:
@@ -261,17 +224,16 @@ class _allserviceState extends State<allservice> {
                                         borderRadius: BorderRadius.circular(
                                             dimension.height15),
                                         border: Border.all(
-                                            color: AppColors.Colorq.withOpacity(
-                                                0.4),
-                                            width: dimension.height2 + 0.5),
-                                        color: AppColors.Colorq),
+                                            color: AppColors.Colorq,
+                                            width: dimension.height2),
+                                        color: AppColors.white1),
                                     child: Center(
                                         child: Text(
-                                            documentSnapshot['servicePrice']
+                                           "₹${documentSnapshot['servicePrice']}"
                                                 .toString(),
                                             style: GoogleFonts.poppins(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold,
+                                                color: AppColors.Colorq,
+                                                fontWeight: FontWeight.w500,
                                                 fontSize: dimension.font18))),
                                   )
                                 ],

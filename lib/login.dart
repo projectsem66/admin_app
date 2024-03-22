@@ -78,12 +78,6 @@ class _LoginPageState extends State<LoginPage> {
                             SizedBox(
                               height:100,
                             ),
-
-                            Padding(
-                              padding:  EdgeInsets.symmetric(horizontal: 20.0),
-                              child: BigText(text: "Login",size: 35,color: AppColors.Colorq,),
-                            ),
-                            SizedBox(height: 20,),
                             Container(
                               height: 100,
                               width: 100,
@@ -96,6 +90,12 @@ class _LoginPageState extends State<LoginPage> {
 
                               ),
 
+                            ),
+
+                            SizedBox(height: 20,),
+                            Padding(
+                              padding:  EdgeInsets.symmetric(horizontal: 20.0),
+                              child: BigText(text: "Login",size: 35,color: AppColors.Colorq,),
                             ),
                             SizedBox(
                               height:40,

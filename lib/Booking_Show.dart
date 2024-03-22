@@ -1,10 +1,7 @@
-import 'package:admin_app/Pages/home_page.dart';
 import 'package:admin_app/util/color.dart';
 import 'package:admin_app/util/dimension.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/get_core.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Bookingshow extends StatefulWidget {
@@ -83,7 +80,6 @@ class _BookingshowState extends State<Bookingshow> {
                   child: Padding(
                     padding: EdgeInsets.only(bottom: dimension.height20),
                     child: Container(
-
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                           borderRadius:
@@ -95,7 +91,6 @@ class _BookingshowState extends State<Bookingshow> {
                             children: [
                               Container(
                                 margin: EdgeInsets.only(
-
                                     top: dimension.height18,
                                     left: dimension.height15),
                                 height: dimension.height100,
@@ -123,91 +118,116 @@ class _BookingshowState extends State<Bookingshow> {
                                         Container(
                                           decoration: BoxDecoration(
                                             color: documentSnapshot.get("status") ==
-                                                "Pending"?
-                                            AppColors
-                                                .red
-                                                .withOpacity(
-                                                0.2) :documentSnapshot.get("status") == "Cancelled"? AppColors
-                                                .red
-                                                .withOpacity(
-                                                0.2): documentSnapshot.get(
-                                                "status") == "Accepted" ? AppColors
-                                                .lightGreen
-                                                .withOpacity(
-                                                0.2) : documentSnapshot.get("status") == "In Progress"?AppColors
-                                                .jetBlue
-                                                .withOpacity(
-                                                0.2): documentSnapshot.get("status") == "is Done?"?AppColors
-                                                .yellow
-                                                .withOpacity(
-                                                0.2): documentSnapshot.get("status") == "Completed"?AppColors
-                                                .darkGreen
-                                                .withOpacity(
-                                                0.2):AppColors
-                                                .Colorq
-                                                .withOpacity(
-                                                0.2),
+                                                    "Pending"
+                                                ? AppColors.red.withOpacity(0.2)
+                                                : documentSnapshot.get("status") ==
+                                                        "Cancelled"
+                                                    ? AppColors.grey
+                                                        .withOpacity(0.2)
+                                                    : documentSnapshot.get("status") ==
+                                                            "Accepted"
+                                                        ? AppColors.lightGreen
+                                                            .withOpacity(0.2)
+                                                        : documentSnapshot.get(
+                                                                    "status") ==
+                                                                "In Progress"
+                                                            ? AppColors.jetBlue
+                                                                .withOpacity(
+                                                                    0.2)
+                                                            : documentSnapshot.get("status") ==
+                                                                    "is Done?"
+                                                                ? Colors.orange
+                                                                    .withOpacity(
+                                                                        0.2)
+                                                                : documentSnapshot.get("status") ==
+                                                                        "Completed"
+                                                                    ? AppColors
+                                                                        .darkGreen
+                                                                        .withOpacity(0.2)
+                                                                    : documentSnapshot.get("status") == "Rated"
+                                                                        ? AppColors.yellow.withOpacity(0.2)
+                                                                        : AppColors.Colorq,
+                                            // rating yellow
+                                            // paid Colorq
+
                                             borderRadius:
-                                            BorderRadius
-                                                .circular(
-                                                7),
+                                                BorderRadius.circular(7),
                                             border: Border.all(
-                                                color:
-                                                documentSnapshot.get("status") ==
-                                                    "Pending" || documentSnapshot.get("status") == "Cancelled"?
-                                                AppColors
-                                                    .red
-                                                    : documentSnapshot.get(
-                                                    "status") == "Accepted" ? AppColors
-                                                    .lightGreen
-                                                    : documentSnapshot.get("status") == "In Progress"?AppColors
-                                                    .jetBlue
-                                                    : documentSnapshot.get("status") == "is Done?"?AppColors
-                                                    .yellow
-                                                    : documentSnapshot.get("status") == "Completed"?AppColors
-                                                    .darkGreen
-                                                    :AppColors
-                                                    .Colorq
-
-
+                                              color: documentSnapshot.get(
+                                                          "status") ==
+                                                      "Pending"
+                                                  ? AppColors.red
+                                                  : documentSnapshot.get(
+                                                              "status") ==
+                                                          "Cancelled"
+                                                      ? AppColors.grey
+                                                      : documentSnapshot.get(
+                                                                  "status") ==
+                                                              "Accepted"
+                                                          ? AppColors.lightGreen
+                                                          : documentSnapshot.get(
+                                                                      "status") ==
+                                                                  "In Progress"
+                                                              ? AppColors
+                                                                  .jetBlue
+                                                              : documentSnapshot
+                                                                          .get(
+                                                                              "status") ==
+                                                                      "is Done?"
+                                                                  ? Colors
+                                                                      .orange
+                                                                  : documentSnapshot
+                                                                              .get(
+                                                                                  "status") ==
+                                                                          "Completed"
+                                                                      ? AppColors
+                                                                          .darkGreen
+                                                                      : documentSnapshot.get("status") ==
+                                                                              "Rated"
+                                                                          ? AppColors
+                                                                              .yellow
+                                                                          : AppColors
+                                                                              .Colorq,
                                             ),
                                           ),
                                           child: Padding(
-                                            padding:
-                                            const EdgeInsets
-                                                .symmetric(
-                                                horizontal:
-                                                5,
-                                                vertical:
-                                                4),
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 5, vertical: 4),
                                             child: Text(
-                                              documentSnapshot
-                                                  .get(
-                                                  "status"),
-                                              style: GoogleFonts
-                                                  .poppins(
-                                                  color:
-                                                  documentSnapshot.get("status") ==
-                                                      "Pending" || documentSnapshot.get("status") == "Cancelled"?
-                                                  AppColors
-                                                      .red
+                                              documentSnapshot.get("status"),
+                                              style: GoogleFonts.poppins(
+                                                  color: documentSnapshot
+                                                              .get("status") ==
+                                                          "Pending"
+                                                      ? AppColors.red
                                                       : documentSnapshot.get(
-                                                      "status") == "Accepted" ? AppColors
-                                                      .lightGreen
-                                                      : documentSnapshot.get("status") == "In Progress"?AppColors
-                                                      .jetBlue
-                                                      : documentSnapshot.get("status") == "is Done?"?AppColors
-                                                      .yellow
-                                                      : documentSnapshot.get("status") == "Completed"?AppColors
-                                                      .darkGreen
-                                                      :AppColors
-                                                      .Colorq,
-                                                  fontSize:
-                                                  dimension
-                                                      .height14,
-                                                  fontWeight:
-                                                  FontWeight
-                                                      .w600),
+                                                                  "status") ==
+                                                              "Cancelled"
+                                                          ? AppColors.grey
+                                                          : documentSnapshot.get(
+                                                                      "status") ==
+                                                                  "Accepted"
+                                                              ? AppColors
+                                                                  .lightGreen
+                                                              : documentSnapshot
+                                                                          .get(
+                                                                              "status") ==
+                                                                      "In Progress"
+                                                                  ? AppColors
+                                                                      .jetBlue
+                                                                  : documentSnapshot.get("status") ==
+                                                                          "is Done?"
+                                                                      ? Colors
+                                                                          .orange
+                                                                      : documentSnapshot.get("status") ==
+                                                                              "Completed"
+                                                                          ? AppColors
+                                                                              .darkGreen
+                                                                          : documentSnapshot.get("status") == "Rated"
+                                                                              ? AppColors.yellow
+                                                                              : AppColors.Colorq,
+                                                  fontSize: dimension.height14,
+                                                  fontWeight: FontWeight.w600),
                                             ),
                                           ),
                                         ),
@@ -246,7 +266,6 @@ class _BookingshowState extends State<Bookingshow> {
                                 right: dimension.height15,
                                 top: dimension.height15),
                             child: Container(
-
                               width: double.maxFinite,
                               decoration: BoxDecoration(
                                   borderRadius:
@@ -254,8 +273,8 @@ class _BookingshowState extends State<Bookingshow> {
                                   color: AppColors.Colorq.withOpacity(0.07)),
                               child: Padding(
                                 padding: EdgeInsets.all(
-                              dimension.height15,
-                                  ),
+                                  dimension.height15,
+                                ),
                                 child: Column(
                                   children: [
                                     Row(
@@ -265,7 +284,7 @@ class _BookingshowState extends State<Bookingshow> {
                                                 color: AppColors.Colorq,
                                                 fontSize: dimension.font13,
                                                 fontWeight: FontWeight.w300)),
-                                    Spacer(),
+                                        Spacer(),
                                         Text(
                                             documentSnapshot['date'].toString(),
                                             style: GoogleFonts.poppins(
@@ -312,7 +331,6 @@ class _BookingshowState extends State<Bookingshow> {
                                                 color: AppColors.Colorq)),
                                       ],
                                     ),
-
                                   ],
                                 ),
                               ),

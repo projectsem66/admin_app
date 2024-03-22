@@ -267,13 +267,14 @@ class _totalproviderState extends State<totalprovider> {
                                   );
                                 },
                                 child: Container(
-                                  height: dimension.height40,
-                                  width: dimension.height40,
+                                  height: dimension.height30,
+                                  width: dimension.height30,
                                   decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: AppColors.Colorq),
                                   child: Icon(
                                     Icons.delete,
+                                    size: dimension.height20,
                                     color: AppColors.white1,
                                   ),
                                 ),
