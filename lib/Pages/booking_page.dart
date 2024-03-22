@@ -53,8 +53,8 @@ class _bookingpageState extends State<bookingpage> {
         title: Text("Bookings",
             style: GoogleFonts.poppins(
                 color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize:dimension.font20)),
+                fontWeight: FontWeight.w400,
+                fontSize: dimension.font20)),
       ),
       body: SingleChildScrollView(
         child: Column(

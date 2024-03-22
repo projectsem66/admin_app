@@ -1,6 +1,7 @@
 
 
 
+import 'package:admin_app/util/color.dart';
 import 'package:admin_app/util/dimension.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,7 +17,7 @@ class BigText extends StatelessWidget {
 
   BigText({super.key,
     required this.text,
-    this.color = Colors.white,
+    this.color = AppColors.Colorq,
     this.size=0,
     this.overflow=TextOverflow.ellipsis,
     this.fontWeight = FontWeight.w600

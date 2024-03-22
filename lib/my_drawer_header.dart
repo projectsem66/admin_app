@@ -24,7 +24,7 @@ class _MyHederDrawerState extends State<MyHederDrawer> {
         children: [
           Container(
             margin: EdgeInsets.only(bottom: 10),
-            height: 120,
+            height: 80,
             width: 120,
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
@@ -34,9 +34,9 @@ class _MyHederDrawerState extends State<MyHederDrawer> {
                     fit: BoxFit.cover )),
           ),
           Text(
-            "City Serve",
+            "Admin",
             style: GoogleFonts.poppins(
-                color: Colors.white60,
+                color: Colors.white70,
                 fontWeight: FontWeight.bold,
                 fontSize: dimension.font20),
           ),

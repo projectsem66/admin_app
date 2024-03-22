@@ -67,7 +67,7 @@ class _BookingshowState extends State<Bookingshow> {
       builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
         if (streamSnapshot.hasData) {
           return Container(
-            height: dimension.height100 * 8,
+            height: dimension.height100 * 7.5,
             //   color: Colors.deepPurpleAccent,
             child: ListView.builder(
               itemCount: 3,
@@ -83,7 +83,7 @@ class _BookingshowState extends State<Bookingshow> {
                   child: Padding(
                     padding: EdgeInsets.only(bottom: dimension.height20),
                     child: Container(
-                      height: dimension.height100 * 2 + 50,
+
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                           borderRadius:
@@ -95,6 +95,7 @@ class _BookingshowState extends State<Bookingshow> {
                             children: [
                               Container(
                                 margin: EdgeInsets.only(
+
                                     top: dimension.height18,
                                     left: dimension.height15),
                                 height: dimension.height100,
@@ -120,23 +121,95 @@ class _BookingshowState extends State<Bookingshow> {
                                     Row(
                                       children: [
                                         Container(
-                                          height: dimension.height35,
-                                          width: dimension.height95,
                                           decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      dimension.height10),
-                                              color: Colors.red.shade100),
-                                          child: Center(
-                                              child: Text(
-                                                  documentSnapshot['status']
-                                                      .toString(),
-                                                  style: GoogleFonts.poppins(
-                                                      color: Colors.red,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize:
-                                                          dimension.font15))),
+                                            color: documentSnapshot.get("status") ==
+                                                "Pending"?
+                                            AppColors
+                                                .red
+                                                .withOpacity(
+                                                0.2) :documentSnapshot.get("status") == "Cancelled"? AppColors
+                                                .red
+                                                .withOpacity(
+                                                0.2): documentSnapshot.get(
+                                                "status") == "Accepted" ? AppColors
+                                                .lightGreen
+                                                .withOpacity(
+                                                0.2) : documentSnapshot.get("status") == "In Progress"?AppColors
+                                                .jetBlue
+                                                .withOpacity(
+                                                0.2): documentSnapshot.get("status") == "is Done?"?AppColors
+                                                .yellow
+                                                .withOpacity(
+                                                0.2): documentSnapshot.get("status") == "Completed"?AppColors
+                                                .darkGreen
+                                                .withOpacity(
+                                                0.2):AppColors
+                                                .Colorq
+                                                .withOpacity(
+                                                0.2),
+                                            borderRadius:
+                                            BorderRadius
+                                                .circular(
+                                                7),
+                                            border: Border.all(
+                                                color:
+                                                documentSnapshot.get("status") ==
+                                                    "Pending" || documentSnapshot.get("status") == "Cancelled"?
+                                                AppColors
+                                                    .red
+                                                    : documentSnapshot.get(
+                                                    "status") == "Accepted" ? AppColors
+                                                    .lightGreen
+                                                    : documentSnapshot.get("status") == "In Progress"?AppColors
+                                                    .jetBlue
+                                                    : documentSnapshot.get("status") == "is Done?"?AppColors
+                                                    .yellow
+                                                    : documentSnapshot.get("status") == "Completed"?AppColors
+                                                    .darkGreen
+                                                    :AppColors
+                                                    .Colorq
+
+
+                                            ),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                            const EdgeInsets
+                                                .symmetric(
+                                                horizontal:
+                                                5,
+                                                vertical:
+                                                4),
+                                            child: Text(
+                                              documentSnapshot
+                                                  .get(
+                                                  "status"),
+                                              style: GoogleFonts
+                                                  .poppins(
+                                                  color:
+                                                  documentSnapshot.get("status") ==
+                                                      "Pending" || documentSnapshot.get("status") == "Cancelled"?
+                                                  AppColors
+                                                      .red
+                                                      : documentSnapshot.get(
+                                                      "status") == "Accepted" ? AppColors
+                                                      .lightGreen
+                                                      : documentSnapshot.get("status") == "In Progress"?AppColors
+                                                      .jetBlue
+                                                      : documentSnapshot.get("status") == "is Done?"?AppColors
+                                                      .yellow
+                                                      : documentSnapshot.get("status") == "Completed"?AppColors
+                                                      .darkGreen
+                                                      :AppColors
+                                                      .Colorq,
+                                                  fontSize:
+                                                  dimension
+                                                      .height14,
+                                                  fontWeight:
+                                                  FontWeight
+                                                      .w600),
+                                            ),
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -155,7 +228,7 @@ class _BookingshowState extends State<Bookingshow> {
                                       height: dimension.height7,
                                     ),
                                     Text(
-                                      documentSnapshot['totalPrice'].toString(),
+                                      "₹${documentSnapshot['totalPrice'].toString()}",
                                       style: GoogleFonts.poppins(
                                           color: AppColors.Colorq,
                                           fontWeight: FontWeight.w600,
@@ -169,20 +242,20 @@ class _BookingshowState extends State<Bookingshow> {
                           Padding(
                             padding: EdgeInsets.only(
                                 left: dimension.height15,
+                                bottom: dimension.height15,
                                 right: dimension.height15,
                                 top: dimension.height15),
                             child: Container(
-                              height: dimension.height100,
+
                               width: double.maxFinite,
                               decoration: BoxDecoration(
                                   borderRadius:
                                       BorderRadius.circular(dimension.height15),
                                   color: AppColors.Colorq.withOpacity(0.07)),
                               child: Padding(
-                                padding: EdgeInsets.only(
-                                    top: dimension.height15,
-                                    left: dimension.height15,
-                                    right: dimension.height15),
+                                padding: EdgeInsets.all(
+                              dimension.height15,
+                                  ),
                                 child: Column(
                                   children: [
                                     Row(
@@ -192,9 +265,7 @@ class _BookingshowState extends State<Bookingshow> {
                                                 color: AppColors.Colorq,
                                                 fontSize: dimension.font13,
                                                 fontWeight: FontWeight.w300)),
-                                        SizedBox(
-                                          width: dimension.height50,
-                                        ),
+                                    Spacer(),
                                         Text(
                                             documentSnapshot['date'].toString(),
                                             style: GoogleFonts.poppins(
@@ -241,14 +312,12 @@ class _BookingshowState extends State<Bookingshow> {
                                                 color: AppColors.Colorq)),
                                       ],
                                     ),
-                                    Divider(
-                                      color: AppColors.Colorq,
-                                    ),
+
                                   ],
                                 ),
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),

@@ -39,7 +39,7 @@ class _allserviceState extends State<allservice> {
             title: Text("All Service",
                 style: GoogleFonts.poppins(
                     color: Colors.white,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w400,
                     fontSize: dimension.font20)),
           ),
           body: WillPopScope(

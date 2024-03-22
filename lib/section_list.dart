@@ -351,7 +351,7 @@ class _sectionlistState extends State<sectionlist> {
         title: Text("Section",
             style: GoogleFonts.poppins(
                 color: Colors.white,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w400,
                 fontSize: dimension.font20)),
         actions: [
           Padding(
@@ -389,7 +389,7 @@ class _sectionlistState extends State<sectionlist> {
                             crossAxisCount: 2,
                             mainAxisSpacing: 0.5,
                             crossAxisSpacing: 0.5,
-                            childAspectRatio: 0.7),
+                            childAspectRatio: 0.69),
                         itemBuilder: (context, index) {
                           final DocumentSnapshot documentSnapshot =
                           streamSnapshot.data!.docs[index];

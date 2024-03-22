@@ -148,7 +148,7 @@ class _Section_State extends State<Section> {
         title: Text("Add Section",
             style: GoogleFonts.poppins(
                 color: Colors.white,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w400,
                 fontSize: dimension.font20)),
       ),
       body: Padding(

@@ -137,7 +137,7 @@ class _sub_categoryState extends State<sub_category> {
           title: Text("Add Sub Category",
               style: GoogleFonts.poppins(
                   color: Colors.white,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w400,
                   fontSize: dimension.font20)),
         ),
         body: Padding(

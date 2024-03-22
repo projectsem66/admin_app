@@ -55,7 +55,7 @@ class _providerListState extends State<providerList> {
           title: Text("Provider List",
               style: GoogleFonts.poppins(
                   color: Colors.white,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w400,
                   fontSize: dimension.font20)),
         ),
         body: Padding(

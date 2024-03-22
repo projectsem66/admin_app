@@ -37,7 +37,7 @@ class _Total_booking_ListState extends State<Total_booking_List> {
         title: Text("Bookings List",
             style: GoogleFonts.poppins(
                 color: Colors.white,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w400,
                 fontSize: dimension.font20)),
       ),
       body: SingleChildScrollView(

@@ -46,7 +46,7 @@ class _Total_User_ListState extends State<Total_User_List> {
           title: Text("User List",
               style: GoogleFonts.poppins(
                   color: Colors.white,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w400,
                   fontSize: dimension.font20)),
         ),
         body: Padding(

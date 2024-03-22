@@ -32,7 +32,7 @@ class _addproviderState extends State<addprovider> {
         title: Text("Add Provider",
             style: GoogleFonts.poppins(
                 color: Colors.white,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w400,
                 fontSize: dimension.font20)),
       ),
       body: Padding(

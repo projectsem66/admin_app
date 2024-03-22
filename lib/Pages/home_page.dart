@@ -84,20 +84,11 @@ class _home_pageState extends State<home_page> {
             iconTheme:
                 IconThemeData(color: Colors.white, size: dimension.icon30),
             backgroundColor: AppColors.Colorq,
-            // leading: IconButton(
-            //   onPressed: () {
-            //     Get.to(drawer());
-            //   },
-            //   icon: Icon(
-            //     Icons.menu,
-            //     color: Colors.white,
-            //     size:dimension.icon30,
-            //   ),
-            // ),
+
             title: Text("Dashboard",
                 style: GoogleFonts.poppins(
                     color: Colors.white,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w400,
                     fontSize: dimension.font20)),
           ),
           body: SingleChildScrollView(
@@ -122,7 +113,7 @@ class _home_pageState extends State<home_page> {
                           "Hello, Admin",
                           style: GoogleFonts.poppins(
                               fontSize: dimension.font22,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.w500,
                               color: AppColors.Colorq),
                         ),
                         SizedBox(),
@@ -396,7 +387,7 @@ class _home_pageState extends State<home_page> {
                                           height: dimension.height8,
                                         ),
                                         Text(
-                                          "Total Useres",
+                                          "Total Users",
                                           style: GoogleFonts.poppins(
                                               color: AppColors.Colorq,
                                               fontWeight: FontWeight.w300,
@@ -419,7 +410,7 @@ class _home_pageState extends State<home_page> {
                 ),
                 Container(
                   height: dimension.height100 * 3,
-                  color: AppColors.Colorq.withOpacity(0.07),
+                  color: AppColors.Colorq.withOpacity(0.05),
                   child: Padding(
                     padding: EdgeInsets.only(
                         left: dimension.height15,
@@ -436,7 +427,7 @@ class _home_pageState extends State<home_page> {
                               style: GoogleFonts.poppins(
                                   color: AppColors.Colorq,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: dimension.font22),
+                                  fontSize: dimension.font20),
                             ),
                             InkWell(
                               onTap: () {
@@ -474,7 +465,7 @@ class _home_pageState extends State<home_page> {
                         style: GoogleFonts.poppins(
                             color: AppColors.Colorq,
                             fontWeight: FontWeight.w400,
-                            fontSize: dimension.font22),
+                            fontSize: dimension.font20),
                       ),
                       InkWell(
                         onTap: () {
@@ -700,9 +691,7 @@ class _home_pageState extends State<home_page> {
                 //   ),
                 // ),
 
-                SizedBox(
-                  height: dimension.height15,
-                ),
+
                 // Padding(
                 //   padding: EdgeInsets.only(
                 //       left: dimension.height12, right: dimension.height12),
@@ -831,7 +820,7 @@ class _home_pageState extends State<home_page> {
                 ),
                 Container(
                   height: dimension.height100 * 3,
-                  color: AppColors.Colorq.withOpacity(0.07),
+                  color: AppColors.Colorq.withOpacity(0.05),
                   child: Padding(
                     padding: EdgeInsets.only(
                         left: dimension.height15,
@@ -848,7 +837,7 @@ class _home_pageState extends State<home_page> {
                               style: GoogleFonts.poppins(
                                   color: AppColors.Colorq,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: dimension.font22),
+                                  fontSize: dimension.font20),
                             ),
                             InkWell(
                               onTap: () {
