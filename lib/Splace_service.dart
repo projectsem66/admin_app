@@ -18,10 +18,10 @@ class splashServices{
     if(user != null){
 
       // userEmail = user!.email ?? '';
-      Timer( const Duration(seconds: 4),
+      Timer( const Duration(seconds: 10),
               () =>  Navigator.push(context, MaterialPageRoute(builder: (context) => home_page())));
     }else{
-      Timer( const Duration(seconds: 4),
+      Timer( const Duration(seconds: 10),
               () =>  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage())));
     }
   }

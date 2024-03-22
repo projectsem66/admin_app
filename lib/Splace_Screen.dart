@@ -32,35 +32,19 @@ class _splashScreenState extends State<splashScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.Colorq.withOpacity((0.7)),
+    return  Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: 150,
-              width: 150,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                    image: AssetImage("images/adminLogo.png"),
-                    fit: BoxFit.cover
-                ),
+        child: Container(
 
-              ),
+          height: double.infinity,
+          width: double.infinity,
 
-            ),
-            SizedBox(height: 20),
-            Text(
-                'City Serve',
-                style: GoogleFonts.poppins(
-                  color: Colors.white,
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                )
-            ),
-          ],
+          decoration: BoxDecoration(
+            color: Colors.white,
+
+            image: DecorationImage(image: AssetImage("images/admiN.gif"),
+                fit: BoxFit.cover),
+          ),
         ),
       ),
     );
