@@ -90,7 +90,10 @@ class _drawerState extends State<drawer> {
           ),
           ListTile(
             leading: const Icon(Icons.logout),
-            title: const Text('LogOut'),
+            title:  Text('LogOut',  style: GoogleFonts.poppins(
+                color: Colors.white,
+                fontWeight: FontWeight.w400,
+                fontSize: dimension.font20)),
             onTap: () {
               Navigator.pop(context);
             },

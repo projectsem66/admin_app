@@ -1,4 +1,4 @@
-import 'package:admin_app/FAVRATE.dart';
+import 'package:admin_app/login.dart';
 import 'package:admin_app/util/color.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

@@ -85,8 +85,8 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             SizedBox(height: 20,),
                             Container(
-                              height: 150,
-                              width: 150,
+                              height: 100,
+                              width: 100,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 image: DecorationImage(

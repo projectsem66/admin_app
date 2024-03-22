@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:admin_app/FAVRATE.dart';
+import 'package:admin_app/login.dart';
 import 'package:admin_app/Pages/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

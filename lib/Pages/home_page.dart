@@ -1,5 +1,5 @@
 import 'package:admin_app/Booking_Show.dart';
-import 'package:admin_app/FAVRATE.dart';
+import 'package:admin_app/login.dart';
 import 'package:admin_app/Pages/all_service.dart';
 import 'package:admin_app/Pages/booking_page.dart';
 import 'package:admin_app/Total_Booking_List.dart';
@@ -71,10 +71,61 @@ class _home_pageState extends State<home_page> {
     '6 jan, 2024 At 03:00 Pm',
     '4 jan, 2024 At 02:25 Pm'
   ];
-
+int bookingCountt = 0;
+int servicesCountt = 0;
+int providerCountt = 0;
+int userCountt = 0;
   List providernamee = ['Jorge Perez', 'Daniel Wiliams', 'jennifer Davis'];
   final CollectionReference refpro =
       FirebaseFirestore.instance.collection('providerDetails');
+  Future<int> bookingCount() async {
+    CollectionReference collectionReference = FirebaseFirestore.instance.collection('bookingg');
+
+    QuerySnapshot querySnapshot = await collectionReference.get();
+    bookingCountt = querySnapshot.size;
+    setState(() {
+
+    });
+    return querySnapshot.size;
+  }
+  Future<int> serviceCount() async {
+    CollectionReference collectionReference = FirebaseFirestore.instance.collection('providerServiceDetails');
+
+    QuerySnapshot querySnapshot = await collectionReference.get();
+    servicesCountt = querySnapshot.size;
+    setState(() {
+
+    });
+    return querySnapshot.size;
+  }
+  Future<int> providerCount() async {
+    CollectionReference collectionReference = FirebaseFirestore.instance.collection('providerDetails');
+
+    QuerySnapshot querySnapshot = await collectionReference.get();
+    providerCountt = querySnapshot.size;
+    setState(() {
+
+    });
+    return querySnapshot.size;
+  }
+  Future<int> userCount() async {
+    CollectionReference collectionReference = FirebaseFirestore.instance.collection('userDetails');
+
+    QuerySnapshot querySnapshot = await collectionReference.get();
+    userCountt = querySnapshot.size;
+    setState(() {
+
+    });
+    return querySnapshot.size;
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    bookingCount();
+    serviceCount();
+    providerCount();userCount();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +209,7 @@ class _home_pageState extends State<home_page> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              "96",
+                                              bookingCountt.toString(),
                                               style: GoogleFonts.poppins(
                                                   color: AppColors.Colorq,
                                                   fontWeight: FontWeight.w600,
@@ -225,7 +276,7 @@ class _home_pageState extends State<home_page> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              "35",
+                                              servicesCountt.toString(),
                                               style: GoogleFonts.poppins(
                                                   color: AppColors.Colorq,
                                                   fontWeight: FontWeight.w600,
@@ -297,7 +348,7 @@ class _home_pageState extends State<home_page> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              "13",
+                                              providerCountt.toString(),
                                               style: GoogleFonts.poppins(
                                                   color: AppColors.Colorq,
                                                   fontWeight: FontWeight.w600,
@@ -364,7 +415,7 @@ class _home_pageState extends State<home_page> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              "31",
+                                              userCountt.toString(),
                                               style: GoogleFonts.poppins(
                                                   color: AppColors.Colorq,
                                                   fontWeight: FontWeight.w600,
@@ -919,9 +970,9 @@ class _home_pageState extends State<home_page> {
                       flex: 3,
                       child: Text("Add Category",
                           style: GoogleFonts.poppins(
-                              color: AppColors.Colorq.withOpacity(0.7),
-                              fontWeight: FontWeight.bold,
-                              fontSize: dimension.font16))),
+                              color: AppColors.Colorq,
+                              fontWeight: FontWeight.w600,
+                              fontSize: dimension.font18))),
                 ],
               ),
             ),
@@ -967,9 +1018,9 @@ class _home_pageState extends State<home_page> {
                       flex: 3,
                       child: Text("Categor List",
                           style: GoogleFonts.poppins(
-                              color: AppColors.Colorq.withOpacity(0.7),
-                              fontWeight: FontWeight.bold,
-                              fontSize: dimension.font16))),
+                              color: AppColors.Colorq,
+                              fontWeight: FontWeight.w600,
+                              fontSize: dimension.font18))),
                 ],
               ),
             ),
@@ -991,9 +1042,9 @@ class _home_pageState extends State<home_page> {
                       flex: 3,
                       child: Text("Provider List",
                           style: GoogleFonts.poppins(
-                              color: AppColors.Colorq.withOpacity(0.7),
-                              fontWeight: FontWeight.bold,
-                              fontSize: dimension.font16))),
+                              color: AppColors.Colorq,
+                              fontWeight: FontWeight.w600,
+                              fontSize: dimension.font18))),
                 ],
               ),
             ),
@@ -1015,9 +1066,9 @@ class _home_pageState extends State<home_page> {
                       flex: 3,
                       child: Text("User List",
                           style: GoogleFonts.poppins(
-                              color: AppColors.Colorq.withOpacity(0.7),
-                              fontWeight: FontWeight.bold,
-                              fontSize: dimension.font16))),
+                              color: AppColors.Colorq,
+                              fontWeight: FontWeight.w600,
+                              fontSize: dimension.font18))),
                 ],
               ),
             ),
@@ -1039,9 +1090,9 @@ class _home_pageState extends State<home_page> {
                       flex: 3,
                       child: Text("Bookings List",
                           style: GoogleFonts.poppins(
-                              color: AppColors.Colorq.withOpacity(0.7),
-                              fontWeight: FontWeight.bold,
-                              fontSize: dimension.font16))),
+                              color: AppColors.Colorq,
+                              fontWeight: FontWeight.w600,
+                              fontSize: dimension.font18))),
                 ],
               ),
             ),
@@ -1174,9 +1225,9 @@ class _home_pageState extends State<home_page> {
                       flex: 3,
                       child: Text("Logout",
                           style: GoogleFonts.poppins(
-                              color: AppColors.Colorq.withOpacity(0.7),
-                              fontWeight: FontWeight.bold,
-                              fontSize: dimension.font16))),
+                              color: AppColors.Colorq,
+                              fontWeight: FontWeight.w600,
+                              fontSize: dimension.font18))),
                 ],
               ),
             ),
