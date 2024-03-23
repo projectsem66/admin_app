@@ -461,7 +461,7 @@ int userCountt = 0;
                 ),
                 Container(
                   height: dimension.height100 * 3,
-                  color: AppColors.Colorq.withOpacity(0.05),
+                  // color: AppColors.Colorq.withOpacity(0.05),
                   child: Padding(
                     padding: EdgeInsets.only(
                         left: dimension.height15,
@@ -1016,7 +1016,7 @@ int userCountt = 0;
                   )),
                   Expanded(
                       flex: 3,
-                      child: Text("Categor List",
+                      child: Text("Category List",
                           style: GoogleFonts.poppins(
                               color: AppColors.Colorq,
                               fontWeight: FontWeight.w600,

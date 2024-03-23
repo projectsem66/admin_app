@@ -229,7 +229,7 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                                           right: dimension.height15,
                                           top: dimension.height15),
                                       child: Container(
-                                        height: dimension.height100,
+                                        height: dimension.height90,
                                         width: double.maxFinite,
                                         decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(
@@ -252,9 +252,7 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                                                           dimension.font13,
                                                           fontWeight:
                                                           FontWeight.w300)),
-                                                  SizedBox(
-                                                    width: dimension.height47,
-                                                  ),
+                                                Spacer(),
                                                   Text(
                                                       documentSnapshot['date']
                                                           .toString(),
@@ -319,9 +317,7 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                                                           AppColors.Colorq)),
                                                 ],
                                               ),
-                                              Divider(
-                                                color: AppColors.Colorq,
-                                              ),
+
                                             ],
                                           ),
                                         ),

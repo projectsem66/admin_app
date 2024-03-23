@@ -78,19 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                             SizedBox(
                               height:100,
                             ),
-                            Container(
-                              height: 100,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                    image: AssetImage("images/adminLogo.png"),
-                                    fit: BoxFit.cover
-                                ),
 
-                              ),
-
-                            ),
 
                             SizedBox(height: 20,),
                             Padding(
