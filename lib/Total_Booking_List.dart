@@ -210,8 +210,11 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                                                   height: dimension.height7,
                                                 ),
                                                 Text(
-                                                  documentSnapshot['totalPrice']
-                                                      .toString(),
+                                                  "₹${
+                                                    documentSnapshot[
+                                                            'totalPrice']
+                                                        .toString()
+                                                  }",
                                                   style: GoogleFonts.poppins(
                                                       color: AppColors.Colorq,
                                                       fontWeight: FontWeight.w600,
