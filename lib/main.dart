@@ -1,14 +1,4 @@
-import 'dart:io';
-import 'package:admin_app/Booking_Show.dart';
-import 'package:admin_app/login.dart';
-import 'package:admin_app/Pages/all_service.dart';
-import 'package:admin_app/Pages/home_page.dart';
-import 'package:admin_app/Pages/servise_description.dart';
 
-import 'package:admin_app/drawer_page/drawe_subpage/category.dart';
-import 'package:admin_app/drawer_page/drawe_subpage/category_list.dart';
-import 'package:admin_app/section_list.dart';
-import 'package:admin_app/simple.dart';
 import 'package:admin_app/splace.dart';
 import 'package:admin_app/subcetegory.dart';
 import 'package:firebase_core/firebase_core.dart';

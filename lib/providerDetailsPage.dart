@@ -8,16 +8,16 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
-class UserDetails extends StatefulWidget {
-  String UserId;
+class ProviderDetailss extends StatefulWidget {
+  String ProviderId;
 
-  UserDetails({Key? key, required this.UserId});
+  ProviderDetailss({Key? key, required this.ProviderId});
 
   @override
-  State<UserDetails> createState() => _UserDetailsState();
+  State<ProviderDetailss> createState() => _UserDetailsState();
 }
 
-class _UserDetailsState extends State<UserDetails> {
+class _UserDetailsState extends State<ProviderDetailss> {
   callProviderNumber(String phoneNumber) async {
     bool? res = await FlutterPhoneDirectCaller.callNumber(phoneNumber);
     if (!res!) {
@@ -44,7 +44,7 @@ class _UserDetailsState extends State<UserDetails> {
   }
 
   Future<DocumentSnapshot> getDocument() async {
-    DocumentReference documentReference = FirebaseFirestore.instance.collection('userDetails').doc(widget.UserId);
+    DocumentReference documentReference = FirebaseFirestore.instance.collection('providerDetails').doc(widget.ProviderId);
 
     return documentReference.get();
   }
@@ -71,15 +71,12 @@ class _UserDetailsState extends State<UserDetails> {
         automaticallyImplyLeading: false,
         //  centerTitle: true,
       ),
-    body: Column(
-      children: [
-        Text(userDetailsSS?.get("fname")),
-        Text(userDetailsSS?.get("lname")),
-        Text(userDetailsSS?.get("fname")),
-        Text(userDetailsSS?.get("fname")),
-        Text(userDetailsSS?.get("fname")),
-      ],
-    ),
+      body: Column(
+        children: [
+          Text(userDetailsSS?.get("firstName")),
+
+        ],
+      ),
 
     );
   }
