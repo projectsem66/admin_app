@@ -260,9 +260,28 @@ class _Section_State extends State<Section> {
               ),
               GestureDetector(
                 onTap: () {
-                  addSection(_SName.text.toString());
-                  Sectionname = _SName.text.toString();
-                  Get.to(categorylist());
+                  if (_SName.text.isEmpty && pickedSCimg == null) {
+                    Get.snackbar(
+                        "Enter required field", "Both fields are required",
+                        colorText: Colors.red,
+                        backgroundColor: AppColors.Colorq.withOpacity(0.05));
+                  } else if (_SName.text.isEmpty){
+                    Get.snackbar(
+                        "Enter required field", "Section name is requird",
+                        colorText: Colors.red,
+                        backgroundColor: AppColors.Colorq.withOpacity(0.05));
+                  }
+                  else if (pickedSCimg==null){
+                    Get.snackbar(
+                        "Enter required field", "Section image is requird",
+                        colorText: Colors.red,
+                        backgroundColor: AppColors.Colorq.withOpacity(0.05));
+                  }
+                  else {
+                    addSection(_SName.text.toString());
+                    Sectionname = _SName.text.toString();
+                    Get.to(categorylist());
+                  }
                 },
                 child: Container(
                   height: dimension.height50,

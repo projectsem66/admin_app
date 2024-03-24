@@ -87,7 +87,7 @@ class _simpleState extends State<simple> {
     return WillPopScope(
       child: Scaffold(
         appBar: AppBar(
-
+          automaticallyImplyLeading: false,
           backgroundColor: AppColors.Colorq,
           centerTitle: false,
           title: Text("Add Category",
@@ -193,11 +193,25 @@ class _simpleState extends State<simple> {
               GestureDetector(
                 onTap: () {
                   categoryNameForSection = _cname.text.toString();
-                  if (_cname.text.isEmpty && pickedImage == null) {
+                  if (_cname.text.isEmpty && _cname == null) {
                     Get.snackbar(
+
                         "Enter required field", "Both fields are required",
-                        colorText: Colors.white);
-                  } else {
+                        colorText: AppColors.red,backgroundColor: AppColors.Colorq.withOpacity(0.4));
+                  }
+                  else if (_cname.text.isEmpty){
+                    Get.snackbar(
+                        "Enter required field", "Category name is requird",
+                        colorText: Colors.red,
+                        backgroundColor: AppColors.Colorq.withOpacity(0.05));
+                  }
+                  else if (_cname==null){
+                    Get.snackbar(
+                        "Enter required field", "Category image is requird",
+                        colorText: Colors.red,
+                        backgroundColor: AppColors.Colorq.withOpacity(0.05));
+                  }
+                  else {
                     uploadData();
                     categoryNamee = _cname.text.toString();
                     Get.to(sub_category());

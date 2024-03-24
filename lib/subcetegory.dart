@@ -127,7 +127,10 @@ class _sub_categoryState extends State<sub_category> {
               onTap: () {
                 Get.to(simple());
               },
-              child: Icon(Icons.arrow_back)),
+              child: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              )),
           backgroundColor: AppColors.Colorq,
           centerTitle: false,
           title: Text("Add Sub Category",
@@ -223,8 +226,7 @@ class _sub_categoryState extends State<sub_category> {
                   labelText: "Enter Sub Category",
                   labelStyle: TextStyle(color: Colors.black87),
                   focusedBorder: OutlineInputBorder(
-                    borderSide:
-                    BorderSide(color: AppColors.Colorq),
+                    borderSide: BorderSide(color: AppColors.Colorq),
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                   errorBorder: OutlineInputBorder(
@@ -232,8 +234,7 @@ class _sub_categoryState extends State<sub_category> {
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide:
-                    BorderSide(color: Colors.transparent),
+                    borderSide: BorderSide(color: Colors.transparent),
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
@@ -248,9 +249,31 @@ class _sub_categoryState extends State<sub_category> {
               GestureDetector(
                 onTap: () {
                   subCategoryNameForSection = _scName.text.toString();
-                  addSubCategory(_scName.text.toString());
-                  SCname = _scName.text.toString();
-                  Get.to(Section());
+                  if (_scName.text.isEmpty && pickedSCimg == null) {
+                    Get.snackbar(
+                        "Enter required field", "Both fields are required",
+                        colorText: Colors.red,
+                        backgroundColor: AppColors.Colorq.withOpacity(0.05));
+                  } else if (_scName.text.isEmpty){
+                    Get.snackbar(
+                        "Enter required field", "Sub Category name is requird",
+                        colorText: Colors.red,
+                        backgroundColor: AppColors.Colorq.withOpacity(0.05));
+                  }
+                  else if (pickedSCimg==null){
+                    Get.snackbar(
+                        "Enter required field", "Sub Category image is requird",
+                        colorText: Colors.red,
+                        backgroundColor: AppColors.Colorq.withOpacity(0.05));
+                  }
+                  else {
+                    addSubCategory(_scName.text.toString());
+                    SCname = _scName.text.toString();
+                    Get.to(Section());
+                  }
+                  // addSubCategory(_scName.text.toString());
+                  // SCname = _scName.text.toString();
+                  // Get.to(Section());
                 },
                 child: Container(
                   height: dimension.height50,
