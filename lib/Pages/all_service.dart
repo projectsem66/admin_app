@@ -2,11 +2,9 @@ import 'package:admin_app/Pages/home_page.dart';
 import 'package:admin_app/Pages/servise_description.dart';
 import 'package:admin_app/util/color.dart';
 import 'package:admin_app/util/dimension.dart';
-import 'package:auto_scroll_text/auto_scroll_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class allservice extends StatefulWidget {
@@ -105,7 +103,6 @@ class _allserviceState extends State<allservice> {
                                                       dimension.height15)),
                                               //  color: Colors.green,
                                             ),
-
                                           ),
                                         ),
                                         Container(
@@ -130,20 +127,7 @@ class _allserviceState extends State<allservice> {
                                                 padding: EdgeInsets.only(
                                                     top: dimension.height15,
                                                     left: dimension.height10),
-                                                // child: RatingBar.builder(
-                                                //   minRating: 1,
-                                                //   itemSize: 20,
-                                                //   itemBuilder: (context, index) {
-                                                //     return Icon(
-                                                //         Icons.star_border_sharp);
-                                                //   },
-                                                //   updateOnDrag: true,
-                                                //   onRatingUpdate: (rating) {
-                                                //     this.rating = rating;
-                                                //   },
-                                                // ),
                                               ),
-
                                               Padding(
                                                 padding: EdgeInsets.only(
                                                     left: dimension.height10,
@@ -227,7 +211,7 @@ class _allserviceState extends State<allservice> {
                                         color: AppColors.white1),
                                     child: Center(
                                         child: Text(
-                                           "₹${documentSnapshot['servicePrice']}"
+                                            "₹${documentSnapshot['servicePrice']}"
                                                 .toString(),
                                             style: GoogleFonts.poppins(
                                                 color: AppColors.Colorq,
