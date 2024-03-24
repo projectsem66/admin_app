@@ -114,132 +114,75 @@ class _providerListState extends State<providerList> {
                                       children: [
                                         InkWell(
                                           onTap: () {
-                                            showDialog(
-                                              context: context,
-                                              builder: (BuildContext context) {
-                                                return AlertDialog(
-                                                  title: Text(
-                                                    "Are you sure you want to delete provider?",
+                                            Get.defaultDialog(
+                                              // ScaffoldKey.currentState?.openEndDrawer();
+                                              buttonColor: AppColors.Colorq,
+                                              backgroundColor: Colors.white,
+                                              cancelTextColor: AppColors.Colorq,
+                                              titleStyle: GoogleFonts.poppins(
+                                                  fontSize: 28, color: AppColors.Colorq),
+                                              titlePadding: EdgeInsets.all(10),
+                                              title: "Log Out",
+                                              // contentPadding: EdgeInsets.all(),
+                                              // middleText: "Are you sure to delete",
+                                              content: Column(
+                                                children: [
+                                                  Text(
+                                                    "Are you sure you want to Delete Provider?",
                                                     style: GoogleFonts.poppins(
                                                         color: AppColors.Colorq,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize:
-                                                            dimension.font15),
+                                                        fontSize: dimension.height17,
+                                                        fontWeight: FontWeight.w500),
                                                   ),
-                                                  content: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      InkWell(
-                                                        onTap: () {
-                                                          _delete(
-                                                              documentSnapshot
-                                                                  .id);
-                                                          Get.back();
-                                                        },
-                                                        child: Container(
-                                                          height: dimension
-                                                              .height40,
-                                                          width: dimension
-                                                              .height95,
-                                                          decoration: BoxDecoration(
-                                                              color: AppColors
-                                                                  .Colorq,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          dimension
-                                                                              .radius15)),
-                                                          child: Row(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .center,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Icon(Icons.done),
-                                                              SizedBox(
-                                                                width: dimension
-                                                                    .height7,
-                                                              ),
-                                                              Text(
-                                                                "Yes",
-                                                                style: GoogleFonts.poppins(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    fontSize:
-                                                                        dimension
-                                                                            .font20),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        width:
-                                                            dimension.height20,
-                                                      ),
-                                                      InkWell(
-                                                        onTap: () {
-                                                          // Get.to(home_page());
-                                                          Get.back();
-                                                        },
-                                                        child: Container(
-                                                          height: dimension
-                                                              .height40,
-                                                          width: dimension
-                                                              .height95,
-                                                          decoration: BoxDecoration(
-                                                              color: AppColors
-                                                                  .Colorq,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          dimension
-                                                                              .radius15)),
-                                                          child: Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Icon(
-                                                                  Icons.cancel),
-                                                              SizedBox(
-                                                                width: dimension
-                                                                    .height7,
-                                                              ),
-                                                              Text(
-                                                                "No",
-                                                                style: GoogleFonts.poppins(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    fontSize:
-                                                                        dimension
-                                                                            .font20),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
+                                                ],
+                                              ),
+                                              textConfirm: "Yes",
+                                              textCancel: "Noo",
+                                              confirm: TextButton(
+                                                onPressed: () async {
+                                                  _delete(documentSnapshot.id);
+                                                  Get.back();
+                                                },
+                                                child: Container(
+                                                  height: 40,
+                                                  width: 90,
+                                                  decoration: BoxDecoration(
+                                                    color: AppColors.Colorq,
+                                                    borderRadius: BorderRadius.circular(10),
                                                   ),
-                                                );
-                                              },
+                                                  child: Center(
+                                                    child: Text(
+                                                      "Yes",
+                                                      style: GoogleFonts.poppins(
+                                                          color: Colors.white,
+                                                          fontSize: 18,
+                                                          fontWeight: FontWeight.w500),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              cancel: TextButton(
+                                                  onPressed: () {
+                                                    Get.back();
+                                                  },
+                                                  child: Container(
+                                                    height: 40,
+                                                    width: 90,
+                                                    decoration: BoxDecoration(
+                                                      // color: AppColors.orange,
+                                                        border: Border.all(
+                                                            color: AppColors.Colorq, width: 2),
+                                                        borderRadius: BorderRadius.circular(10)),
+                                                    child: Center(
+                                                      child: Text(
+                                                        "No",
+                                                        style: GoogleFonts.poppins(
+                                                            color: AppColors.Colorq,
+                                                            fontSize: 18,
+                                                            fontWeight: FontWeight.w500),
+                                                      ),
+                                                    ),
+                                                  )),
                                             );
                                           },
                                           child: Container(

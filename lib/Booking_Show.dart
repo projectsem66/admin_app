@@ -64,7 +64,7 @@ class _BookingshowState extends State<Bookingshow> {
       builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
         if (streamSnapshot.hasData) {
           return Container(
-            height: dimension.height100 * 7.5,
+            height: dimension.height100 * 7.6,
             //   color: Colors.deepPurpleAccent,
             child: ListView.builder(
               itemCount: 3,

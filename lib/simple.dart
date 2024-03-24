@@ -87,22 +87,14 @@ class _simpleState extends State<simple> {
     return WillPopScope(
       child: Scaffold(
         appBar: AppBar(
+
           backgroundColor: AppColors.Colorq,
-          leading: IconButton(
-            onPressed: () {
-              Get.to(home_page());
-            },
-            icon: Icon(
-              Icons.keyboard_arrow_left,
-              color: Colors.white,
-              size: dimension.icon30,
-            ),
-          ),
+          centerTitle: false,
           title: Text("Add Category",
               style: GoogleFonts.poppins(
                   color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: dimension.font20)),
+                  fontSize: dimension.height20,
+                  fontWeight: FontWeight.w400)),
         ),
         body: Padding(
           padding: EdgeInsets.only(
@@ -111,6 +103,7 @@ class _simpleState extends State<simple> {
               top: dimension.height12),
           child: Column(
             children: [
+              SizedBox(height: dimension.height20,),
               GestureDetector(
                 onTap: () {
                   showAlertBox();
@@ -170,18 +163,29 @@ class _simpleState extends State<simple> {
                     fillColor: AppColors.Colorq.withOpacity(0.05),
                     border: OutlineInputBorder(
                         borderRadius:
-                            BorderRadius.circular(dimension.radius15)),
+                            BorderRadius.circular(dimension.radius7)),
                     //hintText: "Enter Category",
                     labelText: "Enter Category",
                     labelStyle: TextStyle(color: Colors.black87),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(dimension.radius15),
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: AppColors.Colorq),
-                        borderRadius:
-                            BorderRadius.circular(dimension.radius15))),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                    BorderSide(color: AppColors.Colorq),
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.red),
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                    BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.red),
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                ),
               ),
               SizedBox(
                 height: dimension.height20,
@@ -200,10 +204,10 @@ class _simpleState extends State<simple> {
                   }
                 },
                 child: Container(
-                  height: dimension.height60,
+                  height: dimension.height50,
                   width: double.maxFinite,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(dimension.radius15),
+                      borderRadius: BorderRadius.circular(dimension.radius7),
                       color: AppColors.Colorq),
                   child: Center(
                     child: Text(

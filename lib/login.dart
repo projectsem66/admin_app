@@ -250,15 +250,19 @@
 //   }
 // }
 
+import 'dart:io';
+
 import 'package:admin_app/Pages/home_page.dart';
 import 'package:admin_app/bigtext.dart';
 import 'package:admin_app/round.dart';
 import 'package:admin_app/smalltext.dart';
 import 'package:admin_app/util/color.dart';
+import 'package:admin_app/util/dimension.dart';
 import 'package:admin_app/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -311,7 +315,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        SystemNavigator.pop();
+      exit(0);
         return true;
       },
       child: Scaffold(
@@ -323,13 +327,13 @@ class _LoginPageState extends State<LoginPage> {
           body: SafeArea(
               child: SingleChildScrollView(
                   child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      padding:  EdgeInsets.symmetric(horizontal: 20.0),
                       child: Column(
                           //mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
-                              height: 100,
+                              height: dimension.height80,
                             ),
                             Padding(
                               padding:
@@ -338,16 +342,18 @@ class _LoginPageState extends State<LoginPage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
 
                                 children: [
-                                  BigText(
-                                    text: "Login",
-                                    size: 40,
-                                    color: Colors.black,
+                                  Text(
+                                    "Login",
+                                    style: GoogleFonts.poppins(
+                                      color: AppColors.Colorq,
+                                      fontSize: dimension.height36,
+                                    ),
                                   ),
                                 ],
                               ),
                             ),
                             SizedBox(
-                              height: 100,
+                              height: dimension.height70,
                             ),
 
                             Form(
@@ -368,10 +374,7 @@ class _LoginPageState extends State<LoginPage> {
                                       ),
                                       keyboardType: TextInputType.emailAddress,
                                       decoration: InputDecoration(
-                                        suffixIcon: Padding(
-                                          padding: const EdgeInsets.only(left: 15),
-                                          child: Icon(Icons.email,color: AppColors.Colorq,),
-                                        ),
+                                        suffixIcon: Icon(Icons.email,color: AppColors.Colorq,),
                                         floatingLabelBehavior:
                                             FloatingLabelBehavior.always,
                                         labelText: "Email",
@@ -380,16 +383,22 @@ class _LoginPageState extends State<LoginPage> {
                                         contentPadding:
                                             EdgeInsets.fromLTRB(5, 10, 5, 0),
                                         focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: AppColors.Colorq),
-                                          borderRadius:
-                                              BorderRadius.circular(5.0),
+                                          borderSide:
+                                          BorderSide(color: AppColors.Colorq),
+                                          borderRadius: BorderRadius.circular(5.0),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(color: AppColors.red),
+                                          borderRadius: BorderRadius.circular(5.0),
                                         ),
                                         enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.transparent),
-                                          borderRadius:
-                                              BorderRadius.circular(5.0),
+                                          borderSide:
+                                          BorderSide(color: Colors.transparent),
+                                          borderRadius: BorderRadius.circular(5.0),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(color: AppColors.red),
+                                          borderRadius: BorderRadius.circular(5.0),
                                         ),
                                       ),
                                       validator: (value) {
@@ -431,16 +440,22 @@ class _LoginPageState extends State<LoginPage> {
                                         contentPadding:
                                             EdgeInsets.fromLTRB(5, 10, 5, 0),
                                         focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: AppColors.Colorq),
-                                          borderRadius:
-                                              BorderRadius.circular(5.0),
+                                          borderSide:
+                                          BorderSide(color: AppColors.Colorq),
+                                          borderRadius: BorderRadius.circular(5.0),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(color: AppColors.red),
+                                          borderRadius: BorderRadius.circular(5.0),
                                         ),
                                         enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.transparent),
-                                          borderRadius:
-                                              BorderRadius.circular(5.0),
+                                          borderSide:
+                                          BorderSide(color: Colors.transparent),
+                                          borderRadius: BorderRadius.circular(5.0),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(color: AppColors.red),
+                                          borderRadius: BorderRadius.circular(5.0),
                                         ),
                                         suffix: InkWell(
                                           onTap: () {
@@ -448,9 +463,12 @@ class _LoginPageState extends State<LoginPage> {
                                               spwd = !spwd;
                                             });
                                           },
-                                          child: Icon(spwd
-                                              ? Icons.visibility_off
-                                              : Icons.visibility,color: AppColors.Colorq,),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Icon(spwd
+                                                ? Icons.visibility_off
+                                                : Icons.visibility,color: AppColors.Colorq,),
+                                          ),
                                         ),
                                       ),
                                       validator: (value) {
@@ -462,7 +480,7 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 50,
+                                    height: dimension.height40,
                                   ),
                                   RoundButton(
                                     title: 'Login',

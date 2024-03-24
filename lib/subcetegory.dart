@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
+
 import 'package:admin_app/Pages/home_page.dart';
-import 'package:admin_app/drawer_page/drawe_subpage/category_list.dart';
 import 'package:admin_app/section.dart';
 import 'package:admin_app/simple.dart';
 import 'package:admin_app/util/color.dart';
@@ -123,22 +123,18 @@ class _sub_categoryState extends State<sub_category> {
     return WillPopScope(
       child: Scaffold(
         appBar: AppBar(
+          leading: GestureDetector(
+              onTap: () {
+                Get.to(simple());
+              },
+              child: Icon(Icons.arrow_back)),
           backgroundColor: AppColors.Colorq,
-          leading: IconButton(
-            onPressed: () {
-              Get.to(simple());
-            },
-            icon: Icon(
-              Icons.keyboard_arrow_left,
-              color: Colors.white,
-              size: dimension.icon30,
-            ),
-          ),
+          centerTitle: false,
           title: Text("Add Sub Category",
               style: GoogleFonts.poppins(
                   color: Colors.white,
-                  fontWeight: FontWeight.w400,
-                  fontSize: dimension.font20)),
+                  fontSize: dimension.height20,
+                  fontWeight: FontWeight.w400)),
         ),
         body: Padding(
           padding: EdgeInsets.only(
@@ -149,7 +145,11 @@ class _sub_categoryState extends State<sub_category> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Category Name: ${categoryNamee}"),
+              Text("Category Name: ${categoryNamee}",
+                  style: GoogleFonts.poppins(
+                      color: AppColors.Colorq,
+                      fontSize: dimension.height14,
+                      fontWeight: FontWeight.w400)),
               SizedBox(
                 height: dimension.height15,
               ),
@@ -215,22 +215,32 @@ class _sub_categoryState extends State<sub_category> {
               TextFormField(
                 controller: _scName,
                 decoration: InputDecoration(
-                    filled: true,
-                    fillColor: AppColors.Colorq.withOpacity(0.05),
-                    border: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.circular(dimension.radius15)),
+                  filled: true,
+                  fillColor: AppColors.Colorq.withOpacity(0.05),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(dimension.radius15)),
                   //  hintText: "Enter SubCategory",
-                    labelText: "Enter SubCategory",
-                    labelStyle: TextStyle(color: Colors.black87),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(dimension.radius15),
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: AppColors.Colorq),
-                        borderRadius:
-                            BorderRadius.circular(dimension.radius15))),
+                  labelText: "Enter Sub Category",
+                  labelStyle: TextStyle(color: Colors.black87),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                    BorderSide(color: AppColors.Colorq),
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.red),
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                    BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.red),
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                ),
               ),
               SizedBox(
                 height: dimension.height20,
@@ -243,10 +253,10 @@ class _sub_categoryState extends State<sub_category> {
                   Get.to(Section());
                 },
                 child: Container(
-                  height: dimension.height60,
+                  height: dimension.height50,
                   width: double.maxFinite,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(dimension.radius15),
+                      borderRadius: BorderRadius.circular(dimension.radius7),
                       color: AppColors.Colorq),
                   child: Center(
                     child: Text(

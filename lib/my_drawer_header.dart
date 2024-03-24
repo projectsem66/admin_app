@@ -17,14 +17,15 @@ class _MyHederDrawerState extends State<MyHederDrawer> {
     return Container(
       color: AppColors.Colorq,
       width: double.infinity,
-      height: 200,
+      height: 240,
       padding: EdgeInsets.only(top: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          SizedBox(height: dimension.height30,),
           Container(
             margin: EdgeInsets.only(bottom: 10),
-            height: 80,
+            height: 60,
             width: 120,
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
@@ -38,7 +39,7 @@ class _MyHederDrawerState extends State<MyHederDrawer> {
             style: GoogleFonts.poppins(
                 color: Colors.white70,
                 fontWeight: FontWeight.bold,
-                fontSize: dimension.font20),
+                fontSize: dimension.font22),
           ),
 
         

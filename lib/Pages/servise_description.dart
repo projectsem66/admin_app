@@ -189,8 +189,11 @@ class _ServiceDescriptionState extends State<ServiceDescription> {
                           padding: EdgeInsets.symmetric(
                               horizontal: dimension.height15),
                           child: Container(
-                            height: dimension.height100 * 1.69,
+                            height: dimension.height100 * 1.86,
                             decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(color: AppColors.grey.withOpacity(0.7),blurRadius: 7,spreadRadius:1)
+                              ],
                               borderRadius: BorderRadius.circular(
                                   dimension.height7),
                               border: Border.all(color: AppColors.Colorq),
@@ -299,7 +302,7 @@ class _ServiceDescriptionState extends State<ServiceDescription> {
                   height: dimension.height10,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:  EdgeInsets.all(dimension.height15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -311,6 +314,7 @@ class _ServiceDescriptionState extends State<ServiceDescription> {
                             fontSize: dimension.height18,
                             fontWeight: FontWeight.w500),
                       ),
+                      SizedBox(height: 5,),
                       Text(
                         serviceDetailsSS!.get("serviceDescription"),
                         style: GoogleFonts.poppins(
@@ -367,7 +371,7 @@ class _ServiceDescriptionState extends State<ServiceDescription> {
                                       width: dimension.height15,
                                     ),
                                     Container(
-                                      width: dimension.height100 * 2,
+                                      width: dimension.height100 * 1.9,
                                       child: Column(
                                         crossAxisAlignment:
                                         CrossAxisAlignment.start,

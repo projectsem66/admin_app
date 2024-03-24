@@ -36,7 +36,7 @@ class _allserviceState extends State<allservice> {
                 size: dimension.icon30,
               ),
             ),
-            title: Text("All Service",
+            title: Text("All Services",
                 style: GoogleFonts.poppins(
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
@@ -143,9 +143,7 @@ class _allserviceState extends State<allservice> {
                                                 //   },
                                                 // ),
                                               ),
-                                              SizedBox(
-                                                height: dimension.height7,
-                                              ),
+
                                               Padding(
                                                 padding: EdgeInsets.only(
                                                     left: dimension.height10,
@@ -162,7 +160,7 @@ class _allserviceState extends State<allservice> {
                                                         fontSize:
                                                             dimension.font13,
                                                         fontWeight:
-                                                            FontWeight.bold)),
+                                                            FontWeight.w500)),
                                               ),
                                               SizedBox(
                                                 height: dimension.height7,
@@ -234,7 +232,7 @@ class _allserviceState extends State<allservice> {
                                             style: GoogleFonts.poppins(
                                                 color: AppColors.Colorq,
                                                 fontWeight: FontWeight.w500,
-                                                fontSize: dimension.font18))),
+                                                fontSize: dimension.font15))),
                                   )
                                 ],
                               );
