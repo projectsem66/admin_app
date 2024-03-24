@@ -239,6 +239,7 @@ class _BookingshowState extends State<Bookingshow> {
                                     Text(
                                       documentSnapshot[' serviceName']
                                           .toString(),
+                                      overflow: TextOverflow.ellipsis,
                                       style: GoogleFonts.poppins(
                                           color: AppColors.Colorq,
                                           fontSize: dimension.font15,

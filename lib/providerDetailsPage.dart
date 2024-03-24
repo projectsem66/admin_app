@@ -71,11 +71,151 @@ class _UserDetailsState extends State<ProviderDetailss> {
         automaticallyImplyLeading: false,
         //  centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Text(userDetailsSS?.get("firstName")),
+      body:  Padding(
+        padding:  EdgeInsets.only(left: 12.0,right: 12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: dimension.height30,
+            ),
+            Center(
+              child: Container(
+                height: dimension.height100+20,
+                width: dimension.width60 * 2,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    // border: Border.all(
+                    //   color: AppColors.themColor,
+                    //   width: dimensions.width2,
+                    // ),
+                    image: DecorationImage(image: NetworkImage(userDetailsSS?.get('image')),fit: BoxFit.cover)
+                ),
+              ),
+            ),
+            SizedBox(
+              height: dimension.height20,
+            ),
+            Container(
+              height: dimension.height50,
+              decoration: BoxDecoration(
+                color: AppColors.Colorq.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(dimension.radius7),
+              ),
+              child: Padding(
+                padding:  EdgeInsets.symmetric(horizontal: dimension.height10),
+                child: Row(
+                  children: [
+                    BigText(
+                      text: "Name : ",
+                      size: dimension.font18,
+                      color: AppColors.Colorq,
+                    ),
+                    SmallText(
+                      text: userDetailsSS?.get("firstName")+ ' '+userDetailsSS?.get('lastName'), // Assuming 'name' is the field name
+                      size: dimension.font16,
+                      fontWeight: FontWeight.w500,
+                    )
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: dimension.height10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Stack(
+                    children: [Container(
+                      height: dimension.height50,
+                      width: dimension.width50*7+13,
+                      //   width: dimensions.width50*3,
+                      decoration: BoxDecoration(
+                        color:  AppColors.Colorq.withOpacity(0.05),
+                        borderRadius: BorderRadius.circular(dimension.radius7),
+                      ),
+                      child: Padding(
+                        padding:  EdgeInsets.symmetric(horizontal: dimension.height10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            BigText(
+                              text: "Contact No : ",
+                              size: dimension.font18,
+                              color: AppColors.Colorq,
+                            ),
+                            SmallText(
+                              text: userDetailsSS?.get('phoneNumber') , // Assuming 'name' is the field name
+                              size: dimension.font16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            SizedBox(
+                              width: 35,
+                            ),
+                            Bounce(
+                              duration: Duration(milliseconds: 200),
+                              onTap: () {
+                                callProviderNumber(userDetailsSS?.get('phoneNumber') );
+                              },
+                              child: Container(height: dimension.height40,
+                                width: dimension.width40,
+                                decoration: BoxDecoration(
+                                  color: AppColors.Colorq.withOpacity(0.4),
+                                  //borderRadius: BorderRadius.circular(dimensions.radius7),
+                                  shape: BoxShape.circle,
+                                  // border: Border.all( color: AppColors.themColor,width: 2),
 
-        ],
+                                ),
+                                child: Icon(Icons.call,color:AppColors.black),
+                              ),
+                            )
+
+                          ],
+                        ),
+                      ),
+                    ),]
+                ),
+                // SizedBox(
+                //   width: dimensions.width10,
+                // ),
+
+              ],
+            ),
+            SizedBox(
+              height: dimension.height10,
+            ),
+
+            Container(
+              height: dimension.height50,
+              decoration: BoxDecoration(
+                color:   AppColors.Colorq.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(7),
+              ),
+              child: Padding(
+                padding:  EdgeInsets.symmetric(horizontal: dimension.height10),
+                child: Row(
+                  children: [
+                    BigText(
+                      text: "Email : ",
+                      size: dimension.font18,
+                      color:  AppColors.Colorq,
+                    ),
+                    SmallText(
+                      text: userDetailsSS?.get('email') , // Assuming 'name' is the field name
+                      size: dimension.font16,
+                      fontWeight: FontWeight.w500,
+                    )
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: dimension.height10,
+            ),
+
+          ],
+        ),
       ),
 
     );

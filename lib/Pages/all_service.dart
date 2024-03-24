@@ -16,7 +16,7 @@ class allservice extends StatefulWidget {
 
 class _allserviceState extends State<allservice> {
   final CollectionReference refpro =
-      FirebaseFirestore.instance.collection('providerServiceDetails');
+  FirebaseFirestore.instance.collection('providerServiceDetails');
 
   @override
   Widget build(BuildContext context) {
@@ -56,16 +56,16 @@ class _allserviceState extends State<allservice> {
                         return Expanded(
                           child: GridView.builder(
                             gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    mainAxisSpacing: 0.5,
-                                    crossAxisSpacing: 0.5,
-                                    childAspectRatio: 0.55),
+                            SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                mainAxisSpacing: 0.5,
+                                crossAxisSpacing: 0.5,
+                                childAspectRatio: 0.55),
                             itemCount: streamSnapshot.data!.docs.length,
                             //  scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
                               final DocumentSnapshot documentSnapshot =
-                                  streamSnapshot.data!.docs[index];
+                              streamSnapshot.data!.docs[index];
                               return Stack(
                                 children: [
                                   Container(
@@ -115,13 +115,13 @@ class _allserviceState extends State<allservice> {
                                                   bottomLeft: Radius.circular(
                                                       dimension.radius15)),
                                               color:
-                                                  AppColors.Colorq.withOpacity(
-                                                      0.08)),
+                                              AppColors.Colorq.withOpacity(
+                                                  0.08)),
                                           child: Column(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                            MainAxisAlignment.start,
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                             children: [
                                               Padding(
                                                 padding: EdgeInsets.only(
@@ -134,17 +134,17 @@ class _allserviceState extends State<allservice> {
                                                     right: dimension.height10),
                                                 child: Text(
                                                     documentSnapshot[
-                                                            'serviceName']
+                                                    'serviceName']
                                                         .toString(),
                                                     overflow:
-                                                        TextOverflow.ellipsis,
+                                                    TextOverflow.ellipsis,
                                                     maxLines: 2,
                                                     style: GoogleFonts.poppins(
                                                         color: AppColors.Colorq,
                                                         fontSize:
-                                                            dimension.font13,
+                                                        dimension.font13,
                                                         fontWeight:
-                                                            FontWeight.w500)),
+                                                        FontWeight.w500)),
                                               ),
                                               SizedBox(
                                                 height: dimension.height7,
@@ -154,18 +154,18 @@ class _allserviceState extends State<allservice> {
                                                   Padding(
                                                     padding: EdgeInsets.only(
                                                         left:
-                                                            dimension.height10),
+                                                        dimension.height10),
                                                     child: Container(
                                                       height:
-                                                          dimension.height25,
+                                                      dimension.height25,
                                                       width: dimension.height25,
                                                       decoration: BoxDecoration(
                                                           shape:
-                                                              BoxShape.circle,
+                                                          BoxShape.circle,
                                                           image: DecorationImage(
                                                               image: NetworkImage(
                                                                   documentSnapshot[
-                                                                          'providerImage']
+                                                                  'providerImage']
                                                                       .toString()),
                                                               fit: BoxFit
                                                                   .cover)),
@@ -176,18 +176,18 @@ class _allserviceState extends State<allservice> {
                                                   ),
                                                   Text(
                                                       documentSnapshot[
-                                                              'providerName']
+                                                      'providerName']
                                                           .toString(),
                                                       style:
-                                                          GoogleFonts.poppins(
-                                                              color: AppColors
-                                                                  .Colorq,
-                                                              fontSize:
-                                                                  dimension
-                                                                      .font10,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w300)),
+                                                      GoogleFonts.poppins(
+                                                          color: AppColors
+                                                              .Colorq,
+                                                          fontSize:
+                                                          dimension
+                                                              .font10,
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .w300)),
                                                 ],
                                               )
                                             ],
