@@ -29,6 +29,7 @@ class sectionlist extends StatefulWidget {
   @override
   State<sectionlist> createState() => _sectionlistState();
 }
+
 String CnameForS = "";
 String SCnameForS = "";
 
@@ -63,7 +64,6 @@ class _sectionlistState extends State<sectionlist> {
     }
   }
 
-
   addcategory(String cName) async {
     if (cName == null && pickedImage == null) {
       return showDialog(
@@ -97,10 +97,10 @@ class _sectionlistState extends State<sectionlist> {
         .doc(snapid)
         .set({"sname": _namecontroller.text.toString(), "simage": url}).then(
             (value) {
-          log("User Uploaded");
-        });
-
+      log("User Uploaded");
+    });
   }
+
   Future<void> _update([DocumentSnapshot? documentSnapshot]) async {
     if (documentSnapshot != null) {
       _namecontroller.text = documentSnapshot['sname'];
@@ -134,33 +134,31 @@ class _sectionlistState extends State<sectionlist> {
                 GestureDetector(
                   onTap: () {
                     showAlertBox();
-                    setState(() {
-
-                    });
+                    setState(() {});
                   },
                   child: Stack(
                     children: [
                       pickedImage != null
                           ? Container(
-                        height: dimension.height60 * 2,
-                        width: dimension.height60 * 2,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: FileImage(pickedImage!),
-                                fit: BoxFit.cover),
-                            shape: BoxShape.circle,
-                            color: AppColors.Colorq.withOpacity(0.05)),
-                      )
+                              height: dimension.height60 * 2,
+                              width: dimension.height60 * 2,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: FileImage(pickedImage!),
+                                      fit: BoxFit.cover),
+                                  shape: BoxShape.circle,
+                                  color: AppColors.Colorq.withOpacity(0.05)),
+                            )
                           : Container(
-                        height: dimension.height60 * 2,
-                        width: dimension.height60 * 2,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: NetworkImage(imgPath),
-                                fit: BoxFit.cover),
-                            shape: BoxShape.circle,
-                            color: AppColors.Colorq.withOpacity(0.05)),
-                      ),
+                              height: dimension.height60 * 2,
+                              width: dimension.height60 * 2,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: NetworkImage(imgPath),
+                                      fit: BoxFit.cover),
+                                  shape: BoxShape.circle,
+                                  color: AppColors.Colorq.withOpacity(0.05)),
+                            ),
                       Container(
                         margin: EdgeInsets.only(
                             top: dimension.height65, left: dimension.height80),
@@ -193,14 +191,14 @@ class _sectionlistState extends State<sectionlist> {
                       labelStyle: TextStyle(color: AppColors.Colorq),
                       border: OutlineInputBorder(
                           borderRadius:
-                          BorderRadius.circular(dimension.radius15)),
+                              BorderRadius.circular(dimension.radius15)),
                       focusedBorder: OutlineInputBorder(
                           borderRadius:
-                          BorderRadius.circular(dimension.radius15),
+                              BorderRadius.circular(dimension.radius15),
                           borderSide: BorderSide(color: AppColors.Colorq)),
                       enabledBorder: OutlineInputBorder(
                           borderRadius:
-                          BorderRadius.circular(dimension.radius15),
+                              BorderRadius.circular(dimension.radius15),
                           borderSide: BorderSide(color: AppColors.Colorq))),
                 ),
                 SizedBox(
@@ -254,7 +252,7 @@ class _sectionlistState extends State<sectionlist> {
                         width: dimension.height60 * 2,
                         decoration: BoxDecoration(
                             borderRadius:
-                            BorderRadius.circular(dimension.radius15),
+                                BorderRadius.circular(dimension.radius15),
                             color: AppColors.Colorq),
                         child: Center(
                           child: Text(
@@ -290,9 +288,7 @@ class _sectionlistState extends State<sectionlist> {
                 onTap: () {
                   pickImage(ImageSource.camera);
                   Get.back();
-                  setState(() {
-
-                  });
+                  setState(() {});
                 },
                 leading: Icon(Icons.camera_alt),
                 title: Text("Camera"),
@@ -301,9 +297,7 @@ class _sectionlistState extends State<sectionlist> {
                 onTap: () {
                   pickImage(ImageSource.gallery);
                   Get.back();
-                  setState(() {
-
-                  });
+                  setState(() {});
                 },
                 leading: Icon(Icons.image),
                 title: Text("Gallery"),
@@ -314,6 +308,7 @@ class _sectionlistState extends State<sectionlist> {
       },
     );
   }
+
   pickImage(ImageSource imageSource) async {
     try {
       final photo = await ImagePicker().pickImage(source: imageSource);
@@ -330,206 +325,217 @@ class _sectionlistState extends State<sectionlist> {
     }
   }
 
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.Colorq,
-        leading: IconButton(
-          onPressed: () {
-            Get.to(home_page());
-          },
-          icon: Icon(
-            Icons.keyboard_arrow_left,
-            color: Colors.white,
-            size: dimension.icon30,
+        appBar: AppBar(
+          backgroundColor: AppColors.Colorq,
+          leading: IconButton(
+            onPressed: () {
+              Get.to(home_page());
+            },
+            icon: Icon(
+              Icons.keyboard_arrow_left,
+              color: Colors.white,
+              size: dimension.icon30,
+            ),
           ),
+          title: Text("Section",
+              style: GoogleFonts.poppins(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w400,
+                  fontSize: dimension.font20)),
+          actions: [
+            Padding(
+              padding: EdgeInsets.only(right: dimension.height15),
+              child: GestureDetector(
+                onTap: () {
+                  Get.to(Section());
+                },
+                child: Icon(
+                  Icons.add,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
         ),
-        title: Text("Section",
-            style: GoogleFonts.poppins(
-                color: Colors.white,
-                fontWeight: FontWeight.w400,
-                fontSize: dimension.font20)),
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: dimension.height15),
-            child: GestureDetector(
-              onTap: () {
-                Get.to(Section());
-              },
-              child: Icon(
-                Icons.add,
-                color: Colors.white,
+        body: WillPopScope(
+          child: Padding(
+            padding: EdgeInsets.only(
+                left: dimension.height12,
+                right: dimension.height12,
+                top: dimension.height15),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    height: screenheight() - 95,
+                    child: StreamBuilder(
+                      stream: refSC.snapshots(),
+                      builder: (context,
+                          AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                        if (streamSnapshot.hasData) {
+                          return GridView.builder(
+                            itemCount: streamSnapshot.data!.docs.length,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    mainAxisSpacing: 0.5,
+                                    crossAxisSpacing: 0.5,
+                                    childAspectRatio: 0.69),
+                            itemBuilder: (context, index) {
+                              final DocumentSnapshot documentSnapshot =
+                                  streamSnapshot.data!.docs[index];
+                              return Padding(
+                                padding: EdgeInsets.all(dimension.height8),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      //color: Colors.orange,
+                                      borderRadius: BorderRadius.circular(
+                                          dimension.radius15)),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        height: dimension.height70 * 2,
+                                        width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.only(
+                                                topRight: Radius.circular(
+                                                    dimension.radius15),
+                                                topLeft: Radius.circular(
+                                                    dimension.radius15)),
+                                            color: AppColors.Colorq.withOpacity(
+                                                0.09),
+                                            image: DecorationImage(
+                                                image: NetworkImage(
+                                                    documentSnapshot['simage']
+                                                        .toString()),
+                                                fit: BoxFit.cover)),
+                                      ),
+                                      Container(
+                                        height: dimension.height83,
+                                        width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                              bottomRight: Radius.circular(
+                                                  dimension.radius15),
+                                              bottomLeft: Radius.circular(
+                                                  dimension.radius15)),
+                                          color: AppColors.Colorq.withOpacity(
+                                              0.05),
+                                        ),
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                              top: dimension.height10),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                  documentSnapshot['sname']
+                                                      .toString(),
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  maxLines: 1,
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    bottom: dimension.height10,
+                                                    left: dimension.height20,
+                                                    right: dimension.height20),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Bounce(
+                                                      onTap: () {
+                                                        snapid =
+                                                            documentSnapshot.id;
+                                                        print(
+                                                            "00000000+$snapid");
+                                                        _update(
+                                                            documentSnapshot);
+                                                        setState(() {});
+                                                      },
+                                                      child: Container(
+                                                        height:
+                                                            dimension.height35,
+                                                        width:
+                                                            dimension.height35,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                                color: AppColors
+                                                                    .Colorq),
+                                                        child: Icon(
+                                                          Icons.edit,
+                                                          color: Colors.white,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Bounce(
+                                                      onTap: () async {
+                                                        await deleteSC(
+                                                            documentSnapshot
+                                                                .id);
+                                                      },
+                                                      child: Container(
+                                                        height:
+                                                            dimension.height35,
+                                                        width:
+                                                            dimension.height35,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                                color: AppColors
+                                                                    .Colorq),
+                                                        child: Icon(
+                                                          Icons.delete,
+                                                          color: Colors.white,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        }
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
-        ],
-      ),
-      body: WillPopScope(child: Padding(
-        padding: EdgeInsets.only(
-            left: dimension.height12,
-            right: dimension.height12,
-            top: dimension.height15),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                height: screenheight() - 95,
-                child: StreamBuilder(
-                  stream: refSC.snapshots(),
-                  builder:
-                      (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-                    if (streamSnapshot.hasData) {
-                      return GridView.builder(
-                        itemCount: streamSnapshot.data!.docs.length,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            mainAxisSpacing: 0.5,
-                            crossAxisSpacing: 0.5,
-                            childAspectRatio: 0.69),
-                        itemBuilder: (context, index) {
-                          final DocumentSnapshot documentSnapshot =
-                          streamSnapshot.data!.docs[index];
-                          return Padding(
-                            padding: EdgeInsets.all(dimension.height8),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                //color: Colors.orange,
-                                  borderRadius: BorderRadius.circular(
-                                      dimension.radius15)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    height: dimension.height70 * 2,
-                                    width: double.maxFinite,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.only(
-                                            topRight: Radius.circular(
-                                                dimension.radius15),
-                                            topLeft: Radius.circular(
-                                                dimension.radius15)),
-                                        color:
-                                        AppColors.Colorq.withOpacity(0.09),
-                                        image: DecorationImage(
-                                            image: NetworkImage(
-                                                documentSnapshot['simage']
-                                                    .toString()),
-                                            fit: BoxFit.cover)),
-                                  ),
-                                  Container(
-                                    height: dimension.height83,
-                                    width: double.maxFinite,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                          bottomRight: Radius.circular(
-                                              dimension.radius15),
-                                          bottomLeft: Radius.circular(
-                                              dimension.radius15)),
-                                      color: AppColors.Colorq.withOpacity(0.05),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsets.only(
-                                          top: dimension.height10),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                              documentSnapshot['sname']
-                                                  .toString(),
-                                              overflow: TextOverflow.ellipsis,
-                                              maxLines: 1,
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold)),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                bottom: dimension.height10,
-                                                left: dimension.height20,
-                                                right: dimension.height20),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment
-                                                  .spaceBetween,
-                                              children: [
-                                                Bounce(
-                                                  onTap: () {
-                                                    snapid =
-                                                        documentSnapshot.id;
-                                                    print("00000000+$snapid");
-                                                    _update(documentSnapshot);
-                                                    setState(() {
-
-                                                    });
-                                                  },
-                                                  child: Container(
-                                                    height: dimension.height35,
-                                                    width: dimension.height35,
-                                                    decoration: BoxDecoration(
-                                                        shape: BoxShape.circle,
-                                                        color:
-                                                        AppColors.Colorq),
-                                                    child: Icon(
-                                                      Icons.edit,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Bounce(
-                                                  onTap: () async {
-                                                    await deleteSC(
-                                                        documentSnapshot.id);
-                                                  },
-                                                  child: Container(
-                                                    height: dimension.height35,
-                                                    width: dimension.height35,
-                                                    decoration: BoxDecoration(
-                                                        shape: BoxShape.circle,
-                                                        color:
-                                                        AppColors.Colorq),
-                                                    child: Icon(
-                                                      Icons.delete,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      );
-                    }
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),  onWillPop: () async{
-        print("Tapped");
-        setState(() {
-          Get.off(home_page());
-        });
-        return false;
-      },)
-    );
+          onWillPop: () async {
+            print("Tapped");
+            setState(() {
+              Get.off(home_page());
+            });
+            return false;
+          },
+        ));
   }
-
-
 }

@@ -136,7 +136,7 @@ int userCountt = 0;
                 IconThemeData(color: Colors.white, size: dimension.icon30),
             backgroundColor: AppColors.Colorq,
 
-            title: Text("Dashboard",
+            title: Text("Admin",
                 style: GoogleFonts.poppins(
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
@@ -871,7 +871,7 @@ int userCountt = 0;
                 ),
                 Container(
                   height: dimension.height100 * 3,
-                  color: AppColors.Colorq.withOpacity(0.05),
+                 // color: AppColors.Colorq.withOpacity(0.05),
                   child: Padding(
                     padding: EdgeInsets.only(
                         left: dimension.height15,

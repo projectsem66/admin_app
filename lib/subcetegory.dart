@@ -220,8 +220,8 @@ class _sub_categoryState extends State<sub_category> {
                     border: OutlineInputBorder(
                         borderRadius:
                             BorderRadius.circular(dimension.radius15)),
-                    hintText: "Salon for Men",
-                    labelText: "Sub Category Name",
+                  //  hintText: "Enter SubCategory",
+                    labelText: "Enter SubCategory",
                     labelStyle: TextStyle(color: Colors.black87),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(dimension.radius15),

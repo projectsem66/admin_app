@@ -171,8 +171,8 @@ class _simpleState extends State<simple> {
                     border: OutlineInputBorder(
                         borderRadius:
                             BorderRadius.circular(dimension.radius15)),
-                    hintText: "Salon for Men",
-                    labelText: "Category Name",
+                    //hintText: "Enter Category",
+                    labelText: "Enter Category",
                     labelStyle: TextStyle(color: Colors.black87),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(dimension.radius15),

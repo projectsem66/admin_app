@@ -231,8 +231,8 @@ class _Section_State extends State<Section> {
                   fillColor: AppColors.Colorq.withOpacity(0.05),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(dimension.radius15)),
-                  hintText: "Enter the section",
-                  labelText: "Enter the Section",
+                 // hintText: "Enter Section",
+                  labelText: "Enter Section",
                   labelStyle: TextStyle(color: Colors.black87),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(dimension.radius15),
