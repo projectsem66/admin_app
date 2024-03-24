@@ -1,4 +1,5 @@
 import 'package:admin_app/Pages/home_page.dart';
+import 'package:admin_app/UserDetails_page.dart';
 import 'package:admin_app/util/color.dart';
 import 'package:admin_app/util/dimension.dart';
 import 'package:bounce/bounce.dart';
@@ -79,166 +80,175 @@ class _Total_User_ListState extends State<Total_User_List> {
                                     BorderRadius.circular(dimension.height12)),
                             child: Column(
                               children: [
-                                Container(
-                                  height: dimension.height100 + 50,
-                                  width: double.maxFinite,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          image: NetworkImage(
-                                              documentSnapshot['uimage']
-                                                  .toString()),
-                                          fit: BoxFit.cover),
-                                      color: AppColors.Colorq.withOpacity(0.09),
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(
-                                            dimension.height12,
-                                          ),
-                                          topRight: Radius.circular(
-                                              dimension.height12))),
-                                  // child: Padding(
-                                  //   padding: EdgeInsets.only(
-                                  //       right: dimension.height15,
-                                  //       top: dimension.height10),
-                                  //   child: Column(
-                                  //     crossAxisAlignment: CrossAxisAlignment.end,
-                                  //     children: [
-                                  //       InkWell(
-                                  //         onTap: () {
-                                  //           showDialog(
-                                  //             context: context,
-                                  //             builder: (BuildContext context) {
-                                  //               return AlertDialog(
-                                  //                 title: Text(
-                                  //                   "Are you sure you want to delete provider?",
-                                  //                   style: GoogleFonts.poppins(
-                                  //                       color: AppColors.Colorq,
-                                  //                       fontWeight:
-                                  //                       FontWeight.bold,
-                                  //                       fontSize:
-                                  //                       dimension.font15),
-                                  //                 ),
-                                  //                 content: Row(
-                                  //                   mainAxisAlignment:
-                                  //                   MainAxisAlignment
-                                  //                       .spaceBetween,
-                                  //                   crossAxisAlignment:
-                                  //                   CrossAxisAlignment.start,
-                                  //                   children: [
-                                  //                     InkWell(
-                                  //                       onTap: () {
-                                  //                         // _delete(documentSnapshot
-                                  //                         //     .id);
-                                  //                         Get.back();
-                                  //                       },
-                                  //                       child: Container(
-                                  //                         height:
-                                  //                         dimension.height40,
-                                  //                         width:
-                                  //                         dimension.height95,
-                                  //                         decoration: BoxDecoration(
-                                  //                             color: AppColors
-                                  //                                 .Colorq,
-                                  //                             borderRadius: BorderRadius
-                                  //                                 .circular(dimension
-                                  //                                 .radius15)),
-                                  //                         child: Row(
-                                  //                           crossAxisAlignment:
-                                  //                           CrossAxisAlignment
-                                  //                               .center,
-                                  //                           mainAxisAlignment:
-                                  //                           MainAxisAlignment
-                                  //                               .center,
-                                  //                           children: [
-                                  //                             Icon(Icons.done),
-                                  //                             SizedBox(
-                                  //                               width: dimension
-                                  //                                   .height7,
-                                  //                             ),
-                                  //                             Text(
-                                  //                               "Yes",
-                                  //                               style: GoogleFonts.poppins(
-                                  //                                   color: Colors
-                                  //                                       .white,
-                                  //                                   fontWeight:
-                                  //                                   FontWeight
-                                  //                                       .bold,
-                                  //                                   fontSize:
-                                  //                                   dimension
-                                  //                                       .font20),
-                                  //                             ),
-                                  //                           ],
-                                  //                         ),
-                                  //                       ),
-                                  //                     ),
-                                  //                     SizedBox(
-                                  //                       width: dimension.height20,
-                                  //                     ),
-                                  //                     InkWell(
-                                  //                       onTap: () {
-                                  //                         // Get.to(home_page());
-                                  //                         Get.back();
-                                  //                       },
-                                  //                       child: Container(
-                                  //                         height:
-                                  //                         dimension.height40,
-                                  //                         width:
-                                  //                         dimension.height95,
-                                  //                         decoration: BoxDecoration(
-                                  //                             color: AppColors
-                                  //                                 .Colorq,
-                                  //                             borderRadius: BorderRadius
-                                  //                                 .circular(dimension
-                                  //                                 .radius15)),
-                                  //                         child: Row(
-                                  //                           mainAxisAlignment:
-                                  //                           MainAxisAlignment
-                                  //                               .center,
-                                  //                           crossAxisAlignment:
-                                  //                           CrossAxisAlignment
-                                  //                               .center,
-                                  //                           children: [
-                                  //                             Icon(Icons.cancel),
-                                  //                             SizedBox(
-                                  //                               width: dimension
-                                  //                                   .height7,
-                                  //                             ),
-                                  //                             Text(
-                                  //                               "No",
-                                  //                               style: GoogleFonts.poppins(
-                                  //                                   color: Colors
-                                  //                                       .white,
-                                  //                                   fontWeight:
-                                  //                                   FontWeight
-                                  //                                       .bold,
-                                  //                                   fontSize:
-                                  //                                   dimension
-                                  //                                       .font20),
-                                  //                             ),
-                                  //                           ],
-                                  //                         ),
-                                  //                       ),
-                                  //                     ),
-                                  //                   ],
-                                  //                 ),
-                                  //               );
-                                  //             },
-                                  //           );
-                                  //         },
-                                  //         child: Container(
-                                  //           height: dimension.height40,
-                                  //           width: dimension.height40,
-                                  //           decoration: BoxDecoration(
-                                  //               shape: BoxShape.circle,
-                                  //               color: AppColors.Colorq),
-                                  //           child: Icon(
-                                  //             Icons.delete,
-                                  //             color: AppColors.white1,
-                                  //           ),
-                                  //         ),
-                                  //       ),
-                                  //     ],
-                                  //   ),
-                                  // ),
+                                InkWell(
+                                  onTap: () {
+                                    documentSnapshot.id;
+                                    Get.to(UserDetails(
+                                      UserId: documentSnapshot.id,
+                                    ));
+                                  },
+                                  child: Container(
+                                    height: dimension.height100 + 50,
+                                    width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: NetworkImage(
+                                                documentSnapshot['uimage']
+                                                    .toString()),
+                                            fit: BoxFit.cover),
+                                        color:
+                                            AppColors.Colorq.withOpacity(0.09),
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(
+                                              dimension.height12,
+                                            ),
+                                            topRight: Radius.circular(
+                                                dimension.height12))),
+                                    // child: Padding(
+                                    //   padding: EdgeInsets.only(
+                                    //       right: dimension.height15,
+                                    //       top: dimension.height10),
+                                    //   child: Column(
+                                    //     crossAxisAlignment: CrossAxisAlignment.end,
+                                    //     children: [
+                                    //       InkWell(
+                                    //         onTap: () {
+                                    //           showDialog(
+                                    //             context: context,
+                                    //             builder: (BuildContext context) {
+                                    //               return AlertDialog(
+                                    //                 title: Text(
+                                    //                   "Are you sure you want to delete provider?",
+                                    //                   style: GoogleFonts.poppins(
+                                    //                       color: AppColors.Colorq,
+                                    //                       fontWeight:
+                                    //                       FontWeight.bold,
+                                    //                       fontSize:
+                                    //                       dimension.font15),
+                                    //                 ),
+                                    //                 content: Row(
+                                    //                   mainAxisAlignment:
+                                    //                   MainAxisAlignment
+                                    //                       .spaceBetween,
+                                    //                   crossAxisAlignment:
+                                    //                   CrossAxisAlignment.start,
+                                    //                   children: [
+                                    //                     InkWell(
+                                    //                       onTap: () {
+                                    //                         // _delete(documentSnapshot
+                                    //                         //     .id);
+                                    //                         Get.back();
+                                    //                       },
+                                    //                       child: Container(
+                                    //                         height:
+                                    //                         dimension.height40,
+                                    //                         width:
+                                    //                         dimension.height95,
+                                    //                         decoration: BoxDecoration(
+                                    //                             color: AppColors
+                                    //                                 .Colorq,
+                                    //                             borderRadius: BorderRadius
+                                    //                                 .circular(dimension
+                                    //                                 .radius15)),
+                                    //                         child: Row(
+                                    //                           crossAxisAlignment:
+                                    //                           CrossAxisAlignment
+                                    //                               .center,
+                                    //                           mainAxisAlignment:
+                                    //                           MainAxisAlignment
+                                    //                               .center,
+                                    //                           children: [
+                                    //                             Icon(Icons.done),
+                                    //                             SizedBox(
+                                    //                               width: dimension
+                                    //                                   .height7,
+                                    //                             ),
+                                    //                             Text(
+                                    //                               "Yes",
+                                    //                               style: GoogleFonts.poppins(
+                                    //                                   color: Colors
+                                    //                                       .white,
+                                    //                                   fontWeight:
+                                    //                                   FontWeight
+                                    //                                       .bold,
+                                    //                                   fontSize:
+                                    //                                   dimension
+                                    //                                       .font20),
+                                    //                             ),
+                                    //                           ],
+                                    //                         ),
+                                    //                       ),
+                                    //                     ),
+                                    //                     SizedBox(
+                                    //                       width: dimension.height20,
+                                    //                     ),
+                                    //                     InkWell(
+                                    //                       onTap: () {
+                                    //                         // Get.to(home_page());
+                                    //                         Get.back();
+                                    //                       },
+                                    //                       child: Container(
+                                    //                         height:
+                                    //                         dimension.height40,
+                                    //                         width:
+                                    //                         dimension.height95,
+                                    //                         decoration: BoxDecoration(
+                                    //                             color: AppColors
+                                    //                                 .Colorq,
+                                    //                             borderRadius: BorderRadius
+                                    //                                 .circular(dimension
+                                    //                                 .radius15)),
+                                    //                         child: Row(
+                                    //                           mainAxisAlignment:
+                                    //                           MainAxisAlignment
+                                    //                               .center,
+                                    //                           crossAxisAlignment:
+                                    //                           CrossAxisAlignment
+                                    //                               .center,
+                                    //                           children: [
+                                    //                             Icon(Icons.cancel),
+                                    //                             SizedBox(
+                                    //                               width: dimension
+                                    //                                   .height7,
+                                    //                             ),
+                                    //                             Text(
+                                    //                               "No",
+                                    //                               style: GoogleFonts.poppins(
+                                    //                                   color: Colors
+                                    //                                       .white,
+                                    //                                   fontWeight:
+                                    //                                   FontWeight
+                                    //                                       .bold,
+                                    //                                   fontSize:
+                                    //                                   dimension
+                                    //                                       .font20),
+                                    //                             ),
+                                    //                           ],
+                                    //                         ),
+                                    //                       ),
+                                    //                     ),
+                                    //                   ],
+                                    //                 ),
+                                    //               );
+                                    //             },
+                                    //           );
+                                    //         },
+                                    //         child: Container(
+                                    //           height: dimension.height40,
+                                    //           width: dimension.height40,
+                                    //           decoration: BoxDecoration(
+                                    //               shape: BoxShape.circle,
+                                    //               color: AppColors.Colorq),
+                                    //           child: Icon(
+                                    //             Icons.delete,
+                                    //             color: AppColors.white1,
+                                    //           ),
+                                    //         ),
+                                    //       ),
+                                    //     ],
+                                    //   ),
+                                    // ),
+                                  ),
                                 ),
                                 Container(
                                   height: dimension.height70,
@@ -281,7 +291,8 @@ class _Total_User_ListState extends State<Total_User_List> {
                                       ),
                                       Padding(
                                         padding: EdgeInsets.only(
-                                            left: dimension.height15, right: dimension.height15),
+                                            left: dimension.height15,
+                                            right: dimension.height15),
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
