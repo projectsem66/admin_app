@@ -135,7 +135,7 @@ class _categorylistState extends State<categorylist> {
             child: Column(
               children: [
                 Center(
-                  child: Text("Update your Items",
+                  child: Text("Update Category",
                       style: TextStyle(
                           color: AppColors.Colorq,
                           fontWeight: FontWeight.bold,
@@ -195,23 +195,42 @@ class _categorylistState extends State<categorylist> {
                 SizedBox(
                   height: dimension.height30,
                 ),
-                TextField(
-                  controller: _namecontroller,
-                  decoration: InputDecoration(
-                      labelText: 'Enter Category name',
-                      hintText: "Enter Categoty name",
-                      labelStyle: TextStyle(color: AppColors.Colorq),
-                      border: OutlineInputBorder(
-                          borderRadius:
-                              BorderRadius.circular(dimension.radius15)),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(dimension.height7),
+                    color: AppColors.Colorq.withOpacity(0.1)
+                  ),
+                  child: TextField(
+                    controller: _namecontroller,
+                    decoration: InputDecoration(
+                        labelText: 'Enter Category name',
+                        hintText: "Enter Categoty name",
+                        labelStyle: TextStyle(color: AppColors.Colorq),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(color: AppColors.Colorq),
+                            borderRadius:
+                                BorderRadius.circular(dimension.radius15,),),
                       focusedBorder: OutlineInputBorder(
-                          borderRadius:
-                              BorderRadius.circular(dimension.radius15),
-                          borderSide: BorderSide(color: AppColors.Colorq)),
+                        borderSide:
+                        BorderSide(color: AppColors.Colorq),
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: AppColors.red),
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
                       enabledBorder: OutlineInputBorder(
-                          borderRadius:
-                              BorderRadius.circular(dimension.radius15),
-                          borderSide: BorderSide(color: AppColors.Colorq))),
+                        borderSide:
+                        BorderSide(color: Colors.transparent),
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: AppColors.red),
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                      
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: dimension.height20,
@@ -260,11 +279,12 @@ class _categorylistState extends State<categorylist> {
                         // });
                       },
                       child: Container(
-                        height: dimension.height55,
-                        width: dimension.height60 * 2,
+                        height: dimension.height50,
+                        width: screenwidth()-dimension.width41,
+                        // width: dimension.height60 * 2,
                         decoration: BoxDecoration(
                             borderRadius:
-                                BorderRadius.circular(dimension.radius15),
+                                BorderRadius.circular(dimension.radius7),
                             color: AppColors.Colorq),
                         child: Center(
                           child: Text(
@@ -470,13 +490,13 @@ class _categorylistState extends State<categorylist> {
                                                                     .Colorq),
                                                         titlePadding:
                                                             EdgeInsets.all(10),
-                                                        title: "Log Out",
+                                                        title: "Delete",
                                                         // contentPadding: EdgeInsets.all(),
                                                         // middleText: "Are you sure to delete",
                                                         content: Column(
                                                           children: [
                                                             Text(
-                                                              "Are you sure you want to Delete Provider?",
+                                                              "Are you sure you want to Delete Category?",
                                                               style: GoogleFonts.poppins(
                                                                   color: AppColors
                                                                       .Colorq,

@@ -23,13 +23,13 @@ class SubCategoryList extends StatefulWidget {
 
   const SubCategoryList({super.key, required this.categoryTitle});
 
-
   @override
   State<SubCategoryList> createState() => _SubCategoryListState();
 }
-String SubCategoryName="";
-class _SubCategoryListState extends State<SubCategoryList> {
 
+String SubCategoryName = "";
+
+class _SubCategoryListState extends State<SubCategoryList> {
   Stream<QuerySnapshot<Object?>> getSubCategory() {
     return FirebaseFirestore.instance
         .collection('category')
@@ -160,14 +160,14 @@ class _SubCategoryListState extends State<SubCategoryList> {
           padding: EdgeInsets.only(
               top: dimension.height20,
               left: dimension.height20,
-                right: dimension.height20,
+              right: dimension.height20,
               bottom: MediaQuery.of(ctx).viewInsets.bottom + 20),
           child: Padding(
-            padding:  EdgeInsets.only(top: dimension.height15),
+            padding: EdgeInsets.only(top: dimension.height15),
             child: Column(
               children: [
                 Center(
-                  child: Text("Update your Items",
+                  child: Text("Update Subcategory",
                       style: TextStyle(
                           color: AppColors.Colorq,
                           fontWeight: FontWeight.bold,
@@ -184,8 +184,8 @@ class _SubCategoryListState extends State<SubCategoryList> {
                     children: [
                       pickedImage != null
                           ? Container(
-                              height: dimension.height100+20,
-                              width: dimension.height100+20,
+                              height: dimension.height100 + 20,
+                              width: dimension.height100 + 20,
                               decoration: BoxDecoration(
                                   image: DecorationImage(
                                       image: FileImage(pickedImage!),
@@ -194,8 +194,8 @@ class _SubCategoryListState extends State<SubCategoryList> {
                                   color: AppColors.Colorq.withOpacity(0.05)),
                             )
                           : Container(
-                              height: dimension.height100+20,
-                              width: dimension.height100+20,
+                              height: dimension.height100 + 20,
+                              width: dimension.height100 + 20,
                               decoration: BoxDecoration(
                                   image: DecorationImage(
                                       image: NetworkImage(imgPath),
@@ -204,7 +204,8 @@ class _SubCategoryListState extends State<SubCategoryList> {
                                   color: AppColors.Colorq.withOpacity(0.05)),
                             ),
                       Container(
-                        margin: EdgeInsets.only(top: dimension.height65, left: dimension.height80),
+                        margin: EdgeInsets.only(
+                            top: dimension.height65, left: dimension.height80),
                         height: dimension.height50,
                         width: dimension.height50,
                         decoration: BoxDecoration(
@@ -226,19 +227,39 @@ class _SubCategoryListState extends State<SubCategoryList> {
                 SizedBox(
                   height: dimension.height30,
                 ),
-                TextField(
-                  controller: _namecontroller,
-                  decoration: InputDecoration(
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(dimension.height7),
+                    color: AppColors.Colorq.withOpacity(0.1)
+                  ),
+                  child: TextField(
+                    controller: _namecontroller,
+                    decoration: InputDecoration(
                       labelText: 'Name',
                       hintText: "Umang m patel",
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(dimension.radius15)),
+                          borderRadius:
+                              BorderRadius.circular(dimension.radius15)),
                       focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(dimension.radius15),
-                          borderSide: BorderSide(color: AppColors.Colorq)),
+                        borderSide:
+                        BorderSide(color: AppColors.Colorq),
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: AppColors.red),
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
                       enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(dimension.radius15),
-                          borderSide: BorderSide(color: AppColors.Colorq))),
+                        borderSide:
+                        BorderSide(color: Colors.transparent),
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: AppColors.red),
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: dimension.height20,
@@ -277,10 +298,11 @@ class _SubCategoryListState extends State<SubCategoryList> {
                         Get.back();
                       },
                       child: Container(
-                        height: dimension.height55,
-                        width: dimension.height100+20,
+                        height: dimension.height50,
+                        width: screenwidth() - dimension.width41,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(dimension.radius15),
+                            borderRadius:
+                                BorderRadius.circular(dimension.radius7),
                             color: AppColors.Colorq),
                         child: Center(
                           child: Text(
@@ -325,306 +347,337 @@ class _SubCategoryListState extends State<SubCategoryList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.Colorq,
-        leading: IconButton(
-          onPressed: () {
-            Get.to(categorylist());
-          },
-          icon: Icon(
-            Icons.keyboard_arrow_left,
-            color: Colors.white,
-            size: dimension.icon30,
-          ),
-        ),
-        title: Text(widget.categoryTitle,
-            style: GoogleFonts.poppins(
-                color: Colors.white,
-                fontWeight: FontWeight.w400,
-                fontSize: dimension.font20)),
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: dimension.height15),
-            child: GestureDetector(
-              onTap: () {
-                categoryNamee = widget.categoryTitle;
-                Get.to(sub_category());
-              },
-              child: Icon(
-                Icons.add,
-                color: Colors.white,
-              ),
+        appBar: AppBar(
+          backgroundColor: AppColors.Colorq,
+          leading: IconButton(
+            onPressed: () {
+              Get.to(categorylist());
+            },
+            icon: Icon(
+              Icons.keyboard_arrow_left,
+              color: Colors.white,
+              size: dimension.icon30,
             ),
           ),
-        ],
-      ),
-      body: WillPopScope(child: Padding(
-        padding: EdgeInsets.only(left: dimension.height12, right: dimension.height12, top: dimension.height15),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                height: screenheight() - 95,
-                child: StreamBuilder(
-                  stream: getSubCategory(),
-                  builder:
-                      (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-                    if (streamSnapshot.hasData) {
-                      return GridView.builder(
-                        itemCount: streamSnapshot.data!.docs.length,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            mainAxisSpacing: 0.5,
-                            crossAxisSpacing: 0.5,
-                            childAspectRatio: 0.69),
-                        itemBuilder: (context, index) {
-                          final DocumentSnapshot documentSnapshot =
-                          streamSnapshot.data!.docs[index];
-                          return Padding(
-                            padding: EdgeInsets.all(dimension.height8),
-                            child: Bounce(
-                              onTap: () {
-                                subCategoryNameForSection = documentSnapshot.id;
+          title: Text(widget.categoryTitle,
+              style: GoogleFonts.poppins(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w400,
+                  fontSize: dimension.font20)),
+          actions: [
+            Padding(
+              padding: EdgeInsets.only(right: dimension.height15),
+              child: GestureDetector(
+                onTap: () {
+                  categoryNamee = widget.categoryTitle;
+                  Get.to(sub_category());
+                },
+                child: Icon(
+                  Icons.add,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
+        body: WillPopScope(
+          child: Padding(
+            padding: EdgeInsets.only(
+                left: dimension.height12,
+                right: dimension.height12,
+                top: dimension.height15),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    height: screenheight() - 95,
+                    child: StreamBuilder(
+                      stream: getSubCategory(),
+                      builder: (context,
+                          AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                        if (streamSnapshot.hasData) {
+                          return GridView.builder(
+                            itemCount: streamSnapshot.data!.docs.length,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    mainAxisSpacing: 0.5,
+                                    crossAxisSpacing: 0.5,
+                                    childAspectRatio: 0.69),
+                            itemBuilder: (context, index) {
+                              final DocumentSnapshot documentSnapshot =
+                                  streamSnapshot.data!.docs[index];
+                              return Padding(
+                                padding: EdgeInsets.all(dimension.height8),
+                                child: Bounce(
+                                  onTap: () {
+                                    subCategoryNameForSection =
+                                        documentSnapshot.id;
 
-                                Get.to(sectionlist(subcategory: documentSnapshot.id, categoryTitle: documentSnapshot.id,));
-
-                              },
-                              duration: Duration(milliseconds: 200),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  //  color: Colors.black,
-                                    borderRadius: BorderRadius.circular(dimension.radius15)),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      height: dimension.height70*2,
-                                      width: double.maxFinite,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.only(
-                                              topRight: Radius.circular(dimension.radius15),
-                                              topLeft: Radius.circular(dimension.radius15)),
-                                          // color: Colors.red,
-                                          color: AppColors.Colorq.withOpacity(
-                                              0.05),
-                                          image: DecorationImage(
-                                              image: NetworkImage(
-                                                  documentSnapshot['scimage']
-                                                      .toString()),
-                                              fit: BoxFit.cover)),
-                                    ),
-                                    Container(
-                                      height: dimension.height83,
-                                      width: double.maxFinite,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.only(
-                                              bottomRight: Radius.circular(dimension.radius15),
-                                              bottomLeft: Radius.circular(dimension.radius15)),
-                                          color: AppColors.Colorq.withOpacity(
-                                              0.05)),
-                                      child: Padding(
-                                        padding: EdgeInsets.only(top: dimension.height10),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                                documentSnapshot['scname']
-                                                    .toString(),
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                    FontWeight.bold)),
-                                            Padding(
-                                              padding:  EdgeInsets.only(
-                                                  bottom: dimension.height10,
-                                                  left: dimension.height20,
-                                                  right: dimension.height20),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceBetween,
-                                                children: [
-                                                  Bounce(
-                                                    duration: Duration(
-                                                        milliseconds: 200),
-                                                    onTap: () {
-                                                      snapid =
-                                                          documentSnapshot.id;
-                                                      _update(documentSnapshot);
-                                                    },
-                                                    child: Container(
-                                                      height: dimension.height35,
-                                                      width: dimension.height35,
-                                                      decoration: BoxDecoration(
-                                                          shape:
-                                                          BoxShape.circle,
-                                                          color:
-                                                          AppColors.Colorq),
-                                                      child: Icon(
-                                                        Icons.edit,
-                                                        color: Colors.white,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Bounce(
-                                                    // onTap: () async {
-                                                    //   await deleteSC(
-                                                    //       documentSnapshot.id);
-                                                    // },
-                                                    onTap: () {
-                                                      Get.defaultDialog(
-                                                        // ScaffoldKey.currentState?.openEndDrawer();
-                                                        buttonColor:
-                                                        AppColors.Colorq,
-                                                        backgroundColor:
-                                                        Colors.white,
-                                                        cancelTextColor:
-                                                        AppColors.Colorq,
-                                                        titleStyle:
-                                                        GoogleFonts.poppins(
-                                                            fontSize: 28,
-                                                            color: AppColors
-                                                                .Colorq),
-                                                        titlePadding:
-                                                        EdgeInsets.all(10),
-                                                        title: "Log Out",
-                                                        // contentPadding: EdgeInsets.all(),
-                                                        // middleText: "Are you sure to delete",
-                                                        content: Column(
-                                                          children: [
-                                                            Text(
-                                                              "Are you sure you want to Delete Provider?",
-                                                              style: GoogleFonts.poppins(
+                                    Get.to(sectionlist(
+                                      subcategory: documentSnapshot.id,
+                                      categoryTitle: documentSnapshot.id,
+                                    ));
+                                  },
+                                  duration: Duration(milliseconds: 200),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        //  color: Colors.black,
+                                        borderRadius: BorderRadius.circular(
+                                            dimension.radius15)),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          height: dimension.height70 * 2,
+                                          width: double.maxFinite,
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.only(
+                                                  topRight: Radius.circular(
+                                                      dimension.radius15),
+                                                  topLeft: Radius.circular(
+                                                      dimension.radius15)),
+                                              // color: Colors.red,
+                                              color:
+                                                  AppColors.Colorq.withOpacity(
+                                                      0.05),
+                                              image: DecorationImage(
+                                                  image: NetworkImage(
+                                                      documentSnapshot[
+                                                              'scimage']
+                                                          .toString()),
+                                                  fit: BoxFit.cover)),
+                                        ),
+                                        Container(
+                                          height: dimension.height83,
+                                          width: double.maxFinite,
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.only(
+                                                  bottomRight: Radius.circular(
+                                                      dimension.radius15),
+                                                  bottomLeft: Radius.circular(
+                                                      dimension.radius15)),
+                                              color:
+                                                  AppColors.Colorq.withOpacity(
+                                                      0.05)),
+                                          child: Padding(
+                                            padding: EdgeInsets.only(
+                                                top: dimension.height10),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                    documentSnapshot['scname']
+                                                        .toString(),
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      bottom:
+                                                          dimension.height10,
+                                                      left: dimension.height20,
+                                                      right:
+                                                          dimension.height20),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Bounce(
+                                                        duration: Duration(
+                                                            milliseconds: 200),
+                                                        onTap: () {
+                                                          snapid =
+                                                              documentSnapshot
+                                                                  .id;
+                                                          _update(
+                                                              documentSnapshot);
+                                                        },
+                                                        child: Container(
+                                                          height: dimension
+                                                              .height35,
+                                                          width: dimension
+                                                              .height35,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                                  shape: BoxShape
+                                                                      .circle,
                                                                   color: AppColors
-                                                                      .Colorq,
-                                                                  fontSize:
-                                                                  dimension
-                                                                      .height17,
-                                                                  fontWeight:
-                                                                  FontWeight
-                                                                      .w500),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        textConfirm: "Yes",
-                                                        textCancel: "Noo",
-                                                        confirm: TextButton(
-                                                          onPressed: () async {
-                                                            deleteSC(
-                                                                documentSnapshot
-                                                                    .id);
-                                                            Get.back();
-                                                          },
-                                                          child: Container(
-                                                            height: 40,
-                                                            width: 90,
-                                                            decoration:
-                                                            BoxDecoration(
-                                                              color: AppColors
-                                                                  .Colorq,
-                                                              borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                  10),
-                                                            ),
-                                                            child: Center(
-                                                              child: Text(
-                                                                "Yes",
-                                                                style: GoogleFonts.poppins(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    fontSize:
-                                                                    18,
-                                                                    fontWeight:
-                                                                    FontWeight
-                                                                        .w500),
-                                                              ),
-                                                            ),
+                                                                      .Colorq),
+                                                          child: Icon(
+                                                            Icons.edit,
+                                                            color: Colors.white,
                                                           ),
                                                         ),
-                                                        cancel: TextButton(
-                                                            onPressed: () {
-                                                              Get.back();
-                                                            },
-                                                            child: Container(
-                                                              height: 40,
-                                                              width: 90,
-                                                              decoration:
-                                                              BoxDecoration(
-                                                                // color: AppColors.orange,
-                                                                  border: Border.all(
-                                                                      color: AppColors
-                                                                          .Colorq,
-                                                                      width:
-                                                                      2),
-                                                                  borderRadius:
-                                                                  BorderRadius.circular(
-                                                                      10)),
-                                                              child: Center(
-                                                                child: Text(
-                                                                  "No",
+                                                      ),
+                                                      Bounce(
+                                                        // onTap: () async {
+                                                        //   await deleteSC(
+                                                        //       documentSnapshot.id);
+                                                        // },
+                                                        onTap: () {
+                                                          Get.defaultDialog(
+                                                            // ScaffoldKey.currentState?.openEndDrawer();
+                                                            buttonColor:
+                                                                AppColors
+                                                                    .Colorq,
+                                                            backgroundColor:
+                                                                Colors.white,
+                                                            cancelTextColor:
+                                                                AppColors
+                                                                    .Colorq,
+                                                            titleStyle: GoogleFonts
+                                                                .poppins(
+                                                                    fontSize:
+                                                                        28,
+                                                                    color: AppColors
+                                                                        .Colorq),
+                                                            titlePadding:
+                                                                EdgeInsets.all(
+                                                                    10),
+                                                            title: "Delete",
+                                                            // contentPadding: EdgeInsets.all(),
+                                                            // middleText: "Are you sure to delete",
+                                                            content: Column(
+                                                              children: [
+                                                                Text(
+                                                                  "Are you sure you want to Delete Sub Category?",
                                                                   style: GoogleFonts.poppins(
                                                                       color: AppColors
                                                                           .Colorq,
                                                                       fontSize:
-                                                                      18,
+                                                                          dimension
+                                                                              .height17,
                                                                       fontWeight:
-                                                                      FontWeight
-                                                                          .w500),
+                                                                          FontWeight
+                                                                              .w500),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            textConfirm: "Yes",
+                                                            textCancel: "Noo",
+                                                            confirm: TextButton(
+                                                              onPressed:
+                                                                  () async {
+                                                                deleteSC(
+                                                                    documentSnapshot
+                                                                        .id);
+                                                                Get.back();
+                                                              },
+                                                              child: Container(
+                                                                height: 40,
+                                                                width: 90,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: AppColors
+                                                                      .Colorq,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              10),
+                                                                ),
+                                                                child: Center(
+                                                                  child: Text(
+                                                                    "Yes",
+                                                                    style: GoogleFonts.poppins(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            18,
+                                                                        fontWeight:
+                                                                            FontWeight.w500),
+                                                                  ),
                                                                 ),
                                                               ),
-                                                            )),
-                                                      );
-                                                    },
-                                                    child: Container(
-                                                      height: dimension.height35,
-                                                      width: dimension.height35,
-                                                      decoration: BoxDecoration(
-                                                          shape:
-                                                          BoxShape.circle,
-                                                          color:
-                                                          AppColors.Colorq),
-                                                      child: Icon(
-                                                        Icons.delete,
-                                                        color: Colors.white,
+                                                            ),
+                                                            cancel: TextButton(
+                                                                onPressed: () {
+                                                                  Get.back();
+                                                                },
+                                                                child:
+                                                                    Container(
+                                                                  height: 40,
+                                                                  width: 90,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                          // color: AppColors.orange,
+                                                                          border: Border.all(
+                                                                              color: AppColors.Colorq,
+                                                                              width: 2),
+                                                                          borderRadius: BorderRadius.circular(10)),
+                                                                  child: Center(
+                                                                    child: Text(
+                                                                      "No",
+                                                                      style: GoogleFonts.poppins(
+                                                                          color: AppColors
+                                                                              .Colorq,
+                                                                          fontSize:
+                                                                              18,
+                                                                          fontWeight:
+                                                                              FontWeight.w500),
+                                                                    ),
+                                                                  ),
+                                                                )),
+                                                          );
+                                                        },
+                                                        child: Container(
+                                                          height: dimension
+                                                              .height35,
+                                                          width: dimension
+                                                              .height35,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                                  shape: BoxShape
+                                                                      .circle,
+                                                                  color: AppColors
+                                                                      .Colorq),
+                                                          child: Icon(
+                                                            Icons.delete,
+                                                            color: Colors.white,
+                                                          ),
+                                                        ),
                                                       ),
-                                                    ),
+                                                    ],
                                                   ),
-                                                ],
-                                              ),
-                                            )
-                                          ],
+                                                )
+                                              ],
+                                            ),
+                                          ),
                                         ),
-                                      ),
+                                      ],
                                     ),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            ),
+                              );
+                            },
                           );
-                        },
-                      );
-                    }
+                        }
 
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  },
-                ),
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ), onWillPop: () async{
-        print("Tapped");
-        setState(() {
-          Get.off(home_page());
-        });
-        return false;
-      },)
-    );
+          onWillPop: () async {
+            print("Tapped");
+            setState(() {
+              Get.off(home_page());
+            });
+            return false;
+          },
+        ));
   }
 
   pickImage(ImageSource imageSource) async {
