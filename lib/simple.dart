@@ -87,14 +87,23 @@ class _simpleState extends State<simple> {
     return WillPopScope(
       child: Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: false,
+          iconTheme: IconThemeData(color: Colors.white, size: dimension.icon30),
           backgroundColor: AppColors.Colorq,
-          centerTitle: false,
+          leading: IconButton(
+            onPressed: () {
+              Get.to(home_page());
+            },
+            icon: Icon(
+              Icons.arrow_back_ios_outlined,
+              color: Colors.white,
+              size: dimension.icon30,
+            ),
+          ),
           title: Text("Add Category",
               style: GoogleFonts.poppins(
                   color: Colors.white,
-                  fontSize: dimension.height20,
-                  fontWeight: FontWeight.w400)),
+                  fontWeight: FontWeight.w400,
+                  fontSize: dimension.font20)),
         ),
         body: Padding(
           padding: EdgeInsets.only(

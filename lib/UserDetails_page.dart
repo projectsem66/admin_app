@@ -6,6 +6,7 @@ import 'package:bounce/bounce.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class UserDetails extends StatefulWidget {
   String UserId;
@@ -54,11 +55,11 @@ class _UserDetailsState extends State<UserDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: BigText(
-          text: 'User Details',
-          size: dimension.font22,
-          color: Colors.white,
-        ),
+        title: Text("User Details",
+            style: GoogleFonts.poppins(
+                color: Colors.white,
+                fontWeight: FontWeight.w400,
+                fontSize: dimension.font20)),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);

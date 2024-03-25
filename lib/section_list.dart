@@ -121,8 +121,9 @@ class _sectionlistState extends State<sectionlist> {
             padding: EdgeInsets.only(top: dimension.height15),
             child: Column(
               children: [
+                SizedBox(height: dimension.height40,),
                 Center(
-                  child: Text("Update your Items",
+                  child: Text("Update Section",
                       style: TextStyle(
                           color: AppColors.Colorq,
                           fontWeight: FontWeight.bold,
@@ -183,23 +184,39 @@ class _sectionlistState extends State<sectionlist> {
                 SizedBox(
                   height: dimension.height30,
                 ),
-                TextField(
-                  controller: _namecontroller,
-                  decoration: InputDecoration(
-                      labelText: 'Name',
-                      hintText: "Umang m patel",
-                      labelStyle: TextStyle(color: AppColors.Colorq),
-                      border: OutlineInputBorder(
-                          borderRadius:
-                              BorderRadius.circular(dimension.radius15)),
+                Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.Colorq.withOpacity(0.1)
+                  ),
+                  child: TextField(
+                    controller: _namecontroller,
+                    decoration: InputDecoration(
+                        labelText: 'Enter Section Name',
+                        hintText: "Umang m patel",
+                        labelStyle: TextStyle(color: AppColors.Colorq),
+                        border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.circular(dimension.radius7)),
                       focusedBorder: OutlineInputBorder(
-                          borderRadius:
-                              BorderRadius.circular(dimension.radius15),
-                          borderSide: BorderSide(color: AppColors.Colorq)),
+                        borderSide:
+                        BorderSide(color: AppColors.Colorq),
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: AppColors.red),
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
                       enabledBorder: OutlineInputBorder(
-                          borderRadius:
-                              BorderRadius.circular(dimension.radius15),
-                          borderSide: BorderSide(color: AppColors.Colorq))),
+                        borderSide:
+                        BorderSide(color: Colors.transparent),
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: AppColors.red),
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: dimension.height20,
@@ -249,10 +266,10 @@ class _sectionlistState extends State<sectionlist> {
                       },
                       child: Container(
                         height: dimension.height55,
-                        width: dimension.height60 * 2,
+                        width: screenwidth()-dimension.height45,
                         decoration: BoxDecoration(
                             borderRadius:
-                                BorderRadius.circular(dimension.radius15),
+                                BorderRadius.circular(dimension.height7),
                             color: AppColors.Colorq),
                         child: Center(
                           child: Text(

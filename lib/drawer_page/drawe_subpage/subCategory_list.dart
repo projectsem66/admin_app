@@ -166,6 +166,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
             padding: EdgeInsets.only(top: dimension.height15),
             child: Column(
               children: [
+                SizedBox(height: dimension.height40,),
                 Center(
                   child: Text("Update Subcategory",
                       style: TextStyle(
@@ -299,7 +300,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
                       },
                       child: Container(
                         height: dimension.height50,
-                        width: screenwidth() - dimension.width41,
+                        width: screenwidth() - dimension.width45,
                         decoration: BoxDecoration(
                             borderRadius:
                                 BorderRadius.circular(dimension.radius7),

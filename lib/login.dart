@@ -333,7 +333,7 @@ class _LoginPageState extends State<LoginPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
-                              height: dimension.height80,
+                              height: dimension.height100,
                             ),
                             Padding(
                               padding:

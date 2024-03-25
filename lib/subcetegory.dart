@@ -128,7 +128,7 @@ class _sub_categoryState extends State<sub_category> {
                 Get.to(simple());
               },
               child: Icon(
-                Icons.arrow_back,
+                Icons.arrow_back_ios_outlined,
                 color: Colors.white,
               )),
           backgroundColor: AppColors.Colorq,

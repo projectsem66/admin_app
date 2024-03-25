@@ -151,7 +151,7 @@ class _BookingshowState extends State<Bookingshow> {
                                                                           .withOpacity(0.2)
                                                                       : documentSnapshot.get("status") == "Rated"
                                                                           ? AppColors.yellow.withOpacity(0.2)
-                                                                          : AppColors.Colorq,
+                                                                          : AppColors.Colorq.withOpacity(0.2),
                                               // rating yellow
                                               // paid Colorq
 

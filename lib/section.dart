@@ -287,7 +287,7 @@ class _Section_State extends State<Section> {
                   height: dimension.height50,
                   width: double.maxFinite,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(dimension.radius15),
+                      borderRadius: BorderRadius.circular(dimension.radius7),
                       color: AppColors.Colorq),
                   child: Center(
                     child: Text(
