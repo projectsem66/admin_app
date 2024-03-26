@@ -175,7 +175,7 @@ class _UserDetailsState extends State<ProviderDetailss> {
                                 shape: BoxShape.circle,
                                 // border: Border.all( color: AppColors.themColor,width: 2),
                               ),
-                              child: Icon(Icons.call, color: AppColors.black),
+                              child: Icon(Icons.call, color:AppColors.Colorq),
                             ),
                           )
                         ],

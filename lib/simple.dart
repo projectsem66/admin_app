@@ -202,7 +202,7 @@ class _simpleState extends State<simple> {
               GestureDetector(
                 onTap: () {
                   categoryNameForSection = _cname.text.toString();
-                  if (_cname.text.isEmpty && _cname == null) {
+                  if (_cname.text.isEmpty && pickedImage == null) {
                     Get.snackbar(
 
                         "Enter required field", "Both fields are required",

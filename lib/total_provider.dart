@@ -175,7 +175,7 @@ class _totalproviderState extends State<totalprovider> {
                                       titleStyle: GoogleFonts.poppins(
                                           fontSize: 28, color: AppColors.Colorq),
                                       titlePadding: EdgeInsets.all(10),
-                                      title: "Log Out",
+                                      title: "Delete",
                                       // contentPadding: EdgeInsets.all(),
                                       // middleText: "Are you sure to delete",
                                       content: Column(

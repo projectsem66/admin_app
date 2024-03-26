@@ -56,8 +56,8 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                       shrinkWrap: true,
                         itemCount: streamSnapshot.data!.docs.length,
                          scrollDirection: Axis.vertical,
-                        // shrinkWrap: true,
-                     //   physics: NeverScrollableScrollPhysics(),
+
+                      physics: AlwaysScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
                           final DocumentSnapshot documentSnapshot =
                           streamSnapshot.data!.docs[index];
@@ -331,15 +331,18 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                               ),
                             ),
                           );
+
                         },
                       ),
+
                     );
                   }
                   return Center(
                     child: CircularProgressIndicator(),
                   );
                 },
-              )
+              ),
+             SizedBox(height: 100,)
             ],
           ),
         ),  onWillPop: () async{

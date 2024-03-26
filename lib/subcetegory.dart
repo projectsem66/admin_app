@@ -249,7 +249,7 @@ class _sub_categoryState extends State<sub_category> {
               GestureDetector(
                 onTap: () {
                   subCategoryNameForSection = _scName.text.toString();
-                  if (_scName.text.isEmpty && pickedSCimg == null) {
+                  if (_scName.text.isEmpty || pickedSCimg == null) {
                     Get.snackbar(
                         "Enter required field", "Both fields are required",
                         colorText: Colors.red,

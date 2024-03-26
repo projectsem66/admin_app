@@ -521,13 +521,13 @@ class _sectionlistState extends State<sectionlist> {
                                                                   .Colorq),
                                                           titlePadding:
                                                           EdgeInsets.all(10),
-                                                          title: "Log Out",
+                                                          title: "Section",
                                                           // contentPadding: EdgeInsets.all(),
                                                           // middleText: "Are you sure to delete",
                                                           content: Column(
                                                             children: [
                                                               Text(
-                                                                "Are you sure you want to Delete Provider?",
+                                                                "Are you sure you want to Section?",
                                                                 style: GoogleFonts.poppins(
                                                                     color: AppColors
                                                                         .Colorq,

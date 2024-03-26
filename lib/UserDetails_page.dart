@@ -180,7 +180,7 @@ class _UserDetailsState extends State<UserDetails> {
                                   color: AppColors.Colorq
                                       .withOpacity(0.3),
                                   shape: BoxShape.circle),
-                              child: Icon(Icons.call),
+                              child: Icon(Icons.call,color: AppColors.Colorq,),
                             ),
                           )
                         ],
