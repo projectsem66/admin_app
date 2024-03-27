@@ -252,18 +252,18 @@ class _sub_categoryState extends State<sub_category> {
                   if (_scName.text.isEmpty || pickedSCimg == null) {
                     Get.snackbar(
                         "Enter required field", "Both fields are required",
-                        colorText: Colors.red,
+                        colorText: Colors.white,
                         backgroundColor: AppColors.Colorq.withOpacity(0.05));
                   } else if (_scName.text.isEmpty){
                     Get.snackbar(
                         "Enter required field", "Sub Category name is requird",
-                        colorText: Colors.red,
+                        colorText: Colors.white,
                         backgroundColor: AppColors.Colorq.withOpacity(0.05));
                   }
                   else if (pickedSCimg==null){
                     Get.snackbar(
                         "Enter required field", "Sub Category image is requird",
-                        colorText: Colors.red,
+                        colorText: Colors.white,
                         backgroundColor: AppColors.Colorq.withOpacity(0.05));
                   }
                   else {
