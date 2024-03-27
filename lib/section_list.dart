@@ -521,7 +521,7 @@ class _sectionlistState extends State<sectionlist> {
                                                                   .Colorq),
                                                           titlePadding:
                                                           EdgeInsets.all(10),
-                                                          title: "Section",
+                                                          title: "Delete",
                                                           // contentPadding: EdgeInsets.all(),
                                                           // middleText: "Are you sure to delete",
                                                           content: Column(
