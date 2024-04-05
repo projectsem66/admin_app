@@ -377,7 +377,7 @@ class _LoginPageState extends State<LoginPage> {
                                         suffixIcon: Icon(Icons.email,color: AppColors.Colorq,),
                                         floatingLabelBehavior:
                                             FloatingLabelBehavior.always,
-                                        labelText: "Email",
+                                        labelText: "Email Address",
                                         labelStyle:
                                             TextStyle(color: AppColors.Colorq),
                                         contentPadding:
@@ -483,7 +483,7 @@ class _LoginPageState extends State<LoginPage> {
                                     height: dimension.height40,
                                   ),
                                   RoundButton(
-                                    title: 'Login',
+                                    title: 'Sign In',
                                     loding: loading,
                                     onTap: () {
                                       if (_formKey.currentState!.validate()) {

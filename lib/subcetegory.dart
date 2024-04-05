@@ -148,14 +148,15 @@ class _sub_categoryState extends State<sub_category> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: dimension.height10,),
+
               Text("Category Name: ${categoryNamee}",
                   style: GoogleFonts.poppins(
                       color: AppColors.Colorq,
                       fontSize: dimension.height14,
                       fontWeight: FontWeight.w400)),
-              SizedBox(
-                height: dimension.height15,
-              ),
+              SizedBox(height: dimension.height40,),
+
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -252,18 +253,18 @@ class _sub_categoryState extends State<sub_category> {
                   if (_scName.text.isEmpty || pickedSCimg == null) {
                     Get.snackbar(
                         "Enter required field", "Both fields are required",
-                        colorText: Colors.red,
+                        colorText: Colors.white,
                         backgroundColor: AppColors.Colorq.withOpacity(0.05));
                   } else if (_scName.text.isEmpty){
                     Get.snackbar(
                         "Enter required field", "Sub Category name is requird",
-                        colorText: Colors.red,
+                        colorText: Colors.white,
                         backgroundColor: AppColors.Colorq.withOpacity(0.05));
                   }
                   else if (pickedSCimg==null){
                     Get.snackbar(
                         "Enter required field", "Sub Category image is requird",
-                        colorText: Colors.red,
+                        colorText: Colors.white,
                         backgroundColor: AppColors.Colorq.withOpacity(0.05));
                   }
                   else {

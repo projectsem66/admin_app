@@ -134,7 +134,7 @@ class _categorylistState extends State<categorylist> {
             padding: EdgeInsets.only(top: dimension.height15),
             child: Column(
               children: [
-                SizedBox(height: dimension.height40,),
+                SizedBox(height: dimension.height70,),
                 Center(
                   child: Text("Update Category",
                       style: TextStyle(
@@ -143,7 +143,7 @@ class _categorylistState extends State<categorylist> {
                           fontSize: dimension.font20)),
                 ),
                 SizedBox(
-                  height: dimension.height15,
+                  height: dimension.height20,
                 ),
                 GestureDetector(
                   onTap: () {
@@ -234,7 +234,7 @@ class _categorylistState extends State<categorylist> {
                   ),
                 ),
                 SizedBox(
-                  height: dimension.height20,
+                  height: dimension.height30,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

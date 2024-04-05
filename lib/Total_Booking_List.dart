@@ -54,10 +54,11 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                       //   color: Colors.deepPurpleAccent,
                       child: ListView.builder(
                       shrinkWrap: true,
+
                         itemCount: streamSnapshot.data!.docs.length,
                          scrollDirection: Axis.vertical,
 
-                      physics: AlwaysScrollableScrollPhysics(),
+                      physics: NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
                           final DocumentSnapshot documentSnapshot =
                           streamSnapshot.data!.docs[index];
@@ -342,7 +343,7 @@ class _Total_booking_ListState extends State<Total_booking_List> {
                   );
                 },
               ),
-             SizedBox(height: 100,)
+             SizedBox(height: 30,)
             ],
           ),
         ),  onWillPop: () async{

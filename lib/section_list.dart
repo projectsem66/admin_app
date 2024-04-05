@@ -121,7 +121,7 @@ class _sectionlistState extends State<sectionlist> {
             padding: EdgeInsets.only(top: dimension.height15),
             child: Column(
               children: [
-                SizedBox(height: dimension.height40,),
+                SizedBox(height: dimension.height70,),
                 Center(
                   child: Text("Update Section",
                       style: TextStyle(
@@ -130,7 +130,7 @@ class _sectionlistState extends State<sectionlist> {
                           fontSize: dimension.font20)),
                 ),
                 SizedBox(
-                  height: dimension.height15,
+                  height: dimension.height20,
                 ),
                 GestureDetector(
                   onTap: () {
@@ -186,7 +186,8 @@ class _sectionlistState extends State<sectionlist> {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                    color: AppColors.Colorq.withOpacity(0.1)
+                    color: AppColors.Colorq.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(dimension.height7)
                   ),
                   child: TextField(
                     controller: _namecontroller,
@@ -219,7 +220,7 @@ class _sectionlistState extends State<sectionlist> {
                   ),
                 ),
                 SizedBox(
-                  height: dimension.height20,
+                  height: dimension.height30,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -521,7 +522,7 @@ class _sectionlistState extends State<sectionlist> {
                                                                   .Colorq),
                                                           titlePadding:
                                                           EdgeInsets.all(10),
-                                                          title: "Section",
+                                                          title: "Delete",
                                                           // contentPadding: EdgeInsets.all(),
                                                           // middleText: "Are you sure to delete",
                                                           content: Column(
