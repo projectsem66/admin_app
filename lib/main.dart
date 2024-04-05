@@ -1,6 +1,6 @@
 
+import 'package:admin_app/Pages/home_page.dart';
 import 'package:admin_app/splace.dart';
-import 'package:admin_app/subcetegory.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -27,6 +27,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(iconTheme: IconThemeData(color: Colors.white)),
       debugShowCheckedModeBanner: false,
       home: splashScreen(),
+     // home:home_page()
     );
   }
 }

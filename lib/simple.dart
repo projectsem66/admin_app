@@ -112,7 +112,7 @@ class _simpleState extends State<simple> {
               top: dimension.height12),
           child: Column(
             children: [
-              SizedBox(height: dimension.height40,),
+              SizedBox(height: dimension.height20,),
               GestureDetector(
                 onTap: () {
                   showAlertBox();
@@ -206,12 +206,12 @@ class _simpleState extends State<simple> {
                     Get.snackbar(
 
                         "Enter required field", "Both fields are required",
-                        colorText: AppColors.white1,backgroundColor: AppColors.Colorq.withOpacity(0.4));
+                        colorText: Colors.white,backgroundColor: AppColors.Colorq.withOpacity(0.4));
                   }
                   else if (_cname.text.isEmpty){
                     Get.snackbar(
                         "Enter required field", "Category name is requird",
-                          colorText: Colors.white,
+                        colorText: Colors.white,
                         backgroundColor: AppColors.Colorq.withOpacity(0.05));
                   }
                   else if (_cname==null){
