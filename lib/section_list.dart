@@ -131,6 +131,7 @@ class _sectionlistState extends State<sectionlist> {
                 ),
                 SizedBox(
                   height: dimension.height20,
+
                 ),
                 GestureDetector(
                   onTap: () {
