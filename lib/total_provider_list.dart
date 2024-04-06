@@ -253,15 +253,14 @@ class _providerListState extends State<providerList> {
                                                           "phoneNumber"]);
                                                 },
                                                 child: Container(
-                                                  height: dimension.height32,
-                                                  width: dimension.height32,
+                                                  height: dimension.height35,
+                                                  width: dimension.height35,
                                                   decoration: BoxDecoration(
-                                                      shape: BoxShape.circle,
-                                                      color: AppColors.Colorq
-                                                          .withOpacity(0.05)),
-                                                  child: Icon(Icons.call,
-                                                      color: AppColors.Colorq
-                                                          .withOpacity(0.9)),
+                                                      color:
+                                                      AppColors.Colorq.withOpacity(
+                                                          0.3),
+                                                      shape: BoxShape.circle),
+                                                  child: Icon(Icons.call,size: dimension.height20,),
                                                 ),
                                               ),
                                             ],

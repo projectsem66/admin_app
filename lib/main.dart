@@ -24,7 +24,6 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      theme: ThemeData(iconTheme: IconThemeData(color: Colors.white)),
       debugShowCheckedModeBanner: false,
       home: splashScreen(),
      // home:home_page()

@@ -173,14 +173,15 @@ class _UserDetailsState extends State<UserDetails> {
                             onTap: () {
                               callProviderNumber(userDetailsSS?.get('mono'));
                             },
-                            child: Container(
+                            child:Container(
                               height: dimension.height40,
                               width: dimension.height40,
                               decoration: BoxDecoration(
-                                  color: AppColors.Colorq
-                                      .withOpacity(0.3),
+                                  color:
+                                  AppColors.Colorq.withOpacity(
+                                      0.3),
                                   shape: BoxShape.circle),
-                              child: Icon(Icons.call,color: AppColors.Colorq,),
+                              child: Icon(Icons.call),
                             ),
                           )
                         ],

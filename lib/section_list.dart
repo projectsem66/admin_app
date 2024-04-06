@@ -529,7 +529,7 @@ class _sectionlistState extends State<sectionlist> {
                                                           content: Column(
                                                             children: [
                                                               Text(
-                                                                "Are you sure you want to Section?",
+                                                                "Are you sure you want to Delete Section?",
                                                                 style: GoogleFonts.poppins(
                                                                     color: AppColors
                                                                         .Colorq,

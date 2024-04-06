@@ -168,14 +168,13 @@ class _UserDetailsState extends State<ProviderDetailss> {
                             },
                             child: Container(
                               height: dimension.height40,
-                              width: dimension.width40,
+                              width: dimension.height40,
                               decoration: BoxDecoration(
-                                color: AppColors.Colorq.withOpacity(0.4),
-                                //borderRadius: BorderRadius.circular(dimensions.radius7),
-                                shape: BoxShape.circle,
-                                // border: Border.all( color: AppColors.themColor,width: 2),
-                              ),
-                              child: Icon(Icons.call, color:AppColors.Colorq),
+                                  color:
+                                  AppColors.Colorq.withOpacity(
+                                      0.3),
+                                  shape: BoxShape.circle),
+                              child: Icon(Icons.call),
                             ),
                           )
                         ],
