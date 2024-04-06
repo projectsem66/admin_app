@@ -85,6 +85,7 @@ class _simpleState extends State<simple> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
+
       child: Scaffold(
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.white, size: dimension.icon30),
@@ -96,7 +97,7 @@ class _simpleState extends State<simple> {
             icon: Icon(
               Icons.arrow_back_ios_outlined,
               color: Colors.white,
-              size: dimension.icon30,
+              size: dimension.icon24,
             ),
           ),
           title: Text("Add Category",
@@ -204,19 +205,18 @@ class _simpleState extends State<simple> {
                   categoryNameForSection = _cname.text.toString();
                   if (_cname.text.isEmpty && pickedImage == null) {
                     Get.snackbar(
-
                         "Enter required field", "Both fields are required",
                         colorText: Colors.white,backgroundColor: AppColors.Colorq.withOpacity(0.4));
                   }
                   else if (_cname.text.isEmpty){
                     Get.snackbar(
-                        "Enter required field", "Category name is requird",
+                        "Enter required field", "Category name is required",
                         colorText: Colors.white,
                         backgroundColor: AppColors.Colorq.withOpacity(0.05));
                   }
-                  else if (_cname==null){
+                  else if (pickedImage==null){
                     Get.snackbar(
-                        "Enter required field", "Category image is requird",
+                        "Enter required field", "Category image is required",
                         colorText: Colors.white,
                         backgroundColor: AppColors.Colorq.withOpacity(0.05));
                   }
@@ -248,7 +248,7 @@ class _simpleState extends State<simple> {
       onWillPop: () async{
         print("Tapped");
         setState(() {
-          Get.off(home_page());
+          Get.back();
         });
         return false;
       },

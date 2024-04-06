@@ -656,7 +656,7 @@ class _sectionlistState extends State<sectionlist> {
           onWillPop: () async {
             print("Tapped");
             setState(() {
-              Get.off(home_page());
+              Get.back();
             });
             return false;
           },

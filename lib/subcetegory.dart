@@ -130,6 +130,7 @@ class _sub_categoryState extends State<sub_category> {
               child: Icon(
                 Icons.arrow_back_ios_outlined,
                 color: Colors.white,
+                size: dimension.icon24,
               )),
           backgroundColor: AppColors.Colorq,
           centerTitle: false,

@@ -139,16 +139,15 @@ class _allserviceState extends State<allservice> {
                                                     overflow:
                                                     TextOverflow.ellipsis,
                                                     maxLines: 2,
+
                                                     style: GoogleFonts.poppins(
                                                         color: AppColors.Colorq,
                                                         fontSize:
-                                                        dimension.font13,
+                                                        dimension.height13,
                                                         fontWeight:
                                                         FontWeight.w500)),
                                               ),
-                                              SizedBox(
-                                                height: dimension.height7,
-                                              ),
+                                           Spacer(),
                                               Row(
                                                 children: [
                                                   Padding(
@@ -189,7 +188,8 @@ class _allserviceState extends State<allservice> {
                                                           FontWeight
                                                               .w300)),
                                                 ],
-                                              )
+                                              ),
+                                              SizedBox(height: dimension.height7,)
                                             ],
                                           ),
                                         )

@@ -168,7 +168,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
               children: [
                 SizedBox(height: dimension.height70,),
                 Center(
-                  child: Text("Update Subcategory",
+                  child: Text("Update Sub Category",
                       style: TextStyle(
                           color: AppColors.Colorq,
                           fontWeight: FontWeight.bold,
@@ -236,7 +236,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
                   child: TextField(
                     controller: _namecontroller,
                     decoration: InputDecoration(
-                      labelText: 'Name',
+                      labelText: 'Enter Sub Category Name',
                       hintText: "Umang m patel",
                       border: OutlineInputBorder(
                           borderRadius:
@@ -674,7 +674,7 @@ class _SubCategoryListState extends State<SubCategoryList> {
           onWillPop: () async {
             print("Tapped");
             setState(() {
-              Get.off(home_page());
+              Get.back();
             });
             return false;
           },

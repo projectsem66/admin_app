@@ -253,15 +253,12 @@
 import 'dart:io';
 
 import 'package:admin_app/Pages/home_page.dart';
-import 'package:admin_app/bigtext.dart';
 import 'package:admin_app/round.dart';
-import 'package:admin_app/smalltext.dart';
 import 'package:admin_app/util/color.dart';
 import 'package:admin_app/util/dimension.dart';
 import 'package:admin_app/utils.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
@@ -315,7 +312,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-      exit(0);
+        exit(0);
         return true;
       },
       child: Scaffold(
@@ -324,177 +321,178 @@ class _LoginPageState extends State<LoginPage> {
           //  backgroundColor: Colors.transparent,
           //   elevation: 0,
           // ),
-          body: SafeArea(
-              child: SingleChildScrollView(
-                  child: Padding(
-                      padding:  EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Column(
-                          //mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: dimension.height100,
+          body: Center(
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                //mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Login",
+                          style: GoogleFonts.poppins(
+                            color: AppColors.Colorq,
+                            fontSize: dimension.height36,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: dimension.height40,
+                  ),
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              color: AppColors.Colorq.withOpacity(0.07),
+                              borderRadius: BorderRadius.circular(7)),
+                          child: TextFormField(
+                            controller: emailController,
+                            cursorColor: Colors.black,
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
                             ),
-                            Padding(
-                              padding:
-                                   EdgeInsets.symmetric(horizontal: 20.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-
-                                children: [
-                                  Text(
-                                    "Login",
-                                    style: GoogleFonts.poppins(
-                                      color: AppColors.Colorq,
-                                      fontSize: dimension.height36,
-                                    ),
-                                  ),
-                                ],
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: InputDecoration(
+                              suffixIcon: Icon(
+                                Icons.email,
+                                color: AppColors.Colorq,
+                              ),
+                              floatingLabelBehavior:
+                                  FloatingLabelBehavior.always,
+                              labelText: "Email Address",
+                              labelStyle: TextStyle(color: AppColors.Colorq),
+                              contentPadding: EdgeInsets.fromLTRB(5, 10, 5, 0),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: AppColors.Colorq),
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: AppColors.red),
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.transparent),
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: AppColors.red),
+                                borderRadius: BorderRadius.circular(5.0),
                               ),
                             ),
-                            SizedBox(
-                              height: dimension.height70,
+                            validator: (value) {
+                              bool emailValid = RegExp(
+                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                  .hasMatch(value!);
+                              if (value.isEmpty) {
+                                return 'Enter Email';
+                              } else if (!emailValid) {
+                                return 'Enter Valid Email';
+                              }
+                              return null;
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: AppColors.Colorq.withOpacity(0.07),
+                              borderRadius: BorderRadius.circular(7)),
+                          child: TextFormField(
+                            cursorColor: Colors.black,
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
                             ),
-
-                            Form(
-                              key: _formKey,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                        color: AppColors.Colorq.withOpacity(0.07),
-                                        borderRadius: BorderRadius.circular(7)),
-                                    child: TextFormField(
-                                      controller: emailController,
-                                      cursorColor: Colors.black,
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.black,
-                                      ),
-                                      keyboardType: TextInputType.emailAddress,
-                                      decoration: InputDecoration(
-                                        suffixIcon: Icon(Icons.email,color: AppColors.Colorq,),
-                                        floatingLabelBehavior:
-                                            FloatingLabelBehavior.always,
-                                        labelText: "Email Address",
-                                        labelStyle:
-                                            TextStyle(color: AppColors.Colorq),
-                                        contentPadding:
-                                            EdgeInsets.fromLTRB(5, 10, 5, 0),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide:
-                                          BorderSide(color: AppColors.Colorq),
-                                          borderRadius: BorderRadius.circular(5.0),
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(color: AppColors.red),
-                                          borderRadius: BorderRadius.circular(5.0),
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide:
-                                          BorderSide(color: Colors.transparent),
-                                          borderRadius: BorderRadius.circular(5.0),
-                                        ),
-                                        focusedErrorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(color: AppColors.red),
-                                          borderRadius: BorderRadius.circular(5.0),
-                                        ),
-                                      ),
-                                      validator: (value) {
-                                        bool emailValid = RegExp(
-                                                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                            .hasMatch(value!);
-                                        if (value.isEmpty) {
-                                          return 'Enter Email';
-                                        } else if (!emailValid) {
-                                          return 'Enter Valid Email';
-                                        }
-                                        return null;
-                                      },
-                                    ),
+                            controller: passwordController,
+                            keyboardType: TextInputType.text,
+                            obscureText: spwd,
+                            // obscureText: true,
+                            decoration: InputDecoration(
+                              floatingLabelBehavior:
+                                  FloatingLabelBehavior.always,
+                              labelText: "Password",
+                              labelStyle: TextStyle(color: AppColors.Colorq),
+                              contentPadding: EdgeInsets.fromLTRB(5, 10, 5, 0),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: AppColors.Colorq),
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: AppColors.red),
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.transparent),
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: AppColors.red),
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                              suffix: InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    spwd = !spwd;
+                                  });
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Icon(
+                                    spwd
+                                        ? Icons.visibility_off
+                                        : Icons.visibility,
+                                    color: AppColors.Colorq,
                                   ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                        color: AppColors.Colorq.withOpacity(0.07),
-                                        borderRadius: BorderRadius.circular(7)),
-                                    child: TextFormField(
-                                      cursorColor: Colors.black,
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.black,
-                                      ),
-                                      controller: passwordController,
-                                      keyboardType: TextInputType.text,
-                                      obscureText: spwd,
-                                      // obscureText: true,
-                                      decoration: InputDecoration(
-                                        floatingLabelBehavior:
-                                            FloatingLabelBehavior.always,
-                                        labelText: "Password",
-                                        labelStyle:
-                                            TextStyle(color: AppColors.Colorq),
-                                        contentPadding:
-                                            EdgeInsets.fromLTRB(5, 10, 5, 0),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide:
-                                          BorderSide(color: AppColors.Colorq),
-                                          borderRadius: BorderRadius.circular(5.0),
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(color: AppColors.red),
-                                          borderRadius: BorderRadius.circular(5.0),
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide:
-                                          BorderSide(color: Colors.transparent),
-                                          borderRadius: BorderRadius.circular(5.0),
-                                        ),
-                                        focusedErrorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(color: AppColors.red),
-                                          borderRadius: BorderRadius.circular(5.0),
-                                        ),
-                                        suffix: InkWell(
-                                          onTap: () {
-                                            setState(() {
-                                              spwd = !spwd;
-                                            });
-                                          },
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Icon(spwd
-                                                ? Icons.visibility_off
-                                                : Icons.visibility,color: AppColors.Colorq,),
-                                          ),
-                                        ),
-                                      ),
-                                      validator: (value) {
-                                        if (value!.isEmpty) {
-                                          return 'Enter Password';
-                                        }
-                                        return null;
-                                      },
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: dimension.height40,
-                                  ),
-                                  RoundButton(
-                                    title: 'Sign In',
-                                    loding: loading,
-                                    onTap: () {
-                                      if (_formKey.currentState!.validate()) {
-                                        login();
-                                      }
-                                    },
-                                  ),
-                                ],
+                                ),
                               ),
                             ),
-                          ]))))),
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Enter Password';
+                              }
+                              return null;
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          height: dimension.height40,
+                        ),
+                        RoundButton(
+                          title: 'Sign In',
+                          loding: loading,
+                          onTap: () {
+                            if (_formKey.currentState!.validate()) {
+                              login();
+                            }
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      )),
     );
   }
 }

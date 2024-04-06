@@ -135,7 +135,7 @@ class _Section_State extends State<Section> {
             icon: Icon(
               Icons.keyboard_arrow_left,
               color: Colors.white,
-              size: dimension.icon30,
+              size: dimension.icon24,
             ),
           ),
           title: Text("Add Section",
@@ -263,18 +263,18 @@ class _Section_State extends State<Section> {
                   if (_SName.text.isEmpty && pickedSCimg == null) {
                     Get.snackbar(
                         "Enter required field", "Both fields are required",
-                        colorText: Colors.red,
+                        colorText: Colors.white,
                         backgroundColor: AppColors.Colorq.withOpacity(0.05));
                   } else if (_SName.text.isEmpty){
                     Get.snackbar(
                         "Enter required field", "Section name is requird",
-                        colorText: Colors.red,
+                        colorText: Colors.white,
                         backgroundColor: AppColors.Colorq.withOpacity(0.05));
                   }
                   else if (pickedSCimg==null){
                     Get.snackbar(
                         "Enter required field", "Section image is requird",
-                        colorText: Colors.red,
+                        colorText: Colors.white,
                         backgroundColor: AppColors.Colorq.withOpacity(0.05));
                   }
                   else {
